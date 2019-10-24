@@ -1,17 +1,14 @@
 /*  Full LogIn component */
 // Everything here was previously in the App component.
-import React, {useState} from 'react';
+import React from 'react';
 // Importing components
 import "./css/login.css";
 import "./css/home.css";
 import Logo from "./assets/img/logo.png"
-import {Button, FormGroup, FormControl, Container, ControlLabel, Form} from 'react-bootstrap';
-const log = console.log
 class Login extends React.Component {
   
   // From Queue.js
   // Generic handler for whenever we type in an input box.
-
   render() {
     return (
     <body>
@@ -29,13 +26,13 @@ class Login extends React.Component {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item  active">
-                <a class="nav-link" href="#">Projects</a>
+                <a class="nav-link" href="/">Projects</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Notifications</a>
+                <a class="nav-link" href="/">Notifications</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="/signup">Sign up</a>
@@ -45,9 +42,8 @@ class Login extends React.Component {
         </div>
       </nav>
     </header>
-  
+
     <div id="login-holder" class="container">
-      <p>Login form style 1</p>
       <div class="card">
       <article class="card-body">
       <a href="src/pages/signup/signup.html" class="float-right btn btn-outline-primary">Sign up</a>
@@ -58,7 +54,7 @@ class Login extends React.Component {
               <input name="" class="form-control" placeholder="Email" type="email"/>
           </div>
           <div class="form-group">
-              <a class="float-right" href="#">Forgot?</a>
+              <a class="float-right" href="/">Forgot?</a>
               <label>Your password</label>
               <input class="form-control" placeholder="******" type="password"/>
           </div> 
@@ -75,7 +71,6 @@ class Login extends React.Component {
       </div> 
       
   </div> 
-  
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

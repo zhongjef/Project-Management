@@ -20,6 +20,7 @@
   "homepage": "https://github.com/csc309-fall-2019/team41#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "zhihu-particle": "0.0.9"
   }
 }
