@@ -3,7 +3,7 @@
 import React from 'react';
 import '../Login.css';
 // Importing components
-import {Button, FormGroup, FormControl, Container} from 'react-bootstrap';
+import {Button, FormGroup, FormControl, Container, ControlLabel, Form} from 'react-bootstrap';
 const log = console.log
 
 class Login extends React.Component {
@@ -13,7 +13,23 @@ class Login extends React.Component {
 
   render() {
     return (
-        <h1>Hello Worldd!</h1>
+      <Form>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+      </Form.Group>
+    
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+      <Form.Group controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
     );
   }
 }
