@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 // Importing components
 import "./css/login.css";
 import "./css/home.css";
+import Logo from "./assets/img/logo.png"
 import {Button, FormGroup, FormControl, Container, ControlLabel, Form} from 'react-bootstrap';
 const log = console.log
 class Login extends React.Component {
@@ -20,7 +21,7 @@ class Login extends React.Component {
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container pr-2 pl-2">
           <a class="navbar-brand" href="../../../index.html">
-            <img class="bannerLogo" src="../../assets/img/ez_color_flat.png" alt="LOGO"/>
+            <img class="bannerLogo" src= {Logo} alt="LOGO"/>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
