@@ -1,10 +1,9 @@
 /*  Full LogIn component */
 // Everything here was previously in the App component.
 import React from 'react';
-
+import '../Login.css';
 // Importing components
-import LoginForm from './LoginForm';
-import {Button} from 'react-bootstrap';
+import {Button, FormGroup, FormControl, Container} from 'react-bootstrap';
 const log = console.log
 
 class Login extends React.Component {
