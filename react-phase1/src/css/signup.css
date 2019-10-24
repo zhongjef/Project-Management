@@ -71,3 +71,8 @@ h2 {
     font-size: 20px;
   }
 }
+
+.bannerLogo {
+   max-width: 50px;
+   max-height: 50px; 
+}
