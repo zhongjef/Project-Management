@@ -37,7 +37,7 @@ class Login extends React.Component {
                 <a class="nav-link" href="#">Notifications</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="src/pages/signup/signup.html">Sign up</a>
+                  <a class="nav-link" href="/signup">Sign up</a>
               </li>
             </ul>
           </div>
