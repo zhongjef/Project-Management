@@ -15,7 +15,7 @@ export default function LoginNavbar() {
 					<Nav.Link className='nav-item' href='/home'>
 						Home
 					</Nav.Link>
-					<Nav.Link className='nav-item' href='#home'>
+					<Nav.Link className='nav-item' href='/project'>
 						Projects
 					</Nav.Link>
 					<Nav.Link className='nav-item' href='#link'>
