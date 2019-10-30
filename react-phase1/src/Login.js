@@ -23,7 +23,9 @@ class Login extends React.Component {
         />
         <title> csc309 Phase 1</title>
         <header class="header-sticky header-light">
+          {/* using login Navbar component */}
           <LoginNavbar />
+
         </header>
 
         <div id="login-holder" class="container">
