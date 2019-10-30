@@ -1,10 +1,10 @@
 import React from 'react';
-import TopNav from './components/Home/TopNav';
-import LeftNav from './components/Home/LeftNav';
+import TopNav from './components/Navbar/TopNav';
+import LeftNav from './components/HomePage/LeftNav';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
-import PopupAction from './components/Project/PopupAction'
+import PopupAction from './components/CreateProject/PopupAction'
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
