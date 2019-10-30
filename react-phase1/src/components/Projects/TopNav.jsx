@@ -3,7 +3,7 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
+      <nav class='navbar navbar-expand-sm navbar-dark bg-secondary'>
         <h1 class='navbar-brand' href='#'>
           projects
         </h1>
