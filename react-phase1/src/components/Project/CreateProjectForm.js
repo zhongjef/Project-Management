@@ -67,7 +67,7 @@ export default class CreateProjectForm extends Component {
               <ul className="list-group text-center mt-3">
               {
                   Object.keys(this.state.manager).map(function(key) {
-                    return (<Row className="show-grid" id="managerForm">
+                    return (<Row className="show-grid" key={key}>
                                 <Col xs={12} md={10}>
                                 <li className="list-group-item">{this.state.manager[key]}</li>
                                 </Col>
@@ -85,12 +85,6 @@ export default class CreateProjectForm extends Component {
              </div>
 
         </Container>
-                <Form.Label className="" id="manager-group">Invite Managers</Form.Label>
-                <Form.Control type="manager" placeholder="Enter his/her id" />
-
-                {/* <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
 
                 <Button variant="primary" type="submit">
                     Create!
