@@ -3,6 +3,8 @@ import TopNav from './components/Home/TopNav';
 import LeftNav from './components/Home/LeftNav';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.css';
+import Button from 'react-bootstrap/Button';
+import PopupAction from './components/Project/PopupAction'
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
@@ -10,13 +12,13 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<div class='container-fluid p-0'>
+				<div className='container-fluid p-0'>
 					<TopNav />
-					<div class='row'>
-						<div class='col'>
+					<div className='row'>
+						<div className='col'>
 							<LeftNav />
 						</div>
-						<div class='col'>
+						<div className='col'>
 							<Card style={{ width: '18rem' }}>
 								<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
 								<Card.Body>
@@ -34,9 +36,9 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
+				<PopupAction />
 			</div>
 		);
 	}
 }
-
 export default Home;
