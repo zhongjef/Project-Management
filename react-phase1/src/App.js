@@ -3,7 +3,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 
 import Login from './Login';
 import Signup from './Signup';
-import Panel from './components/Panel';
+import Panel from './Home';
 // import Signup from './Signup';
 
 class App extends React.Component {

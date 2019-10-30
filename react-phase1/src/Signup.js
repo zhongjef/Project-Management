@@ -1,7 +1,7 @@
 /*  Full Signup component */
 // Everything here was previously in the App component.
 import React from 'react';
-import "./css/signup.css";
+import "./assets/css/signup.css";
 import Logo from "./assets/img/logo.png";
 import Particles from 'reactparticles.js';
 

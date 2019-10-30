@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import TopNav from './Panel-TopNav';
-import LeftNav from './Panel-LeftNav';
+import TopNav from './components/Home/TopNav';
+import LeftNav from './components/Home/LeftNav';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-class Panel extends React.Component {
+class Home extends React.Component {
   state = {};
   render() {
     return (
@@ -42,4 +42,4 @@ class Panel extends React.Component {
   }
 }
 
-export default Panel;
+export default Home;

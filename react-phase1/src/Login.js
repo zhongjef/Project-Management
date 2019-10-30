@@ -2,10 +2,12 @@
 // Everything here was previously in the App component.
 import React from 'react';
 // Importing components
-import './css/login.css';
-import './css/home.css';
+import './assets/css/login.css';
+import './assets/css/home.css';
 import Logo from './assets/img/logo.png';
 import Particles from 'reactparticles.js';
+
+import LoginNavbar from "./components/Navbar/LoginNavbar";
 class Login extends React.Component {
   // From Queue.js
   // Generic handler for whenever we type in an input box.
@@ -21,52 +23,7 @@ class Login extends React.Component {
         />
         <title> csc309 Phase 1</title>
         <header class="header-sticky header-light">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container pr-2 pl-2">
-              <a class="navbar-brand" href="../../../index.html">
-                <img class="bannerLogo" src={Logo} alt="LOGO" />
-              </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">
-                      Home
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/panel">
-                      Panel
-                    </a>
-                  </li>
-                  <li class="nav-item  active">
-                    <a class="nav-link" href="/">
-                      Projects
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">
-                      Notifications
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/signup">
-                      Sign up
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+          <LoginNavbar />
         </header>
 
         <div id="login-holder" class="container">
