@@ -1,6 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.css';
 import TopNav from './components/Home/TopNav';
 import LeftNav from './components/Home/LeftNav';
 import Card from 'react-bootstrap/Card';

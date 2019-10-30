@@ -4,6 +4,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
+import ProjectPage from './ProjectPage';
 // import Signup from './Signup';
 
 class App extends React.Component {

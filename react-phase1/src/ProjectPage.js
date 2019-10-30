@@ -1,5 +1,5 @@
 import React from "react"
-import "./assets/css/ProjectPage.css"
+import "./assets/css/projectPage.css"
 class ProjectPage extends React.Component {
     render() {
         return (
@@ -8,4 +8,4 @@ class ProjectPage extends React.Component {
     }
 }
 
-export default ProjectPage
+export default ProjectPage;
