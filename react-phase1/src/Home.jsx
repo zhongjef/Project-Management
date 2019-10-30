@@ -2,6 +2,7 @@ import React from 'react';
 import TopNav from './components/Home/TopNav';
 import LeftNav from './components/Home/LeftNav';
 import Card from 'react-bootstrap/Card';
+import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
