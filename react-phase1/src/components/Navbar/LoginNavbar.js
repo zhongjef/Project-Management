@@ -11,7 +11,8 @@ export default function LoginNavbar() {
       <NavDropdown title="Login" id="basic-nav-dropdown">
           <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
       </NavDropdown>
-      <Nav.Link className="nav-item" href="#home">Porjects</Nav.Link>
+      <Nav.Link className="nav-item" href="/home">Home</Nav.Link>
+      <Nav.Link className="nav-item" href="#home">Projects</Nav.Link>
       <Nav.Link className="nav-item" href="#link">Notifications</Nav.Link>
         
       </Nav>
