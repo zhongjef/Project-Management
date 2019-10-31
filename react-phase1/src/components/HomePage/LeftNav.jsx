@@ -3,7 +3,7 @@ class LeftNav extends Component {
   state = {};
   render() {
     return (
-      <div className='vertical-nav bg-white'>
+      <div className='vertical-nav bg-white '>
         <div className='py-4 px-4 bg-light'>
           <div className='media d-flex align-items-center'>
             <img

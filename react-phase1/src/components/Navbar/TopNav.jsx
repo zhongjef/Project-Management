@@ -21,6 +21,7 @@ class TopNav extends Component {
              Project
             </a>
           </li>
+          
           <li className='nav-item dropdown '>
             <a
               className='nav-link dropdown-toggle'
@@ -30,6 +31,12 @@ class TopNav extends Component {
               aria-haspopup='true'
               aria-expanded='false'>
               Noticification
+            </a>
+          </li>
+
+          <li className='nav-item dropdown '>
+            <a className='nav-link' href='/account'>
+             Account
             </a>
           </li>
 

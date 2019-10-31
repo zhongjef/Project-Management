@@ -15,10 +15,10 @@ class Home extends React.Component {
 				<div className='container-fluid p-0'>
 					<TopNav />
 					<div className='row'>
-						<div className='col'>
+						<div className='col-md-3'>
 							<LeftNav />
 						</div>
-						<div className='col'>
+						<div className='col-md-9'>
 							<Card style={{ width: '18rem' }}>
 								<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
 								<Card.Body>

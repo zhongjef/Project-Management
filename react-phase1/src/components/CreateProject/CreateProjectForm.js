@@ -37,7 +37,7 @@ export default class CreateProjectForm extends Component {
                 <Form.Label>Project Name</Form.Label>
                 <Form.Control type="project-name" placeholder="Enter project name" />
 
-                <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Group className="mt-2" controlId="exampleForm.ControlSelect1">
                     <Form.Label>Number of Teams</Form.Label>
                     <Form.Control as="select">
                     <option>1</option>
@@ -56,7 +56,7 @@ export default class CreateProjectForm extends Component {
                     <Form.Control id="manager-input" type="manager" placeholder="Enter his/her id" />
                 </Col>
                 <Col xs={6} md={2}>
-                    <Button className="mt-3" variant="primary" size="sm" onClick={() => this.addManager(document.getElementById("manager-input").value)}>
+                    <Button className="mt-2" variant="outline-info" size="sm" onClick={() => this.addManager(document.getElementById("manager-input").value)}>
                         Add More!
                     </Button>
                 </Col>
@@ -64,7 +64,7 @@ export default class CreateProjectForm extends Component {
 
             <div className="container">
             
-              <ul className="list-group text-center mt-3">
+              <ul className="list-group text-center mt-2">
               {
                   Object.keys(this.state.manager).map(function(key) {
                     return (<Row className="show-grid" key={key}>
@@ -86,7 +86,7 @@ export default class CreateProjectForm extends Component {
 
         </Container>
 
-                <Button variant="primary" type="submit">
+                <Button className="mt-3" variant="primary" type="submit">
                     Create!
                 </Button>
             </Form>

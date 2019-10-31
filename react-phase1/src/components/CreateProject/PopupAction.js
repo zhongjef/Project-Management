@@ -24,18 +24,17 @@ export default class PopupAction extends Component {
         
         return (
           <div>
-            <p>Click to get the full Modal experience!</p>
     
             <Button
               variant="primary"
               onClick={() => this.open()}
             >
-              Create Your Own Project
+              Create New Project
             </Button>
     
             <Modal show={this.state.showModal} onHide={() => this.close()}>
               <Modal.Header closeButton>
-                <Modal.Title>Create Your Project</Modal.Title>
+                <Modal.Title>Create New Project</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <CreateProjectForm />
