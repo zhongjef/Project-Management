@@ -22,8 +22,6 @@ class Taskcard extends React.Component {
                 <div className="taskbar" onClick={this.jump("asd")}>
                     <Card/>
                 </div>
-                <div className="taskbar"></div>
-                <div className="taskbar"></div>
             </Flip>
         );
     }
