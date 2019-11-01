@@ -45,7 +45,7 @@ class ProjectPage extends React.Component {
                         }
                     }}
                 >
-                    <button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
+                <button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
                         ==
                 </button>
                 </Sidebar>
