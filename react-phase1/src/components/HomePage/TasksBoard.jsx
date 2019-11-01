@@ -6,8 +6,8 @@ class TasksBoard extends Component {
 	state = {};
 	render() {
 		return (
-			<div>
-				<Card style={{ width: '18rem' }}>
+			<container className='container'>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
 					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
 					<Card.Body>
 						<Card.Title>Card Title</Card.Title>
@@ -19,7 +19,7 @@ class TasksBoard extends Component {
 						<Card.Link href='#'>Another Link</Card.Link>
 					</Card.Body>
 				</Card>
-				<Card style={{ width: '18rem' }}>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
 					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
 					<Card.Body>
 						<Card.Title>Card Title</Card.Title>
@@ -31,7 +31,127 @@ class TasksBoard extends Component {
 						<Card.Link href='#'>Another Link</Card.Link>
 					</Card.Body>
 				</Card>
-			</div>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+				<Card className='d-inline-block' style={{ width: '18rem' }}>
+					<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
+					<Card.Body>
+						<Card.Title>Card Title</Card.Title>
+						<Card.Text>
+							Some quick example text to build on the card title and make up the bulk of the card's
+							content.
+						</Card.Text>
+						<Card.Link href='#'>Card Link</Card.Link>
+						<Card.Link href='#'>Another Link</Card.Link>
+					</Card.Body>
+				</Card>
+			</container>
 		);
 	}
 }

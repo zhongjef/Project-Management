@@ -4,7 +4,7 @@ import './LoginNavbar.css';
 
 export default function LoginNavbar() {
 	return (
-		<Navbar bg='light' expand='lg'>
+		<Navbar expand='lg navbar-dark bg-dark'>
 			<Navbar.Brand href='#home'>我怎么那么帅</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
