@@ -2,7 +2,6 @@ import React from 'react';
 import TopNav from './components/Home/TopNav';
 import LeftNav from './components/Home/LeftNav';
 import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
@@ -13,7 +12,7 @@ class Home extends React.Component {
 				<div class='container-fluid p-0'>
 					<TopNav />
 					<div class='row'>
-						<div class='col'>
+						<div class='col-md-0'>
 							<LeftNav />
 						</div>
 						<div class='col'>
