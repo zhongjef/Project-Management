@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import PopupAction from './components/CreateProject/PopupAction';
 import Sidebar from "react-sidebar";
 import Particles from "reactparticles.js";
-import Taskcard from "./components/ProjectsPage/Taskcard"
+import Taskcard from "./components/ProjectsPage/Taskcard";
+import "./components/HomePage/home.css";
 class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -42,7 +43,6 @@ class Home extends Component {
 						}}
 					>
 					<button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
-							==
                 	</button>
 					
 					</Sidebar>
