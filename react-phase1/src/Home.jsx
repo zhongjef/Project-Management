@@ -1,5 +1,5 @@
 import React from 'react';
-import TopNav from './components/Navbar/TopNav';
+import LoginNavbar from './components/Navbar/LoginNavbar';
 import LeftNav from './components/HomePage/LeftNav';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,7 +13,7 @@ class Home extends React.Component {
 		return (
 			<div>
 				<div className='container-fluid p-0'>
-					<TopNav />
+					<LoginNavbar />
 					<div class='row'>
 						<div class='col-md-0'>
 							<LeftNav />
