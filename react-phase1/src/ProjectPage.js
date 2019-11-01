@@ -9,7 +9,7 @@ import Particles from 'reactparticles.js';
 import Sidebar from "react-sidebar";
 import "./components/ProjectsPage/css/projectPage.css"
 import { relative } from "path";
-
+import LeftNav from "./components/HomePage/LeftNav"
 class ProjectPage extends React.Component {
     state = {
         projectName : "CSC309 PHASE 1"
@@ -50,10 +50,11 @@ class ProjectPage extends React.Component {
                             WebkitTransition: "-webkit-transform .3s ease-out",
                             willChange: "transform",
                             overflowY: "auto"
-                        }}}
+                        }
+                    }}
                 >
                 <button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
-                    ==
+                        ==
                 </button>
                 </Sidebar> */}
 
