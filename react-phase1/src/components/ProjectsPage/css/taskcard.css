@@ -1,12 +1,23 @@
-.taskbar {
-    width: 240px;
-    height: 400px;
-    border: solid black 1px;
-    float: left;
-    margin: 50px 50px 50px 50px;
-    overflow: scroll;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: darkgray;
 }
 
-.taskbar header {
-    padding-left: 40%;;
+.taskbar {
+    width: 16%;
+    height: 400px;
+    border: 1px none #e6ecf1;
+    float: left;
+    justify-content: flex-start;
+    align-self: auto;
+    margin: 50px 50px 50px 50px;
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 20px;
+    background-color:#fff;
+}
+
+.taskbar:hover {
+    box-shadow: 0 6px 28px 0 rgba(24, 52, 117, 0.2)
 }
