@@ -1,21 +1,25 @@
-import React from "react"
-import "./assets/css/projectPage.css"
-import {ButtonToolbar} from "react-bootstrap"
-import Fade from "react-reveal/Fade"
+import React from "react";
+import "./assets/css/projectPage.css";
 import TopNav from './components/Navbar/TopNav';
-import Taskbar from "./components/ProjectsPage/Taskcard";
-import Taskcard from "./components/ProjectsPage/Taskcard";
+
+import { Button, Container, Row, Col} from 'react-bootstrap';
+import ProjectSection from "./components/ProjectsPage/ProjectSection";
+
 class ProjectPage extends React.Component {
+    state = {
+        projectName : "CSC309 PHASE 1"
+    }
     render() {
         return (
             <div className="mission-panel">
                 <TopNav />
-                <Fade left>
-                    <h1>stretching projects...</h1>
-                </Fade>
-                <Taskcard/>
-                <ButtonToolbar>
-                </ButtonToolbar>
+                <h1 className="mt-3 ml-3">{this.state.projectName}</h1>
+                <Container>
+
+                    <ProjectSection />
+                </Container>
+                
+                
             </div>
         );
     }
