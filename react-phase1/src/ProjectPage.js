@@ -27,7 +27,6 @@ class ProjectPage extends React.Component {
     onSetSidebarOpen(open) {
         this.setState({ sidebarOpen: open });
     }
-
     render() {
         return (
             <div className="mission-panel">
