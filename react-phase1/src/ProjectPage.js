@@ -10,9 +10,6 @@ class ProjectPage extends React.Component {
         return (
             <div className="mission-panel">
                 <TopNav />
-                <Fade left>
-                    <h1>stretching projects...</h1>
-                </Fade>
                 <Taskcard/>
                 <ButtonToolbar>
                 </ButtonToolbar>
