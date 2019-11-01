@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
 class LeftNav extends Component {
   state = {};
   render() {
@@ -17,7 +19,7 @@ class LeftNav extends Component {
             </div>
           </div>
         </div>
-        <list-group>
+        <List-group>
           <button
             type="button"
             className="list-group-item list-group-item-action text-center active"
@@ -37,7 +39,7 @@ class LeftNav extends Component {
           >
             Statistic
           </button>
-        </list-group>
+        </List-group>
       </div>
     );
   }

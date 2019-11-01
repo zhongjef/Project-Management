@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Card from "react-bootstrap/Card";
 import Taskcard from "../ProjectsPage/Taskcard";
 
 class TasksBoard extends Component {
   state = {};
   render() {
     return (
-      <container className="container-fluid">
+      <div className="container-fluid">
         <Taskcard />
         <Taskcard />
         <Taskcard />
@@ -15,7 +14,7 @@ class TasksBoard extends Component {
         <Taskcard />
         <Taskcard />
         <Taskcard />
-      </container>
+      </div>
     );
   }
 }

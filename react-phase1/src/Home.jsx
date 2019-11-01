@@ -20,34 +20,32 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
-        <container className="cotainer-fluid">
-          <Particles id="tile1" />
-          <Sidebar
-            sidebar={<LeftNav />}
-            open={this.state.sidebarOpen}
-            onSetOpen={this.onSetSidebarOpen}
-            styles={{
-              sidebar: {
-                zIndex: 2,
-                position: "absolute",
-                top: 50,
-                bottom: 0,
-                transition: "transform .3s ease-out",
-                WebkitTransition: "-webkit-transform .3s ease-out",
-                willChange: "transform",
-                overflowY: "auto"
-              }
-            }}
-          >
-            <button
-              onClick={() => this.onSetSidebarOpen(true)}
-              className="sidebar-button"
-            ></button>
-          </Sidebar>
-          <LoginNavbar />
-          <TasksBoard />
-        </container>
+      <div className="cotainer-fluid">
+        <Particles id="tile1" />
+        <Sidebar
+          sidebar={<LeftNav />}
+          open={this.state.sidebarOpen}
+          onSetOpen={this.onSetSidebarOpen}
+          styles={{
+            sidebar: {
+              zIndex: 2,
+              position: "absolute",
+              top: 50,
+              bottom: 0,
+              transition: "transform .3s ease-out",
+              WebkitTransition: "-webkit-transform .3s ease-out",
+              willChange: "transform",
+              overflowY: "auto"
+            }
+          }}
+        >
+          <button
+            onClick={() => this.onSetSidebarOpen(true)}
+            className="sidebar-button"
+          ></button>
+        </Sidebar>
+        <LoginNavbar />
+        <TasksBoard />
       </div>
     );
   }
