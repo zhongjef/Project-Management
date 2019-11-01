@@ -6,7 +6,7 @@ body {
 
 .taskbar {
     width: 16%;
-    height: 400px;
+    height: 300px;
     border: 1px none #e6ecf1;
     float: left;
     justify-content: flex-start;

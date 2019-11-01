@@ -28,9 +28,6 @@ class ProjectPage extends React.Component {
     render() {
         return (
             <div className="mission-panel">
-                <Particles id='tile1' />
-                <TopNav />
-
                 <Sidebar
                     sidebar={<b>Side bar</b>}
                     open={this.state.sidebarOpen}
@@ -45,12 +42,17 @@ class ProjectPage extends React.Component {
                             WebkitTransition: "-webkit-transform .3s ease-out",
                             willChange: "transform",
                             overflowY: "auto"
-                        }}}
+                        }
+                    }}
                 >
-                <button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
-                    ==
+                    <button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
+                        ==
                 </button>
                 </Sidebar>
+                <Particles id='tile1' />
+                <TopNav />
+
+                
                 <Taskcard/>
                 <Taskcard/>
                 
