@@ -1,7 +1,13 @@
 import React from 'react';
-import TopNav from './components/Home/TopNav';
-import LeftNav from './components/Home/LeftNav';
+import TopNav from './components/Navbar/TopNav';
+import LeftNav from './components/HomePage/LeftNav';
 import Card from 'react-bootstrap/Card';
+<<<<<<< HEAD
+=======
+import 'bootstrap/dist/css/bootstrap.css';
+import Button from 'react-bootstrap/Button';
+import PopupAction from './components/CreateProject/PopupAction'
+>>>>>>> f490c66e84b6f969ab865270df14d95868e140dd
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
@@ -9,13 +15,18 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<div class='container-fluid p-0'>
+				<div className='container-fluid p-0'>
 					<TopNav />
+<<<<<<< HEAD
 					<div class='row'>
 						<div class='col-md-0'>
+=======
+					<div className='row'>
+						<div className='col-md-3'>
+>>>>>>> f490c66e84b6f969ab865270df14d95868e140dd
 							<LeftNav />
 						</div>
-						<div class='col'>
+						<div className='col-md-9'>
 							<Card style={{ width: '18rem' }}>
 								<Card.Img variant='top' src='https://imgur.com/gallery/xn4cYl4.png' />
 								<Card.Body>
@@ -33,9 +44,9 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
+				<PopupAction />
 			</div>
 		);
 	}
 }
-
 export default Home;

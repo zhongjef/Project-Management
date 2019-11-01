@@ -3,14 +3,14 @@ class TopNav extends Component {
   state = {};
   render() {
     return (
-      <nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
-        <a class='navbar-brand' href='#'>
+      <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
+        <a className='navbar-brand' href='#'>
           Panel Board
         </a>
-        <ul class='navbar-nav ml-auto'>
-          <li class='nav-item dropdown '>
+        <ul className='navbar-nav ml-auto'>
+          <li className='nav-item dropdown '>
             <a
-              class='nav-link dropdown-toggle'
+              className='nav-link dropdown-toggle'
               href='#'
               id='dropdown'
               data-toggle='dropdown'
