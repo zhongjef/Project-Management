@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import LoginNavbar from "./components/Navbar/LoginNavbar";
 import LeftNav from "./components/HomePage/LeftNav";
 import "bootstrap/dist/css/bootstrap.css";
-import PopupAction from "./components/CreateProject/PopupAction";
 import Sidebar from "react-sidebar";
 import Particles from "reactparticles.js";
-import Taskcard from "./components/ProjectsPage/Taskcard";
+import TasksBoard from "./components/HomePage/TasksBoard";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -47,14 +46,7 @@ class Home extends Component {
             ></button>
           </Sidebar>
           <LoginNavbar />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
-          <Taskcard />
+          <TasksBoard />
         </container>
       </div>
     );
