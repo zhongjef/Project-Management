@@ -1,6 +1,6 @@
 import React from "react";
 import "./assets/css/projectPage.css";
-import LoginNav from './components/Navbar/LoginNavbar';
+import TopNav from './components/Navbar/TopNav';
 import { Button, Container, Row, Col} from 'react-bootstrap';
 import ProjectSection from "./components/ProjectsPage/ProjectSection";
 import Taskbar from "./components/ProjectsPage/Taskcard";
@@ -32,7 +32,7 @@ class ProjectPage extends React.Component {
         return (
             <div className="mission-panel">
                 <Particles id='tile1' />
-                <LoginNav />
+                <TopNav />
                 
 
 
