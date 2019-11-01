@@ -9,7 +9,7 @@ import Particles from 'reactparticles.js';
 import Sidebar from "react-sidebar";
 import "./components/ProjectsPage/css/projectPage.css"
 import { relative } from "path";
-
+import LeftNav from "./components/HomePage/LeftNav"
 class ProjectPage extends React.Component {
 
     constructor(props) {
@@ -29,7 +29,7 @@ class ProjectPage extends React.Component {
         return (
             <div className="mission-panel">
                 <Sidebar
-                    sidebar={<b>Side bar</b>}
+                    sidebar={<LeftNav/>}
                     open={this.state.sidebarOpen}
                     onSetOpen={this.onSetSidebarOpen}
                     styles={{
