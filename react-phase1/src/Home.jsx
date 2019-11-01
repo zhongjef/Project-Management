@@ -2,12 +2,9 @@ import React from 'react';
 import TopNav from './components/Navbar/TopNav';
 import LeftNav from './components/HomePage/LeftNav';
 import Card from 'react-bootstrap/Card';
-<<<<<<< HEAD
-=======
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
-import PopupAction from './components/CreateProject/PopupAction'
->>>>>>> f490c66e84b6f969ab865270df14d95868e140dd
+import PopupAction from './components/CreateProject/PopupAction';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Home extends React.Component {
@@ -17,13 +14,8 @@ class Home extends React.Component {
 			<div>
 				<div className='container-fluid p-0'>
 					<TopNav />
-<<<<<<< HEAD
 					<div class='row'>
 						<div class='col-md-0'>
-=======
-					<div className='row'>
-						<div className='col-md-3'>
->>>>>>> f490c66e84b6f969ab865270df14d95868e140dd
 							<LeftNav />
 						</div>
 						<div className='col-md-9'>
