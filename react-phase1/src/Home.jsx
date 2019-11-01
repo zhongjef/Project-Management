@@ -24,7 +24,6 @@ class Home extends Component {
 			<div>
 				<container className='cotainer-fluid'>
 					<Particles id='tile1' />
-					<LoginNavbar />
 					<Sidebar
 						sidebar={<LeftNav/>}
 						open={this.state.sidebarOpen}
@@ -45,7 +44,9 @@ class Home extends Component {
 					<button onClick={() => this.onSetSidebarOpen(true)} className="sidebar-button">
 							==
                 	</button>
+					
 					</Sidebar>
+					<LoginNavbar />
 					<Taskcard/>
 					<Taskcard />
 					<Taskcard />
