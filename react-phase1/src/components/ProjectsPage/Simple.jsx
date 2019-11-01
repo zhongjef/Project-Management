@@ -10,7 +10,7 @@ export default class Simple extends Component {
     this.state = {
       items: generateItems(2, (index) => {
         return {
-          id: index,
+          taskid: index,
           taskName: 'Task: ' + index
         };
       }),
@@ -36,6 +36,10 @@ export default class Simple extends Component {
     })
   }
 
+  getTaskPayload(taskIndex, memberIndex) {
+    return this.state.items[taskIndex]
+  }
+
   render() {
     return (
     <div className="">
@@ -48,7 +52,9 @@ export default class Simple extends Component {
         <h3>{this.state.task.taskName}</h3>
 
         <div className="simple-page mt-2">
-          <Container onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}>
+          <Container groupName={"taskTable"}  getChildPayload={taskIndex => this.getTaskPayload(taskIndex)}>
+          
+          onDrop={e => {console.log(e); this.setState({ items: applyDrag(this.state.items, e) })}}>
             {this.state.items.map(p => {
               return (
                 <Draggable key={p.id}>
@@ -59,6 +65,11 @@ export default class Simple extends Component {
               );
             })}
           </Container>
+
+          
+        </div>
+
+        <div> 
         </div>
       </div>
     );
