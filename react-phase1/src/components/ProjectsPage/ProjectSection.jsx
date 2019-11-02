@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import Simple from './Simple';
 import TeamTable from './TeamTable';
 import TeamSection from './TeamSection'
-import { Button, Container, Row, Col} from 'react-bootstrap';
+import { Button, Card, Row, Col} from 'react-bootstrap';
+import {FaPlusSquare} from 'react-icons/fa'
 
 export default class ProjecSection extends Component {
     constructor(){
         super();
         this.state = {
-            currTeam: "initial team",
+            currTeam: "No Team Selected",
         }
         this.selectTeamListenner = React.createRef();
     }
@@ -28,12 +29,25 @@ export default class ProjecSection extends Component {
                 <Col md={"auto"}> 
                     <TeamTable selectTeam={this.onSelectTeam.bind(this)}/>
                 </Col>
-                <Col className="border border-primary pd-2" md={"auto"}> 
-                    <Simple className="mr-2" ref={this.selectTeamListenner}/>
+                <Col className="border border-primary pd-2" md={"auto"}  style={{minWidth: '200px', backgroundColor: "white"}}> 
+                    <Simple className="mr-2" ref={this.selectTeamListenner} />
                 </Col>
             </Row>
             <Row className="mt-3">
-                <TeamSection ref={this.selectTeamListenner}/>
+
+            <Card>
+                <Card.Header>Team Section 
+                    <Button className="float-right">
+                        Invite New Member <FaPlusSquare />
+                    </Button>             
+                </Card.Header>
+                <Card.Body>
+                    <Card.Title>{this.state.currTeam}</Card.Title>
+                    <TeamSection ref={this.selectTeamListenner}/>
+                </Card.Body>
+            </Card>
+
+                
             </Row>
 
             </div>

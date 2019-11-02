@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button, Container, Row, Col} from 'react-bootstrap';
+import { Card, ListGroup, Button} from 'react-bootstrap';
+import {FaCog} from 'react-icons/fa'
 
 export default class TeamTable extends Component {
     constructor(props) {
@@ -28,20 +29,26 @@ export default class TeamTable extends Component {
     }
     render() {
         return (
-            <div className="border border-dark pd-2" style={{width: 300}}> 
-            <Col className="mx-100 mb-2">
-            {this.state.teams.map(p => {
-                console.log(p)
-              return (
-                  <Row className="mt-2 "> 
-                  <Button variant="dark" value={p.name} onClick={(e) => this.onSelectTeam(e)}>
-                    {'Team: ' + p.name}
-                  </Button>
-                  </Row>
-                  
-              );
-            })}
-            </Col>
+            <div className="" style={{width: 300}}>
+                 <Card border="dark" style={{ width: '18rem' }}>
+                    {/* <Card.Header>Project Jinx</Card.Header> */}
+                    <Card.Body>
+                    <Button className="float-right mt-0" variant="outline-dark"> <FaCog/>
+                            </Button> 
+                    <Card.Title className="h2 display-flex">Teams 
+                       
+                    </Card.Title> 
+                    <ListGroup className="mt-4" variant="flush">
+                        {this.state.teams.map(p => {
+                        return (<ListGroup.Item value={p.name} action onClick={(e) => this.onSelectTeam(e)}> {'Team: ' + p.name} </ListGroup.Item>);
+                        })}
+                    </ListGroup>
+                    </Card.Body>
+                </Card>
+                <br />
+            
+            
+
             </div>
 
             
