@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import PopupAction from "../../components/CreateProject/PopupAction";
 
 class LeftNav extends Component {
   state = {};
@@ -39,6 +40,12 @@ class LeftNav extends Component {
           >
             Statistic
           </button>
+          <div
+            type="button"
+            className="list-group-item list-group-item-action text-center "
+          >
+          <PopupAction/>
+          </div>
         </List-group>
       </div>
     );
