@@ -28,9 +28,19 @@ export default function LoginNavbar() {
             Projects
           </Nav.Link>
         </Nav>
-        <Nav.Link className="nav-item" href="#link">
-          Notifications
-        </Nav.Link>
+        <Nav>
+          <Nav.Link className="nav-item " href="/account">
+            <img
+              className="rounded"
+              style={{ width: 25 }}
+              alt="Profile Picture"
+              src="https://imgix.ranker.com/user_node_img/50054/1001066706/original/the-mortiest-morty-is-very-special-photo-u1?w=650&q=50&fm=pjpg&fit=crop&crop=faces"
+            ></img>
+          </Nav.Link>
+          <Nav.Link className="nav-item" href="#link">
+            Notifications
+          </Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
