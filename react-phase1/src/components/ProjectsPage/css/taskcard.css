@@ -19,5 +19,6 @@ body {
 }
 
 .taskbar:hover {
-    box-shadow: 0 6px 28px 0 rgba(24, 52, 117, 0.2)
+    width: 17%;
+    box-shadow: 0 6px 28px 0 rgba(24, 52, 117, 1)
 }
