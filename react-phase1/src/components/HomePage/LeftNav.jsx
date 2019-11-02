@@ -23,15 +23,18 @@ class LeftNav extends Component {
         <List-group>
           <button
             type="button"
-            className="list-group-item list-group-item-action text-center active"
+            className="list-group-item list-group-item-action d-flex justify-content-between active"
           >
             Current Tasks
+            <span className="badge badge-light badge-pill">14</span>
+            <span className="badge badge-danger badge-pill">10000</span>
           </button>
           <button
             type="button"
-            className="list-group-item list-group-item-action text-center "
+            className="list-group-item list-group-item-action  d-flex justify-content-between"
           >
             Archived Tasks
+            <span className="badge badge-primary badge-pill">14</span>
           </button>
           <button
             type="button"
@@ -44,7 +47,7 @@ class LeftNav extends Component {
             type="button"
             className="list-group-item list-group-item-action text-center "
           >
-          <PopupAction/>
+            <PopupAction />
           </div>
         </List-group>
       </div>
