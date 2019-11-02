@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Sidebar from "react-sidebar";
 import Particles from "reactparticles.js";
 import TasksBoard from "./components/HomePage/TasksBoard";
+import "./components/HomePage/home.css"
 class Home extends Component {
   constructor(props) {
     super(props);
