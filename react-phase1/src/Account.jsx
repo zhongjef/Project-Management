@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import LoginNavbar from "./components/Navbar/LoginNavbar";
-import LeftPanel from "./components/Account/LeftPanel";
+import LeftPanel from "./components/Account/AccountLeftPanel";
 import { Helmet } from "react-helmet";
-import Profile from "./components/Account/Profile";
+import Profile from "./components/Account/AccountProfile";
 
 class Account extends Component {
   render() {

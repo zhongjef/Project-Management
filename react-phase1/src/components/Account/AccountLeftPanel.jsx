@@ -9,7 +9,7 @@ class LeftPanel extends Component {
           Profile
         </button>
         <button className="list-group-item list-group-item-action text-center">
-          Groups
+          Teams
         </button>
         <button className="list-group-item list-group-item-action text-center">
           Setting
