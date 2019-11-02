@@ -4,6 +4,7 @@
 import Modal from "react-bootstrap/Modal";
 import React, { Component } from "react";
 import { Form, Button, FormControl} from "react-bootstrap";
+import {FaPlusSquare} from 'react-icons/fa'
 
 export default class TaskPopupAction extends Component {
   constructor (props) {
@@ -40,9 +41,9 @@ export default class TaskPopupAction extends Component {
 
   render() {
     return (
-      <div>
-        <Button variant="primary" onClick={() => this.open()}>
-          Create New Task
+      <div >
+        <Button variant="primary float-right" size="sm" onClick={() => this.open()}>
+          <FaPlusSquare/>
         </Button>
 
         <Modal show={this.state.showModal} onHide={() => this.close()}>

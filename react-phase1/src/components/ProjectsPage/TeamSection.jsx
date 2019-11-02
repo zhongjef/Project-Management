@@ -89,7 +89,6 @@ export default class TeamSection extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.teamName}</h2>
         <Container>
         <Row> 
           {this.state.currTeam.map((member, index) => {
@@ -107,7 +106,7 @@ export default class TeamSection extends Component {
                 
                     {member.tasks.map(task => { return (
                     <Draggable key={task.taskid}>
-                        <Button className="draggable-item" key={task.taskid}>{task.taskName}</Button>
+                        <Button className="draggable-item mt-2" key={task.taskid}>{task.taskName}</Button>
                     </Draggable>);}
                     )}
 

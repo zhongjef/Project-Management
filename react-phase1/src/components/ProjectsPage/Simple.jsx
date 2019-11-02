@@ -42,19 +42,18 @@ export default class Simple extends Component {
 
   render() {
     return (
-    <div className="">
-        <TaskPopupAction 
-          createTask={this.onCreateTask.bind(this)}
-        />
+    <div>
+        <div className="mt-2">
+        <TaskPopupAction createTask={this.onCreateTask.bind(this)} />
+        </div>
+  
+          <div> <h2>{this.state.teamName}</h2></div>
 
-        <div> <h2>{this.state.teamName}</h2></div>
-
-        <h3>{this.state.task.taskName}</h3>
+         <h4>Create New Task</h4>
 
         <div className="simple-page mt-2">
-          <Container groupName={"taskTable"}  getChildPayload={taskIndex => this.getTaskPayload(taskIndex)}>
-          
-          onDrop={e => {console.log(e); this.setState({ items: applyDrag(this.state.items, e) })}}>
+          <Container groupName={"taskTable"}  getChildPayload={taskIndex => this.getTaskPayload(taskIndex)} 
+            onDrop={e => {console.log(e); this.setState({ items: applyDrag(this.state.items, e) })}}>
             {this.state.items.map(p => {
               return (
                 <Draggable key={p.id}>
@@ -69,8 +68,7 @@ export default class Simple extends Component {
           
         </div>
 
-        <div> 
-        </div>
+
       </div>
     );
   }
