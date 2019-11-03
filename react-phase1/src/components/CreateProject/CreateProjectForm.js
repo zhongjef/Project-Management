@@ -6,9 +6,11 @@ export default class CreateProjectForm extends Component {
     state = {
         manager : {
             'manager-1' : 'Kch3coo',
-          }
+          },
     };
-    
+    constructor(props) {
+        super(props);
+    }
     addManager(manager) {
         //create a unike key for each new fruit item
         var timestamp = (new Date()).getTime();
@@ -35,7 +37,7 @@ export default class CreateProjectForm extends Component {
             <Form>
 
                 <Form.Label>Project Name</Form.Label>
-                <Form.Control type="project-name" placeholder="Enter project name" />
+                <Form.Control type="project-name" placeholder="Enter project name" name="projectName"/>
 
                 <Form.Group className="mt-2" controlId="exampleForm.ControlSelect1">
                     <Form.Label>Number of Teams</Form.Label>
@@ -86,7 +88,7 @@ export default class CreateProjectForm extends Component {
 
         </Container>
 
-                <Button className="mt-3" variant="primary" type="submit">
+                <Button className="mt-3" variant="primary" type="submit" onClick={this.props.global.roar(this.props.popup)}>
                     Create!
                 </Button>
             </Form>

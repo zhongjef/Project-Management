@@ -16,6 +16,16 @@ class Home extends Component {
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
+  roar(popup) {
+
+    return function (e) {
+      e.preventDefault();
+      console.log("roar!");
+      console.log(e.target);
+      popup.close();
+    }
+  }
+
   onSetSidebarOpen(open) {
     this.setState({ sidebarOpen: open });
   }
@@ -24,7 +34,7 @@ class Home extends Component {
       <div className="cotainer-fluid">
         <Particles id="tile1" />
         <Sidebar
-          sidebar={<LeftNav />}
+          sidebar={<LeftNav global={this}/>}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           styles={{

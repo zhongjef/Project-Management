@@ -13,7 +13,7 @@ class Taskcard extends React.Component {
         return function (e) {
             console.log(e)
             console.log(location)
-            window.location = "/"
+            window.location = "/project"
         }
     }
     render() {

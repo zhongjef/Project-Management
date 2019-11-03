@@ -8,6 +8,9 @@ import React, { Component } from 'react'
 
 export default class PopupAction extends Component {
     state = {showModal: false};
+    constructor(props) {
+      super(props);
+    }
     getInitialState() {
         return { showModal: false };
       }
@@ -37,7 +40,7 @@ export default class PopupAction extends Component {
                 <Modal.Title>Create New Project</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <CreateProjectForm />
+                <CreateProjectForm global = {this.props.global} popup={this}/>
     
               </Modal.Body>
               <Modal.Footer>

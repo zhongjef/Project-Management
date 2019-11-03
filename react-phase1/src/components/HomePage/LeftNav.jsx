@@ -4,6 +4,10 @@ import PopupAction from "../../components/CreateProject/PopupAction";
 
 class LeftNav extends Component {
   state = {};
+
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="vertical-nav bg-white">
@@ -37,7 +41,7 @@ class LeftNav extends Component {
             Statistic
           </button>
           <div className="list-group-item list-group-item-action text-center ">
-            <PopupAction />
+            <PopupAction global={this.props.global}/>
           </div>
         </List-group>
       </div>
