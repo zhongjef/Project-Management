@@ -16,6 +16,31 @@ class Home extends Component {
     this.tasks = []
     this.managers = {}
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    // call fetchCard here after implementing our database and server
+  }
+
+  /**
+   * The api to fetch data from the server (other procedures has been wrapped into the components
+   * callback takes an object
+   * 
+   * Use Promise to resolve the function
+   */
+  fetchCard(url, callback, id, password) {
+    // get the projects card from the database
+    // code below requries server call
+    // in "Promise then, call this function"
+    let managers = {}; // managers are got thorugh the database, resolved in the promise object
+    let project_name = ""; // project the same as well above
+    this.tasks.push(<Taskcard project_name={project_name} managers={managers}/>)
+  }
+  /**
+   * The api to update data from the server
+   * callback to show if it's successful
+   */
+  updateCard(url, callback, managers, project_name) {
+    let managers = {}; // get the managers in the updating procedure
+    let project_name = ""; // get the project_name in the updating procedure
+    // code to update the database
   }
 
   roar(popup, project_name, managers) {
