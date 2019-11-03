@@ -33,7 +33,7 @@ class Login extends React.Component {
         { /* Header component with text props. */ }
         <div>Login</div>
 
-        { /* Student Form component with text and function props. */ }
+        { /* Login Form component with user name and password props. */ }
         <LoginForm 
               userName={ this.state.userName }
               userPassword={ this.state.userPassword }
