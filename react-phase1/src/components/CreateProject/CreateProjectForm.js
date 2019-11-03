@@ -7,6 +7,8 @@ export default class CreateProjectForm extends Component {
         manager : {
             'manager-1' : 'Kch3coo',
           },
+
+        project_name: ""
     };
     constructor(props) {
         super(props);
@@ -37,8 +39,7 @@ export default class CreateProjectForm extends Component {
             <Form>
 
                 <Form.Label>Project Name</Form.Label>
-                <Form.Control type="project-name" placeholder="Enter project name" name="projectName"/>
-
+                <Form.Control type="project-name" placeholder="Enter project name" name="projectName" onChange= {(e)=>this.setState({project_name: e.target.value})}/>
                 <Form.Group className="mt-2" controlId="exampleForm.ControlSelect1">
                     <Form.Label>Number of Teams</Form.Label>
                     <Form.Control as="select">
@@ -55,7 +56,7 @@ export default class CreateProjectForm extends Component {
             <Row className="show-grid" id="managerForm">
                 <Col xs={12} md={10}>
                     <Form.Label className="" id="manager-group">Invite Managers</Form.Label>
-                    <Form.Control id="manager-input" type="manager" placeholder="Enter his/her id" />
+                    <Form.Control id="manager-input" type="manager" placeholder="Enter his/her id"/>
                 </Col>
                 <Col xs={6} md={2}>
                     <Button className="mt-2" variant="outline-info" size="sm" onClick={() => this.addManager(document.getElementById("manager-input").value)}>
@@ -88,7 +89,7 @@ export default class CreateProjectForm extends Component {
 
         </Container>
 
-                <Button className="mt-3" variant="primary" type="submit" onClick={this.props.global.roar(this.props.popup)}>
+                <Button className="mt-3" variant="primary" type="submit" onClick={this.props.global.roar(this.props.popup, this.state.project_name)}>
                     Create!
                 </Button>
             </Form>

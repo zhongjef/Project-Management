@@ -1,15 +1,17 @@
 import React from "react"
 import "./css/card.css"
 class Card extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
     render () {
         return (
             <div className="card">
-                <header>Team</header>
+                <header>{this.props.project_name}</header>
                 <div className="card-content">
                     <ul>
-                        <li>t1</li>
-                        <li>t2</li>
-                        <li>t3</li>
+                        <li>Kch3coo</li>
                     </ul>
                     
                 </div>

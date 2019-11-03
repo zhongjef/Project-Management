@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Sidebar from "react-sidebar";
 import Particles from "reactparticles.js";
 import TasksBoard from "./components/HomePage/TasksBoard";
+import Taskcard from "./components/ProjectsPage/Taskcard";
 import "./components/HomePage/home.css"
 class Home extends Component {
   constructor(props) {
@@ -12,17 +13,19 @@ class Home extends Component {
     this.state = {
       sidebarOpen: true
     };
-
+    this.tasks = []
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
-  roar(popup) {
-
+  roar(popup, project_name) {
+    let self = this;
     return function (e) {
       e.preventDefault();
       console.log("roar!");
       console.log(e.target);
       popup.close();
+      console.log(project_name);
+      self.tasks.push(<Taskcard project_name={project_name}/>);
     }
   }
 
@@ -30,6 +33,7 @@ class Home extends Component {
     this.setState({ sidebarOpen: open });
   }
   render() {
+    
     return (
       <div className="cotainer-fluid">
         <Particles id="tile1" />
@@ -56,7 +60,9 @@ class Home extends Component {
           ></button>
         </Sidebar>
         <LoginNavbar />
-        <TasksBoard />
+        <div id = "card_spawn"className="container-fluid">
+          {this.tasks}
+        </div>
       </div>
     );
   }

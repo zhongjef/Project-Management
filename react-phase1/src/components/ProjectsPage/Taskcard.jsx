@@ -9,6 +9,10 @@ class Taskcard extends React.Component {
     initializeData(url) {
         console.log(url)
     }
+
+    constructor(props) {
+        super(props);
+    }
     jump(location) {
         return function (e) {
             console.log(e)
@@ -20,7 +24,7 @@ class Taskcard extends React.Component {
         return (
             <Flip>
                 <div className="taskbar" onClick={this.jump("asd")}>
-                    <Card/>
+                    <Card project_name={this.props.project_name}/>
                 </div>
             </Flip>
         );
