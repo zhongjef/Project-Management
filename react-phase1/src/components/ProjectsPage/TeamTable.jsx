@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, ListGroup, Button} from 'react-bootstrap';
-import {FaCog} from 'react-icons/fa'
+import {FaCog} from 'react-icons/fa';
+import CreateTeamForm from './CreateForms/CreateTeamForm'
 
 export default class TeamTable extends Component {
     constructor(props) {
@@ -8,16 +9,16 @@ export default class TeamTable extends Component {
         this.state = {
             teams: [
                 {
-                    "name": "Master of html"
+                    name: "Master of html"
                 },
                 {
-                    "name": "Master of css"
+                    name: "Master of css"
                 },
                 {
-                    "name": "Master of java"
+                    name: "Master of java"
                 },
                 {
-                    "name": "Master of CRTL C + CRTL V"
+                    name: "Master of CRTL C + CRTL V"
                 }
             ]
         }
@@ -27,14 +28,23 @@ export default class TeamTable extends Component {
         console.log(e.target.value)
         this.props.selectTeam(e.target.value)
     }
+
+    onCreateTeam(newTeam) {
+        this.state.teams.push(newTeam);
+        this.setState({
+          team: this.state.teams
+        })
+      }
+
     render() {
         return (
             <div className="" style={{width: 300}}>
                  <Card border="dark" style={{ width: '18rem' }}>
                     {/* <Card.Header>Project Jinx</Card.Header> */}
                     <Card.Body>
-                    <Button className="float-right mt-0" variant="outline-dark"> <FaCog/>
-                            </Button> 
+                    <div className="float-right mt-0"> 
+                        <CreateTeamForm createTeam={this.onCreateTeam.bind(this)}/>
+                    </div>
                     <Card.Title className="h2 display-flex">Teams 
                        
                     </Card.Title> 

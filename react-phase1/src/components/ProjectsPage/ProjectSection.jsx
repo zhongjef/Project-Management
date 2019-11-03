@@ -3,7 +3,7 @@ import Simple from './Simple';
 import TeamTable from './TeamTable';
 import TeamSection from './TeamSection'
 import { Button, Card, Row, Col} from 'react-bootstrap';
-import {FaPlusSquare} from 'react-icons/fa'
+
 
 export default class ProjecSection extends Component {
     constructor(){
@@ -34,19 +34,7 @@ export default class ProjecSection extends Component {
                 </Col>
             </Row>
             <Row className="mt-3">
-
-            <Card>
-                <Card.Header>Team Section 
-                    <Button className="float-right">
-                        Invite New Member <FaPlusSquare />
-                    </Button>             
-                </Card.Header>
-                <Card.Body>
-                    <Card.Title>{this.state.currTeam}</Card.Title>
-                    <TeamSection ref={this.selectTeamListenner}/>
-                </Card.Body>
-            </Card>
-
+            <TeamSection ref={this.selectTeamListenner}/>
                 
             </Row>
 
