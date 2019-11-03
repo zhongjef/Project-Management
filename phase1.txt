@@ -14,7 +14,17 @@ may be a liitle bit long
 
 As explained in https://piazza.com/class/k01ldi3iyhc509?cid=162 and https://piazza.com/class/k01ldi3iyhc509?cid=156
 
+################# Data and hardcoding ###################
 
+We have put some efforts in seperation of "back-end" and "front-end", 
+
+the apis to fetch data from the back-end in react components are implemented 
+
+in the "homn page functioanlity" and "Projectpage functionality"
+
+We have "fetchCard", "updateCard" apis in "Home.jsx"
+
+We have "getProjectsTeam" and "updateProjectsTeam" apis in "ProjectPage.js"
 
 ######### Login page functionality and credentials: #############
 
