@@ -6,55 +6,46 @@ class AllUsersTable extends Component {
   state = {
     users: [
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff0@mail.com",
         username: "Jefferson0",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff1@mail.com",
         username: "Jefferson1",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff2@mail.com",
         username: "Jefferson2",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff3@mail.com",
         username: "Jefferson3",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff4@mail.com",
         username: "Jefferson4",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff5@mail.com",
         username: "Jefferson5",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff6@mail.com",
         username: "Jefferson6",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff7@mail.com",
         username: "Jefferson7",
         phone: "0123456789"
       },
       {
-        profile_pic: "http://i.imgur.com/kjfLsHw.png",
         email: "jeff8@mail.com",
         username: "Jefferson8",
         phone: "0123456789"

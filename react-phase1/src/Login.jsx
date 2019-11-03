@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import LoginNavbar from "./components/Navbar/LoginNavbar";
 import LoginForm from "./components/LoginForm";
 import { Helmet } from "react-helmet";
-
+import profilePicture from "./assets/img/profilepic.png";
 import Particles from "reactparticles.js";
 class Login extends React.Component {
   state = {
@@ -45,7 +45,7 @@ class Login extends React.Component {
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossOrigin="anonymous"
           />
-          <LoginNavbar user={{ profilePic: this.state.profilePic }} />
+          <LoginNavbar />
           <LoginForm
             userName={this.state.userName}
             userPassword={this.state.userPassword}
@@ -57,10 +57,6 @@ class Login extends React.Component {
     );
   }
   handleUserChange = () => {
-    this.setState({
-      profilePic:
-        "https://imgix.ranker.com/user_node_img/50054/1001066706/original/the-mortiest-morty-is-very-special-photo-u1?w=650&q=50&fm=pjpg&fit=crop&crop=faces"
-    });
     this.props.handleUserChange();
   };
 }

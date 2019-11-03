@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import PopupAction from "../../components/CreateProject/PopupAction";
+import profilePic from "../../assets/img/profilepic.png";
 
 class LeftNav extends Component {
   state = {};
@@ -14,7 +15,7 @@ class LeftNav extends Component {
         <div className="py-4 px-4 bg-white">
           <div className="media d-flex align-items-center">
             <img
-              src="http://i.imgur.com/kjfLsHw.png"
+              src={profilePic}
               alt="Rick and Morty"
               width="45"
               className="mr-3 rounded-circle"
@@ -41,7 +42,7 @@ class LeftNav extends Component {
             Statistic
           </button>
           <div className="list-group-item list-group-item-action text-center ">
-            <PopupAction global={this.props.global}/>
+            <PopupAction global={this.props.global} />
           </div>
         </List-group>
       </div>

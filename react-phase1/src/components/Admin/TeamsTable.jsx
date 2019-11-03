@@ -9,13 +9,11 @@ class AllTeamsTable extends Component {
         name: "Red",
         managers: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff0@mail.com",
             username: "Jefferson0",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff1@mail.com",
             username: "Jefferson1",
             phone: "0123456789"
@@ -23,13 +21,11 @@ class AllTeamsTable extends Component {
         ],
         members: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff0@mail.com",
             username: "Jefferson0",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff1@mail.com",
             username: "Jefferson1",
             phone: "0123456789"
@@ -40,13 +36,11 @@ class AllTeamsTable extends Component {
         name: "Green",
         managers: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff4@mail.com",
             username: "Jefferson4",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff5@mail.com",
             username: "Jefferson5",
             phone: "0123456789"
@@ -54,13 +48,11 @@ class AllTeamsTable extends Component {
         ],
         members: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff4@mail.com",
             username: "Jefferson4",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff5@mail.com",
             username: "Jefferson5",
             phone: "0123456789"
@@ -71,13 +63,11 @@ class AllTeamsTable extends Component {
         name: "Blue",
         managers: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff7@mail.com",
             username: "Jefferson7",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff8@mail.com",
             username: "Jefferson8",
             phone: "0123456789"
@@ -85,13 +75,11 @@ class AllTeamsTable extends Component {
         ],
         members: [
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff7@mail.com",
             username: "Jefferson7",
             phone: "0123456789"
           },
           {
-            profile_pic: "http://i.imgur.com/kjfLsHw.png",
             email: "jeff8@mail.com",
             username: "Jefferson8",
             phone: "0123456789"
@@ -124,7 +112,10 @@ class AllTeamsTable extends Component {
               <td>
                 <ul>
                   {team.members.map(member => (
-                    <li>{`${member.email} ${member.username}`}</li>
+                    <li>
+                      <img src={member.profile_pic}></img>
+                      {`${member.email} ${member.username}`}
+                    </li>
                   ))}
                 </ul>
               </td>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import profilePicture from "../../assets/img/profilepic.png";
 
 import {
   Navbar,
@@ -13,7 +14,9 @@ import "./LoginNavbar.css";
 
 class LoginNavbar extends Component {
   state = {
-    user: this.props.user
+    user: {
+      profilePic: profilePicture
+    }
   };
   render() {
     return (
@@ -30,7 +33,18 @@ class LoginNavbar extends Component {
             </Nav.Link>
           </Nav>
           <Nav>
-            {this.getAccount()}
+            {/* {this.getAccount()} */}
+            <Nav.Link className="nav-item " href="/account">
+              <img
+                className="rounded"
+                style={{ width: 25 }}
+                alt="Profile Picture"
+                src={this.state.user.profilePic}
+              ></img>
+            </Nav.Link>
+            <NavDropdown title="Login" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link className="nav-item" href="#link">
               Notifications
             </Nav.Link>
@@ -59,6 +73,8 @@ class LoginNavbar extends Component {
         </NavDropdown>
       );
   };
+
+  // return ()
 }
 
 export default LoginNavbar;
