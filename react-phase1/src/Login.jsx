@@ -1,8 +1,8 @@
-/*  Full LogIn component */
-// Everything here was previously in the App component.
 import React from "react";
-// Importing components
+import "bootstrap/dist/css/bootstrap.css";
+
 import LoginForm from "./components/LoginForm";
+import { Helmet } from "react-helmet";
 
 class Login extends React.Component {
   state = {
@@ -28,7 +28,16 @@ class Login extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div className="App">
+=======
+      <div>
+        <Helmet>
+          <title>Login Page</title>
+          <meta name="Login Page" />
+        </Helmet>
+
+>>>>>>> refs/remotes/origin/master
         {/* Login Form component with user name and password props. */}
         <LoginForm
           userName={this.state.userName}
