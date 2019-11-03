@@ -113,3 +113,14 @@ profile image and "Notifications", by just clicking the profile image, you'll
 be redirected to the profile page, where you can see your username, email, password
 
 and self-introductions. 
+
+
+######## Addtional Notice about commit history ##############
+
+In the commit history, there're some addtional git users besides our current team accounts,
+
+But these git accounts are still owned by our team members because they sometimes work on another computer instead of their MAC and they
+
+forgot to change the git config at other computers. 
+
+We've sent an email to explain this condition. 
