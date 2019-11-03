@@ -28,16 +28,12 @@ class Login extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="App">
-=======
       <div>
         <Helmet>
           <title>Login Page</title>
           <meta name="Login Page" />
         </Helmet>
-
->>>>>>> refs/remotes/origin/master
+        
         {/* Login Form component with user name and password props. */}
         <LoginForm
           userName={this.state.userName}
