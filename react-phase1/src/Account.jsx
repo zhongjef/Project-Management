@@ -15,17 +15,17 @@ class Account extends Component {
           <style>{"body { background-color: white; }"}</style>
         </Helmet>
         <div className="container-fluid p-0">
-          <container className="row-fluid">
+          <div className=" container-row row-fluid">
             <LoginNavbar />
-          </container>
-          <container className="row">
-            <container className="col-2 mw-100">
+          </div>
+          <div className="container-row row">
+            <div className="col-2 mw-100">
               <LeftPanel />
-            </container>
-            <container className="col">
+            </div>
+            <div className="col">
               <Profile />
-            </container>
-          </container>
+            </div>
+          </div>
         </div>
       </div>
     );
