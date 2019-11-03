@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
           <div className="card">
             <article className="card-body">
               <a
-                href="src/pages/signup/signup.html"
+                href="/signup"
                 className="float-right btn btn-outline-primary"
               >
                 Sign up
