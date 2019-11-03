@@ -14,18 +14,18 @@ class Home extends Component {
       sidebarOpen: true
     };
     this.tasks = []
+    this.managers = {}
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
-  roar(popup, project_name) {
+  roar(popup, project_name, managers) {
     let self = this;
     return function (e) {
       e.preventDefault();
       console.log("roar!");
-      console.log(e.target);
       popup.close();
-      console.log(project_name);
-      self.tasks.push(<Taskcard project_name={project_name}/>);
+      console.log(managers);
+      self.tasks.push(<Taskcard project_name={project_name} managers={managers}/>);
     }
   }
 

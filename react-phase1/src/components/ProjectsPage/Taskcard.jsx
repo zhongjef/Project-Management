@@ -24,7 +24,7 @@ class Taskcard extends React.Component {
         return (
             <Flip>
                 <div className="taskbar" onClick={this.jump("asd")}>
-                    <Card project_name={this.props.project_name}/>
+                    <Card project_name={this.props.project_name} managers={this.props.managers}/>
                 </div>
             </Flip>
         );
