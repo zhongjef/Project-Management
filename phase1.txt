@@ -1,0 +1,126 @@
+#### Description ####
+This app is used for team project management, as explained in team41 proposal
+
+We have implemented a lot of functionalities, to explain them accurately and correctly, this phase1.txt
+may be a liitle bit long
+
+#### How to run ####
+1. cd to react-phase1 directory
+2. npm install
+3. npm start (since it's built no react) (normally port 3000)
+4. be patient before it starts
+
+#### Index.jsx to replace index.html ####
+
+As explained in https://piazza.com/class/k01ldi3iyhc509?cid=162 and https://piazza.com/class/k01ldi3iyhc509?cid=156
+
+
+
+######### Login page functionality and credentials: #############
+
+it's in the "/" url, you can see the login page after starting the react. 
+
+The current admin login id is: admin
+The current admin password is: admin
+
+*** After login with your admin account, you'll be redirected to admin page
+
+The current user login id is: user
+The current user password is: user
+
+*** After login with your user account, you'll be redirected to user/project page
+
+#############  Admin panel ##############
+
+As explained in Login page functionality, you'll see the admin page if you 
+
+login with admin account, and you can delete the users in your admin page
+
+################ Sign up page ################
+
+see the top navigation bar, you'll see the Login item, click it, it'll then expand
+
+and the signup option will be shwon, click that option, you'll see the sign up page.
+
+Or more simply, just click the Sign up button in the login panel.
+
+################ Home project adding (3 parts) ##################
+
+------ part 1 ---------
+
+After login with user account, you'll be redirected to the user home page,
+
+there's a side bar, which can be shown or hidden by user click.
+
+* if the side bar is hidden after clicking, you can reopen it by clicking the triangular arrow
+
+in the upper left corner, the sidebar will be shown again*
+
+------- part 2 ---------
+
+As you can see in the sidebar, there is a "Create New Project" button, click the button,
+
+a pop-up window will show up, then you can create a project through that pop-up,
+
+and name the projects. Adding managers is also available. You can click "Create!", then there'll be a
+
+new team added to the user.
+
+--------- part 3 ---------
+
+After creating the team, click the screen again to hide the sidebar, there'll be a 
+
+team description card shown on the window, displaying the project name and the manager names on it.
+
+
+
+############## Project management functionality (3 parts) ##################
+
+-------------- part 1 ---------------
+
+You can just click the "Projects" button on the topNavbar to get into the 
+
+individual project management page, or you can get into it by just clicking the 
+
+description card as explained in @"Home project adding" (part3) after creating a 
+
+new project.
+
+-------------- part 2 -----------------
+
+You can click around on the Teams div after getting into the project page,
+
+the Team Section will show the details of items in Teams div after clicking.
+
+* The cool thing about the Team Section, is that you can drag the items around 
+
+and then the tasks can be redistributed to someone else-
+
+------------- part 3 ------------------
+
+You can create task through the Task div, there'll be a pop-up shown after clicking
+
+the upper right button, you can also drag the tasks around to manage the priority of the tasks
+
+
+
+################# User Profile Page ###################
+
+In the top navigation bar of every page, at the upper right corner, there's a 
+
+profile image and "Notifications", by just clicking the profile image, you'll 
+
+be redirected to the profile page, where you can see your username, email, password
+
+and self-introductions. 
+
+
+######## Addtional Notice about commit history ##############
+
+In the commit history, there're some addtional git users besides our current team accounts,
+
+But these git accounts are still owned by our team members because they sometimes work on another computer instead of their MAC and they
+
+forgot to change the git config at other computers. 
+
+We've sent an email to explain this condition. 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -17,17 +18,26 @@ class LoginForm extends React.Component {
     if (this.props.userName === this.props.userPassword) {
       if (this.props.userName === "admin") {
         return "/admin";
-      } else {
+      } else if (this.props.userName === "user") {
         //return "/account/" + this.props.userName
         return "/home";
+      } else {
+        return "/";
       }
     } else {
       return "/";
     }
   };
 
+  changeCurrentUser = () => {
+    this.props.handleUserChange(this.props.userName);
+  }
+
   render() {
-    const targetUrl = this.getRoute();
+    if (this.state.targetUrl != "/") {
+      this.changeCurrentUser();
+      return(<Redirect to={ this.state.targetUrl } />)
+    }
     return (
       <div className="myLogin">
         <Particles id="tile1" />
@@ -47,7 +57,7 @@ class LoginForm extends React.Component {
           <div className="card">
             <article className="card-body">
               <a
-                href="src/pages/signup/signup.html"
+                href="/signup"
                 className="float-right btn btn-outline-primary"
               >
                 Sign up
@@ -88,12 +98,13 @@ class LoginForm extends React.Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <Link to={targetUrl}>
-                    <button className="btn btn-primary btn-block">
-                      {" "}
-                      Login{" "}
-                    </button>
-                  </Link>
+                  <button className="btn btn-primary btn-block"
+                          onClick={() => {
+                            this.setState({["targetUrl"]: this.getRoute()
+                          })}}>
+                    {" "}
+                    Login{" "}
+                  </button>
                 </div>
               </form>
             </article>
