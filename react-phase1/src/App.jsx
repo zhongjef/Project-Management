@@ -16,12 +16,12 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/project" component={ProjectPage} />
-            <Route exact path="/account" component={Account} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/account" component={Account} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/project" component={ProjectPage} />
+            <Route exact path="/signup" component={Signup} />
           </Switch>
         </BrowserRouter>
       </div>
