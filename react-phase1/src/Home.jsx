@@ -38,8 +38,8 @@ class Home extends Component {
    * callback to show if it's successful
    */
   updateCard(url, callback, managers, project_name) {
-    let managers = {}; // get the managers in the updating procedure
-    let project_name = ""; // get the project_name in the updating procedure
+    // get the managers in the updating procedure
+    // get the project_name in the updating procedure
     // code to update the database
   }
 
