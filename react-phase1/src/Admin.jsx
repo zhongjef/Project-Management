@@ -6,7 +6,9 @@ import LeftPanel from "./components/Admin/AdminLeftPanel";
 import UsersTable from "./components/Admin/UsersTable";
 import TeamsTable from "./components/Admin/TeamsTable";
 class Admin extends Component {
-  state = {};
+  state = {
+    showUsers: true
+  };
 
   render() {
     return (
@@ -22,17 +24,32 @@ class Admin extends Component {
           </container>
           <container className="row">
             <container className="col-2 mw-100">
-              <LeftPanel />
+              <LeftPanel handleClick={tabname => this.handleClick(tabname)} />
             </container>
-            <container className="col">
-              <UsersTable />
-              <TeamsTable />
-            </container>
+            <container className="col">{this.getTable()}</container>
           </container>
         </div>
       </div>
     );
   }
+
+  getTable = () => (this.state.showUsers ? <UsersTable /> : <TeamsTable />);
+
+  handleLogout = () => {};
+
+  handleClick = tabname => {
+    if (tabname === "users") {
+      this.setState({
+        showUsers: true
+      });
+    } else if (tabname === "teams") {
+      this.setState({
+        showUsers: false
+      });
+    } else {
+      this.handleLogout();
+    }
+  };
 }
 
 export default Admin;
