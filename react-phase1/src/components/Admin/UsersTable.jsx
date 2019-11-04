@@ -85,6 +85,8 @@ class AllUsersTable extends Component {
   }
 
   handleDelete = userEmail => {
+    // TODO: Phase 2 call backend server to update users
+
     const users = this.state.users.filter(user => user.email !== userEmail);
     this.setState({ users });
   };

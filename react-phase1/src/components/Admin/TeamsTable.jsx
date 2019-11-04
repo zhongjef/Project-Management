@@ -135,6 +135,7 @@ class AllTeamsTable extends Component {
     );
   }
   handleDelete = teamName => {
+    // TODO: Phase 2 call backend server to update teams
     const teams = this.state.teams.filter(team => team.name !== teamName);
     this.setState({ teams });
   };
