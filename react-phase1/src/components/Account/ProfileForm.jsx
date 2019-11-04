@@ -6,14 +6,17 @@ class ProfileForm extends Component {
   state = { user: this.props.getUser() };
 
   handleSubmit = e => {
+    e.preventDefault();
     // TODO: In Phase 2 call backend server to update user profile in
     console.log("Submitted");
+    this.props.backToProfile();
   };
 
   handleChange = e => {
     const user = { ...this.state.user };
     user[e.currentTarget.name] = e.currentTarget.value;
     this.setState({ user });
+    console.log(user);
     this.props.updateUser(user);
   };
 

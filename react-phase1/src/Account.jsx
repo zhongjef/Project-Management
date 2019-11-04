@@ -27,10 +27,17 @@ class Account extends Component {
           user={this.state.user}
           getUser={this.getUser}
           updateUser={this.handleUserUpdate}
+          backToProfile={this.backToProfile}
         />
       );
     }
     return <Profile user={this.state.user} />;
+  };
+
+  backToProfile = () => {
+    this.setState({
+      editProfile: false
+    });
   };
 
   getEditButton = () => {
@@ -52,6 +59,7 @@ class Account extends Component {
   };
 
   handleUserUpdate = updatedUser => {
+    console.log(updatedUser);
     // TODO: Phase 2 call backend server to update user
     this.setState({
       user: updatedUser
