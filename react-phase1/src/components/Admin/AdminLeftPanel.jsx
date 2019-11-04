@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import { Redirect } from "react-router-dom";
 
 class LeftPanel extends Component {
   state = {
@@ -20,8 +21,10 @@ class LeftPanel extends Component {
         >
           Teams
         </button>
-        <button className="list-group-item list-group-item-action list-group-item-danger text-center">
-          <span style={{ color: "red" }}>Logout</span>
+        <button className="btn btn-danger list-group-item list-group-item-action list-group-item-danger text-center ">
+          <a href="/" className="d-block text-danger">
+            Logout
+          </a>
         </button>
       </List-group>
     );
