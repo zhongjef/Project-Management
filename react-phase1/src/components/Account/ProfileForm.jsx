@@ -22,8 +22,8 @@ class ProfileForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit} className="mt-2 mr-2">
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Email</label>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Email</label>
           <div className="col-sm-10">
             <input
               onChange={this.handleChange}
@@ -90,7 +90,7 @@ class ProfileForm extends Component {
 
         <div className="form-group row-fluid">
           <div className="col p-0">
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-primary btn-block">
               Update
             </button>
           </div>
