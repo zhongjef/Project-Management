@@ -8,9 +8,6 @@ class LeftPanel extends Component {
         <button className="rounded-0 list-group-item list-group-item-action text-center active ">
           Profile
         </button>
-        <button className="list-group-item list-group-item-action text-center">
-          Teams
-        </button>
         <button className="list-group-item list-group-item-action text-center disabled">
           Setting - Phase 2
         </button>
