@@ -11,11 +11,13 @@ class LeftPanel extends Component {
         <button className="list-group-item list-group-item-action text-center">
           Teams
         </button>
-        <button className="list-group-item list-group-item-action text-center">
-          Setting
+        <button className="list-group-item list-group-item-action text-center disabled">
+          Setting - Phase 2
         </button>
         <button className="list-group-item list-group-item-action list-group-item-danger text-center">
-          <span style={{ color: "red" }}>Logout</span>
+          <a href="/" className="text-danger d-block">
+            Logout
+          </a>
         </button>
       </List-group>
     );
