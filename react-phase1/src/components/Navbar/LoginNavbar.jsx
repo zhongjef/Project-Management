@@ -25,7 +25,7 @@ class LoginNavbar extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="nav-item" href="/home">
+            <Nav.Link className="nav-item" href="/user">
               Home
             </Nav.Link>
             <Nav.Link className="nav-item" href="/project">

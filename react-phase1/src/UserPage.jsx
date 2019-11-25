@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import LoginNavbar from "../Navbar/LoginNavbar";
+import LoginNavbar from "./components/Navbar/LoginNavbar";
 import "bootstrap/dist/css/bootstrap.css";
-import Taskcard from "../ManageProjectPage/Taskcard";
-import DisplayUserInfo from "./DisplayUserInfo";
-import DisplayProjects from "./DisplayProjects";
+import Taskcard from "./components/ManageProjectPage/Taskcard";
+import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
+import DisplayProjects from "./components/UserPage/DisplayProjects";
 // import "./UserPage.css";
 
 import "../HomePage/home.css";
