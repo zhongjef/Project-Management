@@ -9,7 +9,7 @@ import Home from "./Home";
 import ProjectPage from "./ProjectPage";
 import Account from "./Account";
 import Admin from "./Admin";
-
+import UserPage from "../src/components/UserPage/UserPage";
 class App extends React.Component {
   state = { currentUser: "" };
 
@@ -40,6 +40,10 @@ class App extends React.Component {
             <Route exact path="/account" component={Account}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser === 'admin') ? <Redirect to="/admin" /> : <Account />)*/}
+            </Route>
+            <Route exact path="/user" component={UserPage}>
+              {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
+              ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
             </Route>
             <Route exact path="/admin" component={Admin}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 

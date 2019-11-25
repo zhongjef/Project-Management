@@ -89,7 +89,7 @@ export default class CreateProjectForm extends Component {
 
         </Container>
 
-                <Button className="mt-3" variant="primary" type="submit" onClick={this.props.global.roar(this.props.popup, this.state.project_name, this.state.manager)}>
+                <Button className="mt-3" variant="primary" type="submit">
                     Create!
                 </Button>
             </Form>

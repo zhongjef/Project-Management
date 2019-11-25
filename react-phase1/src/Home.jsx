@@ -4,8 +4,7 @@ import LeftNav from "./components/HomePage/LeftNav";
 import "bootstrap/dist/css/bootstrap.css";
 import Sidebar from "react-sidebar";
 import Particles from "reactparticles.js";
-import TasksBoard from "./components/HomePage/TasksBoard";
-import Taskcard from "./components/ProjectsPage/Taskcard";
+import Taskcard from "./components/ManageProjectPage/Taskcard";
 import "./components/HomePage/home.css"
 class Home extends Component {
   constructor(props) {
@@ -61,7 +60,7 @@ class Home extends Component {
     
     return (
       <div className="cotainer-fluid">
-        <Particles id="tile1" />
+        {/* <Particles id="tile1" /> */}
         <Sidebar
           sidebar={<LeftNav global={this}/>}
           open={this.state.sidebarOpen}

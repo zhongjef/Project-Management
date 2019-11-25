@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Taskcard from "../ProjectsPage/Taskcard";
+import Taskcard from "../ManageProjectPage/Taskcard";
 
 class TasksBoard extends Component {
   state = {};
