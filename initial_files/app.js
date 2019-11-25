@@ -9,6 +9,8 @@ const _ = require("lodash");
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express();
+const mongoose = require("mongoose");
+const users = require("./index.js");
 /*checker of complexity 4
 if func is a registration function, it'll forward
 */
@@ -22,6 +24,13 @@ const app = {
         router.use(bodyParser.urlencoded({extended: false}));
         router.use(bodyParser.json());
         router.listen(8080);
+        mongoose.set("useNewUrlParser", true);
+        mongoose.set("useUnifiedTopology", true);
+        mongoose
+            .connect("mongodb+srv://jeff:SAes9P2BVWrf1oTW@cluster0-ai9jj.mongodb.net/test?retryWrites=true&w=majority")
+            .then(() => console.log("Connected to MongoDB..."))
+            .catch((err) => console.log("Could not connect to MongoDB", err));
+        users.createUser();
     }
 }
 
