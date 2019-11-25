@@ -9,7 +9,7 @@ import Home from "./Home";
 import ProjectPage from "./ProjectPage";
 import Account from "./Account";
 import Admin from "./Admin";
-import UserPage from "../src/components/UserPage/UserPage";
+import UserPage from "./UserPage";
 class App extends React.Component {
   state = { currentUser: "" };
 

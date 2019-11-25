@@ -6,7 +6,7 @@ import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
 import DisplayProjects from "./components/UserPage/DisplayProjects";
 // import "./UserPage.css";
 
-import "../HomePage/home.css";
+// import "../HomePage/home.css";
 class Home extends Component {
   constructor(props) {
     super(props);
