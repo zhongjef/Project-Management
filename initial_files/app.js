@@ -6,6 +6,9 @@ e.g: npm run app to launch this app
 `
 const process = require("process");
 const _ = require("lodash");
+const express = require("express");
+const bodyParser = require("body-parser");
+const router = express();
 /*checker of complexity 4
 if func is a registration function, it'll forward
 */
@@ -16,8 +19,16 @@ const app = {
     main: () => {
         /*where the logic lies, write code here*/
         console.log("starting the server...");
+        router.use(bodyParser.urlencoded({extended: false}));
+        router.use(bodyParser.json());
+        router.listen(8080);
     }
 }
+
+router.get("/test", (req, res)=> {
+    res.send("shit!");
+});
+
 
 
 /*please ignore this, balance checking code*/
