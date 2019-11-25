@@ -7,7 +7,7 @@ import DisplayProjects from "./components/UserPage/DisplayProjects";
 // import "./UserPage.css";
 
 // import "../HomePage/home.css";
-class Home extends Component {
+class UserPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,4 +73,4 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+export default UserPage;

@@ -10,6 +10,7 @@ import ProjectPage from "./ProjectPage";
 import Account from "./Account";
 import Admin from "./Admin";
 import UserPage from "./UserPage";
+import ContributeProjectPage from "../src/components/ContributeProjectPage/ContributeProjectPage";
 class App extends React.Component {
   state = { currentUser: "" };
 
@@ -46,6 +47,10 @@ class App extends React.Component {
               ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
             </Route>
             <Route exact path="/admin" component={Admin}>
+              {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
+              ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
+            </Route>
+            <Route exact path="/cproject" component={ContributeProjectPage}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
             </Route>
