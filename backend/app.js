@@ -10,7 +10,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = express();
 const mongoose = require("mongoose");
-const users = require("./index.js");
+const updateTool = require("./service/updateUser.js");
 /*checker of complexity 4
 if func is a registration function, it'll forward
 */
@@ -29,8 +29,8 @@ const app = {
         mongoose
             .connect("mongodb+srv://jeff:SAes9P2BVWrf1oTW@cluster0-ai9jj.mongodb.net/test?retryWrites=true&w=majority")
             .then(() => console.log("Connected to MongoDB..."))
+            .then(() => updateTool.createUser())
             .catch((err) => console.log("Could not connect to MongoDB", err));
-        users.createUser();
     }
 }
 
