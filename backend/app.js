@@ -32,15 +32,15 @@ const app = {
 			.then(() => console.log("Connected to MongoDB..."))
 			.catch((err) => console.log("Could not connect to MongoDB", err));
 
-		// userService.create({ name: "jeff", email: "jeff@mail.com", password: "123456", description: "" });
-		const newUser = userService.findByEmail("jeff@mail.com");
-		userService.update(newUser._id, { password: "666666" });
-		userService.findById(newUser._id);
 	}
 };
 
 router.get("/test", (req, res) => {
-	res.send("shit!");
+
+    const newUser = userService.findByEmail("jeff@mail.com");
+    newUser.then((e)=> {
+        res.json(e);
+    })
 });
 
 /*please ignore this, balance checking code*/
