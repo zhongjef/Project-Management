@@ -36,9 +36,8 @@ const app = {
 };
 
 router.get("/test", async (req, res) => {
-    const email = req.query["email"];
-    let r = await userService.findByEmail(email ? email : "jeff@mail.com");
-    r = r ? r : {};
+    const email = req.query["email"] || "jeff@mail.com";
+    let r = await userService.findByEmail(email) || {};
     res.json(r);
 });
 
