@@ -6,7 +6,7 @@ export default class TypingEffect extends Component {
   }
   render() {
     return (
-      <div class="type-effect-container">
+      <div className="type-effect-container">
         <h1>Welcome home,</h1>
         <h1>{this.props.userName}</h1>
       </div>

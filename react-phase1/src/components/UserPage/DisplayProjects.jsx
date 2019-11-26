@@ -78,7 +78,7 @@ export default class DisplayProjects extends Component {
             </div>
           </h4>
 
-          <div className="swiper mt-4">
+          <div className="swiper mt-4 text-dark">
             <Swiper {...swiper_params}>{this.displayProjectCards(true)}</Swiper>
             <Card.Footer className="text-muted">3 projects updated</Card.Footer>
           </div>
@@ -88,7 +88,7 @@ export default class DisplayProjects extends Component {
           <h4 className="project-section-text text-dark">
             <strong>Contribute to Project</strong>
           </h4>
-          <div className="swiper mt-4">
+          <div className="swiper mt-4 text-dark">
             <Swiper {...swiper_params}>
               {this.displayProjectCards(false)}
             </Swiper>

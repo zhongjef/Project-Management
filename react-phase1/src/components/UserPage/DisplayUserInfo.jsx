@@ -18,7 +18,7 @@ export default class DisplayUserInfo extends Component {
             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrvanz/128.jpg" />
             <div className="profileinfo">
             <h2 className="user-name-text">{this.state.userInfo.userName}</h2>
-              <p class="bio">海贼王！我当定了！</p>
+              <p className="bio">海贼王！我当定了！</p>
             </div>
           </div>
         </div>
