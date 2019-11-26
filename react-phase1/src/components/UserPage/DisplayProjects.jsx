@@ -33,6 +33,7 @@ export default class DisplayProjects extends Component {
     const lis = isManageProject
       ? projectlis.manageProjectList
       : projectlis.contributeProjectList;
+    const link = isManageProject ? "/project" : "cproject"
     return lis.map((project, index) => {
       return (
         <div key={index}>
@@ -41,7 +42,8 @@ export default class DisplayProjects extends Component {
             <Card.Body>
               <Card.Title>{project.project_name}</Card.Title>
               <Card.Text>{project.desc}</Card.Text>
-              <Button variant="primary">Go</Button>
+              <a href={link}> <Button variant="primary">Go</Button> </a>
+              
             </Card.Body>
           </Card>
         </div>

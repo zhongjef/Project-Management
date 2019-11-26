@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./TaskCard.css";
+import "./TaskProcess.css";
+import {Button} from "react-bootstrap";
 
-export default class TaskCard extends Component {
+export default class TaskProcess extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +23,7 @@ export default class TaskCard extends Component {
   setCheckBoxProgress(curr_check_box_id) {
     let checkboxChecked = [];
     var checkbox = document.getElementsByName('progress-tasks')
-    console.log(checkbox)
+    
     const curr = curr_check_box_id;
     for (let i = 0; i < this.state.numTasks; i++) {
       if (i < curr) {
@@ -32,6 +33,7 @@ export default class TaskCard extends Component {
         checkbox[i].checked = false;
       }
     }
+    // console.log(checkbox)
     return checkboxChecked;
   }
   
@@ -41,7 +43,7 @@ export default class TaskCard extends Component {
     );
     this.setState({ meter: meterCurrVal, checkboxChecked: checkboxChecked, completed: checkboxChecked.length });
     this.transformRaidiusPie((360 / 100) * meterCurrVal);
-    console.log(this.state.checkboxChecked);
+    console.log(checkboxChecked);
   }
   transformRaidiusPie(deg) {
     var progRadiusPie = document.querySelector("#slice .pie");
@@ -93,11 +95,18 @@ export default class TaskCard extends Component {
       this.setProgress(this.state.completed)
   }
 
+  submitCompletion(){
+    const numOfCompletedTasks = this.state.checkboxChecked.length
+    console.log("from process: " + numOfCompletedTasks)
+    console.log(this.props)
+    this.props.submitCompletion(numOfCompletedTasks)
+}
+
   render() {
     return (
       <div>
   {/* <div>Task completed: {this.setProgress(this.state.completed)} </div> */}
-        <form>
+        <form className="task-form">
           <div className="prog">{this.progRadius()}</div>
           <input
             type="checkbox"
@@ -179,6 +188,10 @@ export default class TaskCard extends Component {
             max="100"
           ></progress>
         </form>
+        <div className="text-center mt-2 d-flex">
+        <Button onClick={() => this.submitCompletion()} style={{zIndex: 1}}>Submit </Button>
+        </div>
+        
       </div>
     );
 

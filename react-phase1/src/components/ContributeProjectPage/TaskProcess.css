@@ -7,7 +7,7 @@ body {
   color: #fff;
 }
 
-form {
+.task-form {
   position: relative;
   border: 5px solid #59616C;
   border-radius: 400px;
@@ -49,13 +49,13 @@ label.progress-task:after {
 }
 
 label.progress-task:before {
-  border: 5px solid #59616c;
+  /* border: 5px solid #59616c; */
   z-index: 1;
 }
 
 label.progress-task:after {
   background: #2c3642;
-  border: 12px solid #2c3642;
+  border: 8px solid #2c3642;
   position: absolute;
 }
 
