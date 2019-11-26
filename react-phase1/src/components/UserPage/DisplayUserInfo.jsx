@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./DisplayUserInfo.css";
-
+import TypingEffect from "../TypingEffect/TypingEffect";
 export default class DisplayUserInfo extends Component {
     constructor(props) {
         super(props);
@@ -10,17 +10,21 @@ export default class DisplayUserInfo extends Component {
       }
   render() {
     return (
-      <div className="content">
+      <div> 
+        <TypingEffect userName={this.state.userInfo.userName} />
+        <div className="content">
         <div className="athlete-card">
           <div className="firstinfo">
             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrvanz/128.jpg" />
             <div className="profileinfo">
-            <h2>{this.state.userInfo.userName}</h2>
+            <h2 className="user-name-text">{this.state.userInfo.userName}</h2>
               <p class="bio">海贼王！我当定了！</p>
             </div>
           </div>
         </div>
       </div>
+      </div>
+      
     );
   }
 }

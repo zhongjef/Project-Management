@@ -63,6 +63,19 @@ athlete-card:before, athlete-card:after {
   font-style: initial;
 }
 
+.user-name-text{
+  font-family: "Work Sans", sans-serif;
+  margin: 0 auto auto auto;
+  /* background: linear-gradient(to right, #f8b195, #f67280, #c06c84); */
+  background: linear-gradient(to right, #5ac2bd, #72f6b8, #7b6cc0);
+  font-weight: 500;
+  font-size: 20px;
+  width: 430px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+}
+
 .best-result .br1{
     color:rgb(202, 173, 6);
     
