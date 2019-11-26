@@ -36,11 +36,24 @@ const app = {
 };
 
 router.get("/test", (req, res) => {
+    const email = req.query["email"];
+    if (email) {
+        userService.findByEmail(email).then((e)=> {
+            if (e) {
+                res.json(e);
+            }
 
-    const newUser = userService.findByEmail("jeff@mail.com");
-    newUser.then((e)=> {
-        res.json(e);
-    })
+            else {
+                res.json({})
+            }
+        });
+    }
+
+    else {
+        userService.findByEmail("jeff@mail.com").then((e)=> {
+            res.json(e);
+        })
+    }
 });
 
 /*please ignore this, balance checking code*/
