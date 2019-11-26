@@ -35,24 +35,18 @@ const app = {
 	}
 };
 
-router.get("/test", (req, res) => {
+router.get("/test", async (req, res) => {
     const email = req.query["email"];
     if (email) {
-        userService.findByEmail(email).then((e)=> {
-            if (e) {
-                res.json(e);
-            }
-
-            else {
-                res.json({})
-            }
-        });
+        let r = await userService.findByEmail(email);
+        r = r ? r : {};
+        res.json(r);
+        
     }
 
     else {
-        userService.findByEmail("jeff@mail.com").then((e)=> {
-            res.json(e);
-        })
+        let r = await userService.findByEmail("jeff@mail.com");
+        res.json(r);
     }
 });
 
