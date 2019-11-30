@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import Login from "./Login";
 import Signup from "./Signup";
-import Home from "./Home";
 import ProjectPage from "./ProjectPage";
 import Account from "./Account";
 import Admin from "./Admin";
@@ -30,10 +29,6 @@ class App extends React.Component {
               <Login handleUserChange={this.handleUserChange} />
             </Route>
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/home" component={Home}>
-              {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
-              ((this.state.currentUser === 'admin') ? <Redirect to="/admin" /> : <Home />)*/}
-            </Route>
             <Route exact path="/project" component={ProjectPage}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser === 'admin') ? <Redirect to="/admin" /> : <ProjectPage />)*/}

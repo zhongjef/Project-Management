@@ -3,7 +3,7 @@ import LoginNavbar from "./components/Navbar/LoginNavbar";
 import "bootstrap/dist/css/bootstrap.css";
 import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
 import DisplayProjects from "./components/UserPage/DisplayProjects";
-import FooterNavbar from "./components/Navbar/FooterNav";
+import FooterNav from "./components/Navbar/FooterNav";
 // import "./UserPage.css";
 
 // import "../HomePage/home.css";
@@ -69,7 +69,7 @@ class UserPage extends Component {
         <LoginNavbar />
         <DisplayUserInfo userInfo={this.state.userInfo} />
         <DisplayProjects projectList={this.state.projectList} />
-        <FooterNavbar />
+        <FooterNav />
       </div>
     );
   }

@@ -11,9 +11,11 @@ export default class FooterNav extends Component {
                 <div class="row">
                     <div class="col-md-6">
                         <h3> Team </h3>
-                        <ul>
+                        <ul class="float-left">
                             <li> <a href="https://github.com/kch3coo"> <FaGithub /> kch3coo </a> </li>
                             <li> <a href="https://github.com/imJeffZ"> <FaGithub /> imJeffZ </a> </li>
+                        </ul>
+                        <ul class="float-left ml-4">
                             <li> <a href="https://github.com/dpcjzpeter"> <FaGithub /> dpcjzpeter </a> </li>
                             <li> <a href="https://github.com/atrocitytheme"><FaGithub /> atrocitytheme </a> </li>
                         </ul>
