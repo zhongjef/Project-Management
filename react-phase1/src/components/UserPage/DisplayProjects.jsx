@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PopupAction from "../CreateProject/PopupAction";
-import Taskcard from "../ManageProjectPage/Taskcard";
 import { Card, Button, Row } from "react-bootstrap";
-import Flip from "react-reveal/Flip";
 import Swiper from "react-id-swiper";
 import "swiper/css/swiper.css";
 import "./DisplayProjects.css";

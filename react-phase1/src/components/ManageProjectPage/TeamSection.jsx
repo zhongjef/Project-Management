@@ -12,69 +12,33 @@ export default class TeamSection extends Component {
       teamName: "",
       currTeam: [],
 
-      allTeam: [
-        {
-          id: 123456,
-          name: "John",
-          teamName: "Master of html",
-          tasks: [{ taskid: 1, taskName: "John Task 1" }]
-        },
-        {
-          id: 13352,
-          name: "Silvia",
-          teamName: "Master of html",
-          tasks: [{ taskid: 2, taskName: "Silvia Task 1" }]
-        },
-        {
-          id: 9399018,
-          name: "Bob",
-          teamName: "Master of html",
-          tasks: [
-            { taskid: 3, taskName: "Bob Task 1" },
-            { taskid: 4, taskName: "Bob Task 2" }
-          ]
-        },
-        {
-          id: 55156,
-          name: "Kidnnedy",
-          teamName: "Master of css",
-          tasks: [
-            { taskid: 5, taskName: "Kidnnedy Task 1" },
-            { taskid: 6, taskName: "Kidnnedy Task 2" }
-          ]
-        },
-        {
-          id: 512466,
-          name: "Jason",
-          teamName: "Master of java",
-          tasks: [
-            { taskid: 5, taskName: "Jason Task 1" },
-            { taskid: 6, taskName: "Jason Task 2" }
-          ]
-        }
-      ]
+      allTeam: this.props.teams
     };
+    
+  }
+
+  componentWillMount(){
+    const init_team = this.props.teams[0]
+    this.setState({
+      teamName: init_team.teamName,
+      currTeam: init_team.contributors
+    })
   }
 
   handleTeamChange(team) {
-    const currTeam = [];
-    for (let i = 0; i < this.state.allTeam.length; i++) {
-      const member = this.state.allTeam[i];
-      if (member.teamName === team) {
-        currTeam.push(member);
-      }
-    }
+    const currTeam = this.state.allTeam.filter(t => t.teamName === team)[0];
+    
 
     this.setState({
-      teamName: team,
-      currTeam: currTeam
+      teamName: currTeam.teamName,
+      currTeam: currTeam.contributors
     });
     console.log(currTeam);
   }
 
   onTaskDrop(e, index) {
     const member = Object.assign({}, this.state.currTeam[index]);
-    member.tasks = applyDrag(member.tasks, e);
+    member.taskList = applyDrag(member.taskList, e);
     this.state.currTeam[index] = member;
     this.setState({
       currTeam: this.state.currTeam
@@ -83,12 +47,11 @@ export default class TeamSection extends Component {
   }
 
   getTaskPayload(taskIndex, memberIndex) {
-    return this.state.currTeam[memberIndex].tasks[taskIndex];
+    return this.state.currTeam[memberIndex].taskList[taskIndex];
   }
 
   addMemberHandler(member){
-    this.state.currTeam.push(member);
-    this.setState({currTeam: this.state.currTeam})
+    //call data base 
   }
 
   render() {
@@ -98,9 +61,6 @@ export default class TeamSection extends Component {
             <Card>
               <Card.Header>
                 Team Section
-                {/* <Button className="float-right">
-                  Invite New Member <FaPlusSquare />
-                </Button> */}
                 <div className="float-right">
                 <InviteMember teamName={this.state.teamName} teamSize={this.state.currTeam.length} addMember={this.addMemberHandler.bind(this)}/>
                 </div>
@@ -112,9 +72,9 @@ export default class TeamSection extends Component {
 
                 {this.state.currTeam.map((member, index) => {
                   return (
-                    <Col md={4} xs={6} className="p-2" key={member.id}>
+                    <Col md={4} xs={6} className="p-2" key={member.userId}>
                       <Card style={{ width: "18rem", alignContent: "center"}}>
-                        <Card.Header><h3>{member.name}</h3></Card.Header>
+                        <Card.Header><h3>{member.userName}</h3></Card.Header>
                         <Card.Subtitle className="d-flex justify-content-center text-muted mt-2">
                           Current Tasks
                         </Card.Subtitle>
@@ -127,7 +87,7 @@ export default class TeamSection extends Component {
                           }
                           
                         >
-                          {member.tasks.map(task => {
+                          {member.taskList.map(task => {
                             return (
                               <Draggable key={task.taskid} className="ml-2">
                                 <Button

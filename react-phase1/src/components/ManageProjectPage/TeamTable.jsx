@@ -1,27 +1,14 @@
 import React, { Component } from 'react'
 import { Card, ListGroup, Button} from 'react-bootstrap';
-import {FaCog} from 'react-icons/fa';
 import CreateTeamForm from './CreateForms/CreateTeamForm'
 
 export default class TeamTable extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
-            teams: [
-                {
-                    name: "Master of html"
-                },
-                {
-                    name: "Master of css"
-                },
-                {
-                    name: "Master of java"
-                },
-                {
-                    name: "Master of CRTL C + CRTL V"
-                }
-            ]
+            teamList: this.props.teams
         }
+        console.log(this.state.teamList)
     }
     
     onSelectTeam(e) {
@@ -30,10 +17,16 @@ export default class TeamTable extends Component {
     }
 
     onCreateTeam(newTeam) {
-        this.state.teams.push(newTeam);
+        const team = {
+            teamName: newTeam.name,
+            contributors: []
+        }
+        console.log(newTeam)
+        this.state.teamList.push(team);
         this.setState({
-          team: this.state.teams
+          teamList: this.state.teamList
         })
+        //call database for post request
       }
 
     render() {
@@ -49,8 +42,8 @@ export default class TeamTable extends Component {
                        
                     </Card.Title> 
                     <ListGroup className="mt-4" variant="flush">
-                        {this.state.teams.map(p => {
-                        return (<ListGroup.Item value={p.name} action onClick={(e) => this.onSelectTeam(e)}> {'Team: ' + p.name} </ListGroup.Item>);
+                        {this.state.teamList.map(p => {
+                        return (<ListGroup.Item value={p.teamName} action onClick={(e) => this.onSelectTeam(e)}> {'Team: ' + p.teamName} </ListGroup.Item>);
                         })}
                     </ListGroup>
                     </Card.Body>
