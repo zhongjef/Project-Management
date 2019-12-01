@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema({
 	description: [String],
 	contributors: [String],
 	isFinished: { type: Boolean, default: false },
-	progress: { type: number, default: 0, min: 0, max: 100 }
+	progress: { type: Number, default: 0, min: 0, max: 100 }
 });
 
 module.exports = mongoose.model("Task", taskSchema);
