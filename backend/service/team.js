@@ -1,4 +1,4 @@
-const Team = require("../models/Team.js");
+const Team = require("../models/team.js");
 
 /**
  * @param  id      MongoDB ObjectId.

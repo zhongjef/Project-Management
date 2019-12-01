@@ -1,4 +1,4 @@
-const Task = require("../models/Task.js");
+const Task = require("../models/task.js");
 
 /**
  * @param  id      MongoDB ObjectId.
