@@ -1,6 +1,7 @@
 const user = require("../routes/user");
 const project = require("../routes/project");
 const team = require("../routes/team");
+const task = require("../routes/task");
 const bodyParser = require("body-parser");
 
 module.exports = function(app) {
@@ -18,4 +19,5 @@ module.exports = function(app) {
 	app.use("/user", user);
 	app.use("/project", project);
 	app.use("/team", team);
+	app.use("/task", task);
 };
