@@ -16,8 +16,8 @@ module.exports = function(app) {
 		next();
 	});
 	// Routing
-	app.use("/user", user);
-	app.use("/project", project);
-	app.use("/team", team);
-	app.use("/task", task);
+	app.use("/api/user", user);
+	app.use("/api/project", project);
+	app.use("/api/team", team);
+	app.use("/api/task", task);
 };
