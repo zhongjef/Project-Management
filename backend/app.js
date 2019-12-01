@@ -9,8 +9,18 @@ const _ = require("lodash");
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express();
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Methods", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+	res.header("content-type", "application/json");
+	next();
+});
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 const userService = require("./service/user.js");
+const projectService = require("./service/project.js");
 /*checker of complexity 4
 if func is a registration function, it'll forward
 */
@@ -28,17 +38,68 @@ const app = {
 		mongoose.set("useCreateIndex", true);
 		mongoose.set("useFindAndModify", false);
 		mongoose
-			.connect("mongodb+srv://jeff:SAes9P2BVWrf1oTW@cluster0-ai9jj.mongodb.net/test?retryWrites=true&w=majority")
+			.connect("mongodb+srv://jeff:SAes9P2BVWrf1oTW@cluster0-ai9jj.mongodb.net/csc309")
 			.then(() => console.log("Connected to MongoDB..."))
 			.catch((err) => console.log("Could not connect to MongoDB", err));
 
+		// userService.create({ name: 'Jeff', email: 'jeff@mail.com', password: '123456' })
+		const newUser = userService.findByEmail("jeff@mail.com");
+		newUser.then((value) => {
+			console.log(value);
+		});
 	}
 };
 
-router.get("/test", async (req, res) => {
-    const email = req.query["email"] || "jeff@mail.com";
-    let r = await userService.findByEmail(email) || {};
-    res.json(r);
+router.get("/user/:id", (req, res) => {
+	const userId = req.params.id;
+	// Invalid user id
+	if (!ObjectId.isValid(userId)) {
+		console.log("Invalid Id", userId);
+		res.status(404).send();
+		return;
+	}
+
+	// How come this part still executes
+	userService
+		.findById(userId)
+		.then((user) => {
+			// No such user
+			if (!user) {
+				console.log("No such user");
+				res.status(404).send();
+			} else {
+				res.send(user);
+			}
+		})
+		.catch((err) => {
+			res.status(500).send();
+		});
+});
+
+router.get("/project/:id", (req, res) => {
+	const projectId = req.params.id;
+	// Invalid project id
+	if (!ObjectId.isValid(projectId)) {
+		console.log("Invalid Id", projectId);
+		res.status(404).send();
+		return;
+	}
+
+	// How come this part still executes
+	projectService
+		.findById(projectId)
+		.then((project) => {
+			// No such project
+			if (!project) {
+				console.log("No such project");
+				res.status(404).send();
+			} else {
+				res.send(project);
+			}
+		})
+		.catch((err) => {
+			res.status(500).send();
+		});
 });
 
 /*please ignore this, balance checking code*/

@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	description: [String],
-	workers: [String],
-	isFinished: { type: Boolean, default: false }
+	contributors: [String],
+	isFinished: { type: Boolean, default: false },
+	progress: { type: number, default: 0, min: 0, max: 100 }
 });
 
 module.exports = mongoose.model("Task", taskSchema);
