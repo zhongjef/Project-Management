@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import TaskPopupAction from "./TaskPopupAction";
 import "./ContributeProject.css";
 import LoginNavbar from "../Navbar/LoginNavbar";
+import data from "./data.json";
 
 export default class ContributeProjectPage extends Component {
   constructor(props) {
@@ -24,6 +25,15 @@ export default class ContributeProjectPage extends Component {
         }
       ]
     };
+  }
+
+  componentWillMount(){
+    const d = data;
+    this.setState({
+      projectName: d.projectName,
+      teamName:d.teamName,
+      tasks: d.taskList
+    })
   }
   render() {
     return (
