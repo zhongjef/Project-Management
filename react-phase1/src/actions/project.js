@@ -1,27 +1,38 @@
-//(PUT)
-export const createProject;
 
 //(PUT)
-export const createTeam;
+const createProject = undefined;
 
 //(PUT)
-export const createTask;
+const createTeam = undefined;
+
+//(PUT)
+const createTask = undefined;
 
 //get all your Project Status (GET)
-export const getProjectInfo;
+const getProjectInfo = undefined;
 
 //get all your task for a specific team (GET)
-export const getTeam;
+const getTeam = undefined;
 
 //add member to a team, and Modify this member's databse info such that his contributorProject List contains this project (POST)
-export const addMember;
+const addMember = undefined;
 
 //update this task's worker Info, and update Team's contributors -> worker -> taskList, append (POST)
-export const addTaskContributor;
+const addTaskContributor = undefined;
 
 //update this task's worker Info, and update Team's contributors -> worker -> taskList, deletee (DELETEE)
-export const deleteTaskContributor;
+const deleteTaskContributor = undefined;
 
 //update this task's progress (PATCH)
-export const updateTaskProgress;
+const updateTaskProgress = undefined;
 
+export default { createProject, 
+                createTeam, 
+                createTask, 
+                getProjectInfo,
+                getTeam,
+                addMember,
+                addTaskContributor,
+                deleteTaskContributor,
+                updateTaskProgress
+               }
