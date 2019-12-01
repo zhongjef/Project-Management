@@ -15,14 +15,14 @@ const Task = mongoose.model(
 );
 
 function validateTask(task) {
-	const schema = {
+	const schema = Joi.object({
 		name: Joi.string().min(1).max(80).required(),
-		description: Joi.string().max(200),
+		description: Joi.string().allow("").max(200),
 		contributors: Joi.array().items(Joi.objectId()),
 		isFinished: Joi.boolean(),
 		progress: Joi.number().min(0).max(100)
-	};
-	return Joi.validate(task, schema);
+	});
+	return schema.validate(task);
 }
 exports.Task = Task;
 exports.validate = validateTask;

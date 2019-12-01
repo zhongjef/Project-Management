@@ -19,13 +19,13 @@ const Project = mongoose.model(
 );
 
 function validateProject(project) {
-	const schema = {
+	const schema = Joi.object({
 		name: Joi.string().min(1).max(80).required(),
 		managers: Joi.array().items(Joi),
 		teams: Joi.array().items(Joi.objectId()),
 		isFinished: Joi.boolean()
-	};
-	return Joi.validate(project, schema);
+	});
+	return schema.validate(project);
 }
 exports.Project = Project;
 exports.validate = validateProject;

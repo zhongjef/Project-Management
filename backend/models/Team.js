@@ -13,13 +13,13 @@ const Team = mongoose.model(
 );
 
 function validateTeam(team) {
-	const schema = {
+	const schema = Joi.object({
 		name: Joi.string().min(1).max(80).required(),
 		managers: Joi.array().items(Joi.objectId()),
 		contributors: Joi.array().items(Joi.objectId()),
 		pid: Joi.objectId()
-	};
-	return Joi.validate(team, schema);
+	});
+	return schema.validate(team);
 }
 exports.Team = Team;
 exports.validate = validateTeam;

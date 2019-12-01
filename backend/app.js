@@ -14,7 +14,7 @@ const app = express();
 require("./startup/routes")(app);
 require("./startup/db")();
 
-const userServices = require("./service/user.js");
+const { User, validate } = require("./models/user.js");
 
 /*checker of complexity 4
 if func is a registration function, it'll forward
@@ -27,10 +27,25 @@ const wheel = {
 		app.listen(PORT);
 
 		// userServices.create({ name: 'Jeff', email: 'jeff@mail.com', password: '123456' })
-		const newUser = userServices.findByEmail("jeff@mail.com");
-		newUser.then((value) => {
-			console.log(value);
-		});
+		const newUser = User.findOne({ email: "jeff@mail.com" });
+		newUser
+			.then((value) => {
+				console.log(value);
+			})
+			.then(() => {
+				return validate({
+					description: "",
+					name: "Jeff",
+					email: "jeff@mail.com",
+					password: "123456"
+				});
+			})
+			.then((value) => {
+				console.log("success on call to validat user", value);
+			})
+			.catch((err) => {
+				console.log("error somewhere", err);
+			});
 	}
 };
 
