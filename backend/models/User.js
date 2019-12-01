@@ -22,6 +22,7 @@ function validateUser(user) {
 		manageProjects: Joi.array().items(Joi.objectId()),
 		contributeProjects: Joi.array().items(Joi.objectId())
 	};
+	return Joi.validate(user, schema);
 }
 
 exports.User = User;
