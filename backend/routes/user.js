@@ -1,31 +1,41 @@
 const express = require("express");
 const router = express.Router();
-const userServices = require("../service/user");
 const ObjectId = require("mongoose").Types.ObjectId;
+const { User, validate } = require("../models/user.js");
+const _ = require("lodash");
+
 router.get("/:id", (req, res) => {
 	const userId = req.params.id;
 	// If invalid user id
 	if (!ObjectId.isValid(userId)) {
 		console.log("Invalid Id", userId);
-		res.status(404).send();
-		return;
+		return res.status(404).send();
 	}
 
-	// How come this part still executes
-	userServices
-		.findById(userId)
+	User.findById(userId)
 		.then((user) => {
 			// No such user
 			if (!user) {
-				console.log("No such user");
-				res.status(404).send();
+				return res.status(404).send("No such user");
 			} else {
-				res.send(user);
+				return res.send(user);
 			}
 		})
 		.catch((err) => {
-			res.status(500).send();
+			return res.status(500).send();
 		});
+});
+
+router.post("/signup", async (req, res) => {
+	const { error } = validate(res.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
+	let user = await User.findOne({ email: req.body.email });
+	if (user) return res.status(400).send("User already registered");
+
+	const { name, email, password } = req.body;
+	user = new User({ name: name, email: email, password: password });
+	await user.save();
 });
 
 module.exports = router;

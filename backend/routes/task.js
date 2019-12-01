@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
-const Task = require("../models/task");
+const { Task, validate } = require("../models/task");
 
 router.get("/:id", (req, res) => {
 	const taskId = req.params.id;
 
 	if (!ObjectId.isValid(taskId)) {
 		console.log("Invalid id");
-		res.status(404).send();
-		return;
+		return res.status(404).send();
 	}
 
 	Task.findById(taskId)
@@ -17,13 +16,13 @@ router.get("/:id", (req, res) => {
 			// No such task
 			if (!task) {
 				console.log("No such task");
-				res.status(404).send();
+				return res.status(404).send();
 			} else {
-				res.send(task);
+				return res.send(task);
 			}
 		})
 		.catch((err) => {
-			res.status(500).send();
+			return res.status(500).send();
 		});
 });
 module.exports = router;
