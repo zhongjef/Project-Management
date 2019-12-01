@@ -1,9 +1,14 @@
-export const readCookie;
+const signUp = undefined;
 
-export const updateLoginForm;
+const login = undefined;
 
-export const login;
+const logout = undefined;
 
-export const logout;
+const getUserInfo = undefined;
 
-export const getUserInfo;
+export default {
+    signUp,
+    login,
+    logout,
+    getUserInfo
+}
