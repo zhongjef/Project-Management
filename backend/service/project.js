@@ -8,6 +8,11 @@ async function findProject(id) {
 	return res;
 }
 
+async function getAllProjects() {
+	const res = await Project.find();
+	return res;
+}
+
 async function createProject(project) {
 	const newProject = new Project(project);
 	const res = await newProject.save();
@@ -30,6 +35,7 @@ async function updateProject(id, update) {
 
 module.exports = {
 	find: findProject,
+	getAllProjects: getAllProjects,
 	create: createProject,
 	delete: deleteProject,
 	update: updateProject
