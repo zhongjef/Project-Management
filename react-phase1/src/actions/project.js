@@ -8,7 +8,7 @@ export const createTeam;
 export const createTask;
 
 //get all your Project Status (GET)
-export const getProject;
+export const getProjectInfo;
 
 //get all your task for a specific team (GET)
 export const getTeam;
