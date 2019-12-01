@@ -1,5 +1,6 @@
 const user = require("../routes/user");
 const project = require("../routes/project");
+const team = require("../routes/team");
 const bodyParser = require("body-parser");
 
 module.exports = function(app) {
@@ -16,4 +17,5 @@ module.exports = function(app) {
 	// Routing
 	app.use("/user", user);
 	app.use("/project", project);
+	app.use("/team", team);
 };
