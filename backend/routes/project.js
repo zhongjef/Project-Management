@@ -20,8 +20,6 @@ router.get("/:id", (req, res) => {
 				return res.send(project);
 			}
 		})
-		.catch((err) => {
-			return res.status(500).send();
-		});
+		.catch((err) => res.status(500).send());
 });
 module.exports = router;
