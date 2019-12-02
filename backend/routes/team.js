@@ -23,5 +23,20 @@ router.get("/:id", (req, res) => {
 		})
 		.catch((err) => res.status(500).send());
 });
+router.put("/:team_id", (req, res) => {
+	let teamId = req.params.team_id;
+	let name = req.body.name;
+	let managers = req.body.managers;
+	let contributors = req.body.contributors;
 
+	let proj_id = 0;
+	Team.create({ name: name, managers: managers, contributors: contributors })
+		.then((proj) => {
+			res.status(200).send("successful!");
+		})
+		.catch((err) => {
+			res.status(500).send("failed when trying to save the target!");
+		});
+
+});
 module.exports = router;

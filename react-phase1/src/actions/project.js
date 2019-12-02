@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const DEVELOPMENT = true;
-const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080" : "http://66.212.174.180:5000";
+const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/" : "http://66.212.174.180:5000";
 //(PUT)
 const createProject = async (data, url = `${COMMON_END_POINT}/project`) => {
     let r = await axios({

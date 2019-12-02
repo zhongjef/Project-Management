@@ -8,7 +8,6 @@ const Team = mongoose.model(
 		name: { type: String, required: true, minlength: 1, maxlength: 80 },
 		managers: [String],
 		contributors: [String],
-		pid: { type: String, required: true }
 	})
 );
 

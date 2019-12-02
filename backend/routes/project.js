@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Project, validate } = require("../models/project");
+const {User, userValidator} = require("../models/user");
+
 router.get("/:id", (req, res) => {
 	const projectId = req.params.id;
 	// Invalid project id
@@ -21,5 +23,30 @@ router.get("/:id", (req, res) => {
 			}
 		})
 		.catch((err) => res.status(500).send());
+});
+
+router.put("/:user_id", (req, res)=> {
+	let userId = req.params.user_id;
+	let teamList = req.body.teamList || [];
+	let name = req.body.name || "Invalid";
+	let proj_id = 0;
+	Project.create({ name: name, teamList: teamList })
+	.then((proj)=> {
+		proj_id = proj._id;
+		console.log(proj);
+		return User.findById(userId);
+	})
+	.then((e)=> {
+		console.log(e);
+		e.manageProjects.push(proj_id);
+		return e.save();
+	}).
+	then((e)=> {
+		res.status(200).send("user saved successfully!");
+	})
+	.catch((err)=> {
+		res.status(500).send("failed when trying to save the target!");
+	});
+	
 });
 module.exports = router;
