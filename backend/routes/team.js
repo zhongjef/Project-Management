@@ -31,7 +31,7 @@ router.put("/", (req, res) => {
 	let proj_id = 0;
 	Team.create({ name: name, managers: managers, contributors: contributors })
 		.then((proj) => {
-			res.status(200).send("successful!");
+			res.status(200).send(proj._id);
 		})
 		.catch((err) => {
 			res.status(500).send("failed when trying to save the target!");
@@ -50,5 +50,7 @@ router.post("/:team_id/:member_id", (req, res)=> {
 	.catch((e)=> {
 		res.status(200).send("team update contributor failed!");
 	});
-})
+});
+
+
 module.exports = router;
