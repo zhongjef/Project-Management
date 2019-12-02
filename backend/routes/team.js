@@ -3,6 +3,7 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Team, validate } = require("../models/team");
 const {Project, p_valid} = require("../models/project");
+const { User } = require("../models/user");
 
 router.get("/:id", (req, res) => {
 	const teamId = req.params.id;
@@ -27,13 +28,13 @@ router.get("/:id", (req, res) => {
 router.put("/:project_id", (req, res) => {
 	let project_id = req.params.project_id;
 	let name = req.body.name;
-	let managers = req.body.managers || [];
+	let manager = req.body.manager || "";
 	let contributors = req.body.contributors || [];
 
 	let proj_id = 0;
 	console.log("creating team...");
 	
-	Team.create({ name: name, managers: managers, contributors: contributors })
+	Team.create({ name: name, manager: manager, contributors: contributors, pid:  project_id})
 		.then((proj) => {
 			console.log("succeeded!");
 			proj_id = proj._id;
@@ -56,8 +57,16 @@ router.put("/:project_id", (req, res) => {
 router.post("/:team_id/:member_id", (req, res)=> {
 	let teamId = req.params.team_id;
 	let memberId = req.params.member_id;
-	Team.findOneAndUpdate({ _id: teamId }, { $push: { contributors: memberId}})
-	.then((e)=> {
+	let TeamMemeber = {};
+	User.findById(memberId).then((user) => {
+		TeamMemeber =  {
+			userId: memberId,
+			userName: user.name,
+			taskList: []}
+	}).then(() => {
+		return Team.findOneAndUpdate(teamId, { $push: { contributors: TeamMemeber } })
+	}).then((e)=> {
+		// res.send(e)
 		res.status(200).send("team updated successfully!");
 	})
 	.catch((e)=> {

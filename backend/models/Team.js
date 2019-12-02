@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("@hapi/joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
-const TeamMission = 
+const TeamMemeber = 
 	new mongoose.Schema({
 		userId: {type: String},
 		userName: {type: String},
@@ -13,13 +13,14 @@ const Team = mongoose.model(
 	new mongoose.Schema({
 		name: { type: String, required: true, minlength: 1, maxlength: 80 },
 		managers: [String],
-		contributors: { type: [TeamMission]}
+		contributors: { type: [TeamMemeber]},
+		pid: String
 	})
 );
 function validateTeam(team) {
 	const schema = Joi.object({
 		name: Joi.string().min(1).max(80).required(),
-		managers: Joi.array().items(Joi.objectId()),
+		manager: Joi.string(),
 		contributors: Joi.array().items(Joi.objectId()),
 		pid: Joi.objectId()
 	});

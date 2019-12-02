@@ -3,7 +3,7 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Project, validate } = require("../models/project");
 const { User, userValidator } = require("../models/user");
-const { team } = require("../models/team");
+const { Team } = require("../models/team");
 
 router.get("/:id", (req, res) => {
   const projectId = req.params.id;
