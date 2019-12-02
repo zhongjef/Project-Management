@@ -25,4 +25,26 @@ router.get("/:id", (req, res) => {
 			return res.status(500).send();
 		});
 });
+
+router.put("/:task_id", (req, res) => {
+	let taskId = req.params.task_id;
+	let name = req.body.name || "";
+	let desc = req.body.description || "";
+	let contributors = req.body.contributors || []
+	let isFinished = req.body.isFinished || false;
+	let progress = req.body.progress || 0;
+	Task.create({ name: name, 
+		description: desc, 
+		contributors: contributors,
+		isFinished: isFinished,
+		progress: progress})
+		.then((proj) => {
+			res.status(200).send("successful!");
+		})
+		.catch((err) => {
+			res.status(500).send("failed when trying to save the target!");
+		});
+
+});
+
 module.exports = router;
