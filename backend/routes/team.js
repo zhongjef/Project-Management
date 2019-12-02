@@ -29,11 +29,14 @@ router.put("/", (req, res) => {
 	let contributors = req.body.contributors || [];
 
 	let proj_id = 0;
+	console.log("creating team...");
 	Team.create({ name: name, managers: managers, contributors: contributors })
 		.then((proj) => {
+			console.log("succeeded!");
 			res.status(200).send(proj._id);
 		})
 		.catch((err) => {
+			console.log(err);
 			res.status(500).send("failed when trying to save the target!");
 		});
 
@@ -42,15 +45,51 @@ router.put("/", (req, res) => {
 router.post("/:team_id/:member_id", (req, res)=> {
 	let teamId = req.params.team_id;
 	let memberId = req.params.member_id;
-	console.log("patching.....");
 	Team.findOneAndUpdate({ _id: teamId }, { $push: { contributors: memberId}})
 	.then((e)=> {
 		res.status(200).send("team updated successfully!");
 	})
 	.catch((e)=> {
-		res.status(200).send("team update contributor failed!");
+		res.status(500).send("team update contributor failed!");
 	});
 });
 
+router.patch("/:team_id/:user_id", async (req, res)=> {
+	console.log("patching...")
+	let teamId = req.params.team_id;
+	let userId = req.params.user_id;
+	let taskId = req.body.taskId;
+	let userName = req.body.name || "1";
+	try {
+		let teamInstance = await Team.findById(teamId);
+		let user = await Team.findOne({ _id: teamId, "contributors.userId": userId});
+		if (!user) {
+			teamInstance.contributors.push({
+				userId: userId,
+				userName: userName,
+				taskList: [taskId]
+			});
+		}
 
+		else {
+			Team.findOneAndUpdate(
+				{ _id: teamId, "contributors.userId": userId },
+				{$push: {
+					"contributors.taskList": taskId
+				}}
+			)
+		}
+
+		let r = await teamInstance.save();
+		if (r) {
+			res.status(200).send("update successful!");
+		}
+	}
+
+	catch (e) {
+		console.log(e);
+		res.status(500).send("update failed!");
+	}
+	
+})
 module.exports = router;
