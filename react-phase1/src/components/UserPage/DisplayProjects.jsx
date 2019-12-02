@@ -27,18 +27,19 @@ export default class DisplayProjects extends Component {
     //         {project_name: "Linkus", managers:["Jin", "River"], tasks: 9, desc: "A project that allows students to find a assignment partner"}
     //     ]
     // }
-    const projectlis = this.state.projectList;
+    const projectlis = this.props.projectList;
     const lis = isManageProject
       ? projectlis.manageProjectList
       : projectlis.contributeProjectList;
     const link = isManageProject ? "/project" : "cproject"
+    console.log(projectlis.manageProjectList)
     return lis.map((project, index) => {
       return (
         <div key={index}>
           <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src="default_project_bg1.jpg" />
             <Card.Body>
-              <Card.Title>{project.project_name}</Card.Title>
+              <Card.Title>{project.name}</Card.Title>
               <Card.Text>{project.desc}</Card.Text>
               <a href={link}> <Button variant="primary">Go</Button> </a>
               

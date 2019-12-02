@@ -32,7 +32,7 @@ const wheel = {
 		const newUser = User.findOne({ email: "jeff@mail.com" });
 		newUser
 			.then((value) => {
-				console.log(value);
+				// console.log(value);
 			})
 			.then(() => {
 				return validate({
@@ -43,7 +43,7 @@ const wheel = {
 				});
 			})
 			.then((value) => {
-				console.log("success on call to validat user", value);
+				// console.log("success on call to validat user", value);
 			})
 			.catch((err) => {
 				console.log("error somewhere", err);

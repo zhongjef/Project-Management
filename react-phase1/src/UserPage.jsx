@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
 import DisplayProjects from "./components/UserPage/DisplayProjects";
 import FooterNav from "./components/Navbar/FooterNav";
-import data from "./components/UserPage/data.json";
-import { getUserInfo} from "./actions/user"
+import { getUserInfo } from "./actions/user";
 // import "./UserPage.css";
 
 // import "../HomePage/home.css";
@@ -20,26 +19,41 @@ class UserPage extends Component {
       }
     };
   }
+  setUp(){
+    let info = {}
+    let projectList = {
+      manageProjectList: [],
+      contributeProjectList: []
+    };
+    getUserInfo("5de3196146e39b118444a7c4").then(response => {
+      if (!response) {
+        console.log("user does not exist!");
+      } else {
+        const data = response.data;
+        info = {
+          userName: data.name,
+          bio: data.description
+        };
+        projectList.manageProjectList = data.manageProjects
+        projectList.contributeProjectList= data.contributeProjects        
+      }
+    }).then(() => {
+      this.setState({
+        userInfo: info,
+        projects: projectList
+      });
+      console.log(this.state)
+    })
 
-  componentWillMount(){
-    const info = {
-      userName: data.name,
-      bio: data.description
-    }
-    const projectList = data.projects
     this.setState({
       userInfo: info,
       projects: projectList
-    })
-
-    getUserInfo().then((response) => {
-      console.log(response.data)
-    }
-    
-    )
-    
+    });
   }
+  componentDidMount() {
+    this.setUp();
 
+  }
 
   render() {
     return (

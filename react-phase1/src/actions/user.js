@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const DEVELOPMENT = true;
-const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/" : "http://66.212.174.180:5000";
+const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/user" : "http://66.212.174.180:5000";
 
 const signUp = async (name, password, email)=> {
     let url = `${COMMON_END_POINT}/signup`;
@@ -49,7 +49,7 @@ const logout = async () => {
     return r;
 };
 
-const getUserInfo = async (user_id) => {
+export async function  getUserInfo(user_id) {
     let url = `${COMMON_END_POINT}/${user_id}`;
     let r = await axios({
         method: 'get',
