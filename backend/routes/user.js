@@ -50,13 +50,21 @@ router.post("/signup", async (req, res) => {
 function getProjectList(lis){
 	result = []
 	for(let i = 0; i < lis.length; i++){
-		Project.findById(lis[i]).then( project => {
-			if (!project){return res.status(404).send("A particular project not found");}
-			else{
-				result.append(project)
+		await new Promise(
+			resolve => {
+				Project.findById(lis[i]).then( project => {
+					if (!project){return res.status(404).send("A particular project not found");}
+					else{
+						result.append(project);
+						resolve();
+					
+					}
+				})
 			}
-		})
+		)
 	}
+	
+	console.log(result)
 	return result;
 }
 

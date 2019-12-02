@@ -49,7 +49,7 @@ const logout = async () => {
     return r;
 };
 
-const getUserInfo = async (user_id, baseUrl = "http://localhost:8080") => {
+const getUserInfo = async (user_id) => {
     let url = `${COMMON_END_POINT}/${user_id}`;
     let r = await axios({
         method: 'get',
