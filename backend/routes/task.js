@@ -74,7 +74,6 @@ router.patch("/:task_id", (req, res) => {
 	.catch((e)=> {
 		res.status(500).send("fail to add contributor!");
 	});
-
 });
 
 module.exports = router;
