@@ -75,7 +75,7 @@ router.patch("/:team_id/:user_id", async (req, res)=> {
 			Team.findOneAndUpdate(
 				{ _id: teamId, "contributors.userId": userId },
 				{$push: {
-					"contributors.$.taskList": taskId
+					"contributors.taskList": taskId
 				}}
 			)
 		}
