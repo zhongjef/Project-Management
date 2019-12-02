@@ -17,7 +17,7 @@ export default class CreateProjectForm extends Component {
       this.state.teams.push(teamName);
       this.setState({ teams: this.state.teams });
   }
-  
+
   deleteTeam(index){
       this.state.teams.splice(index, 1);
       this.setState({ teams: this.state.teams });
@@ -116,7 +116,8 @@ export default class CreateProjectForm extends Component {
           onClick={() => createProject(
             {
               project_name: this.state.project_name,
-              teams: this.state.teams
+              teamList: this.state.teams,
+              description: this.state.description
             }
           )}
         >
