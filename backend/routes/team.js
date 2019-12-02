@@ -21,9 +21,7 @@ router.get("/:id", (req, res) => {
 				return res.send(team);
 			}
 		})
-		.catch((err) => {
-			return res.status(500).send();
-		});
+		.catch((err) => res.status(500).send());
 });
 router.put("/:team_id", (req, res) => {
 	let teamId = req.params.team_id;
