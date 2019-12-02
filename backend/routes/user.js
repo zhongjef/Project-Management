@@ -43,18 +43,6 @@ router.get("/:id", (req, res) => {
 		.catch((err) => res.status(500).send());
 });
 
-router.post("/signup", async (req, res) => {
-	const { error } = validate(res.body);
-	if (error) return res.status(400).send(error.details[0].message);
-
-	let user = await User.findOne({ email: req.body.email });
-	if (user) return res.status(400).send("User already registered");
-
-	const { name, email, password } = req.body;
-	user = new User({ name: name, email: email, password: password });
-	await user.save();
-});
-
 async function getProjectList(lis) {
 	result = [];
 	for (let i = 0; i < lis.length; i++) {
