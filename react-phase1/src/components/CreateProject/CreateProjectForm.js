@@ -65,7 +65,7 @@ export default class CreateProjectForm extends Component {
     return(
       <div className="container">
           <ul className="list-group text-center mt-2">
-            {this.state.teams.map((manager, index) => {
+            {this.state.managers.map((manager, index) => {
                 return (
                   <Row className="show-grid" key={index}>
                     <Col xs={8} md={10}>
