@@ -22,15 +22,13 @@ router.get("/:id", (req, res) => {
 				return res.send(project);
 			}
 		})
-		.catch((err) => {
-			return res.status(500).send();
-		});
+		.catch((err) => res.status(500).send());
 });
 
 router.put("/:user_id", (req, res)=> {
 	let userId = req.params.user_id;
-	let teamList = req.body.teamList;
-	let name = req.body.name;
+	let teamList = req.body.teamList || [];
+	let name = req.body.name || "Invalid";
 	let proj_id = 0;
 	Project.create({ name: name, teamList: teamList })
 	.then((proj)=> {

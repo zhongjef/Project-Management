@@ -29,9 +29,7 @@ router.get("/:id", (req, res) => {
 				res.send(userInfo);
 			}
 		})
-		.catch((err) => {
-			return res.status(500).send();
-		});
+		.catch((err) => res.status(500).send());
 });
 
 
