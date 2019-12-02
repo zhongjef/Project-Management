@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Team, validate } = require("../models/team");
+const {Project, p_valid} = require("../models/project");
 
 router.get("/:id", (req, res) => {
 	const teamId = req.params.id;
@@ -23,17 +24,27 @@ router.get("/:id", (req, res) => {
 		})
 		.catch((err) => res.status(500).send());
 });
-router.put("/", (req, res) => {
+router.put("/:project_id", (req, res) => {
+	let project_id = req.params.project_id;
 	let name = req.body.name;
 	let managers = req.body.managers || [];
 	let contributors = req.body.contributors || [];
 
 	let proj_id = 0;
 	console.log("creating team...");
+	
 	Team.create({ name: name, managers: managers, contributors: contributors })
 		.then((proj) => {
 			console.log("succeeded!");
-			res.status(200).send(proj._id);
+			proj_id = proj._id;
+			return Project.findById(project_id);
+		})
+		.then((proj)=> {
+			proj.teamList.push(proj_id);
+			return proj.save();
+		})
+		.then((r)=> {
+			res.status(200).send(proj_id);
 		})
 		.catch((err) => {
 			console.log(err);
