@@ -13,6 +13,7 @@ const Project = mongoose.model(
 			maxlength: 80
 		},
 		teamList: [String],
+		description: String
 	})
 );
 
@@ -20,6 +21,7 @@ function validateProject(project) {
 	const schema = Joi.object({
 		name: Joi.string().min(1).max(80).required(),
 		teams: Joi.array().items(Joi.objectId()),
+		description: Joi.string().max(80),
 		isFinished: Joi.boolean()
 	});
 	return schema.validate(project);
