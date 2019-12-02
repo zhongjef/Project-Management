@@ -31,15 +31,13 @@ router.put("/", (req, res) => {
 	let contributors = req.body.contributors || []
 	let isFinished = req.body.isFinished || false;
 	let progress = req.body.progress || 0;
-	console.log();
 	Task.create({ name: name, 
 		description: desc, 
 		contributors: contributors,
 		isFinished: isFinished,
 		progress: progress})
 		.then((proj) => {
-			
-			res.status(200).send("successful!");
+			res.status(200).send(proj._id);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -74,7 +72,6 @@ router.patch("/:task_id", (req, res) => {
 	.catch((e)=> {
 		res.status(500).send("fail to add contributor!");
 	});
-
 });
 
 module.exports = router;
