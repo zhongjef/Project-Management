@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const signUp = async (name, password, email, baseUrl="http://localhost:8080")=> {
-    let url = baseUrl + "/signup";
+const DEVELOPMENT = true;
+const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/" : "http://66.212.174.180:5000";
+
+const signUp = async (name, password, email)=> {
+    let url = `${COMMON_END_POINT}/signup`;
     let r = await axios({
         method: 'post',
         url: url,
@@ -17,8 +20,8 @@ const signUp = async (name, password, email, baseUrl="http://localhost:8080")=> 
     return r;
 };
 
-const login = async (name, password, email, baseUrl = "http://localhost:8080") => {
-    let url = baseUrl + "/login";
+const login = async (name, password, email) => {
+    let url = `${COMMON_END_POINT}/login`;
     let r = await axios({
         method: 'post',
         url: url,
@@ -34,8 +37,8 @@ const login = async (name, password, email, baseUrl = "http://localhost:8080") =
     return r;
 };
 
-const logout = async (baseUrl = "http://localhost:8080") => {
-    let url = baseUrl + "/logout";
+const logout = async () => {
+    let url = `${COMMON_END_POINT}/logout`;
     let r = await axios({
         method: 'get',
         url: url,
@@ -47,7 +50,7 @@ const logout = async (baseUrl = "http://localhost:8080") => {
 };
 
 const getUserInfo = async (user_id, baseUrl = "http://localhost:8080") => {
-    let url = baseUrl + "/user/" + user_id;
+    let url = `${COMMON_END_POINT}/${user_id}`;
     let r = await axios({
         method: 'get',
         url: url,
