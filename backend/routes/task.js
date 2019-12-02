@@ -24,9 +24,9 @@ router.get("/:id", (req, res) => {
 		.catch((err) => res.status(500).send());
 });
 
-router.put("/:task_id", (req, res) => {
-	let taskId = req.params.task_id;
-	let name = req.body.name || "";
+router.put("/", (req, res) => {
+	console.log("creating task!");
+	let name = req.body.name || "1";
 	let desc = req.body.description || "";
 	let contributors = req.body.contributors || []
 	let isFinished = req.body.isFinished || false;
@@ -37,12 +37,41 @@ router.put("/:task_id", (req, res) => {
 		isFinished: isFinished,
 		progress: progress})
 		.then((proj) => {
-			res.status(200).send("successful!");
+			res.status(200).send(proj._id);
 		})
 		.catch((err) => {
+			console.log(err);
 			res.status(500).send("failed when trying to save the target!");
 		});
 
+});
+
+router.patch("/updateProgress", (req, res) => {
+	let taskId = req.body.taskId;
+	let progress = req.body.progress || 0;
+
+	Task.findOneAndUpdate({ _id: taskId }, {
+		$set: {
+			progress: parseInt(progress)
+		}
+	})
+		.then((e) => {
+			res.status(200).send("update progress successfully!");
+		})
+		.catch((e) => {
+			res.status(500).send("update progress failed!");
+		})
+});
+router.patch("/:task_id", (req, res) => {
+	let taskId = req.params.task_id;
+	let contributor = req.body.contributor || "";
+	Task.findOneAndUpdate({ _id: taskId }, { $push: { contributors: contributor}})
+	.then((e)=> {
+		res.status(200).send("successfully update the contributor!");
+	})
+	.catch((e)=> {
+		res.status(500).send("fail to add contributor!");
+	});
 });
 
 module.exports = router;
