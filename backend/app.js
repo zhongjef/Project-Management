@@ -8,7 +8,7 @@ const process = require("process");
 const _ = require("lodash");
 
 // Set up routing
-const PORT = 8080;
+const port = process.env.PORT || 8080;
 const express = require("express");
 const app = express();
 require("./startup/routes")(app);
@@ -24,7 +24,9 @@ const npm_checker = (is_npm, func, mounted) =>
 const wheel = {
 	main: () => {
 		console.log("starting the server...");
-		app.listen(PORT);
+		app.listen(port, () => {
+			console.log(`Listening on port ${port}...`);
+		});
 
 		// userServices.create({ name: 'Jeff', email: 'jeff@mail.com', password: '123456' })
 		const newUser = User.findOne({ email: "jeff@mail.com" });
