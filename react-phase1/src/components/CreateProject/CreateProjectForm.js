@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { createProject } from "../../actions/project";
 
 export default class CreateProjectForm extends Component {
 
@@ -17,16 +18,22 @@ export default class CreateProjectForm extends Component {
   }
 
   deleteManager(index) {
-    delete this.state.managers[index];
+    this.state.managers.splice(index, 1);
     this.setState({ managers: this.state.managers });
   }
   
   addTeam(teamName){
       this.state.teams.push(teamName);
       this.setState({ teams: this.state.teams });
+      console.log(this.state)
+      console.log({
+              project_name: this.state.project_name,
+              managers: this.state.managers,
+              teams: this.state.teams
+            })
   }
   deleteTeam(index){
-      delete this.state.teams[index];
+      this.state.teams.splice(index, 1);
       this.setState({ teams: this.state.teams });
   }
 
@@ -163,7 +170,18 @@ export default class CreateProjectForm extends Component {
           {this.displayManagers()}
         </Container>
 
-        <Button className="mt-3" variant="primary" type="submit">
+        <Button
+          className="mt-3"
+          variant="primary"
+          type="submit"
+          onClick={() => createProject(
+            {
+              project_name: this.state.project_name,
+              managers: this.state.managers,
+              teams: this.state.teams
+            }
+          )}
+        >
           Create!
         </Button>
       </Form>
