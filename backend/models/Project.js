@@ -12,8 +12,7 @@ const Project = mongoose.model(
 			minlength: 1,
 			maxlength: 80
 		},
-		teams: [String],
-		isFinished: { type: Boolean, default: false }
+		teamList: [String],
 	})
 );
 
