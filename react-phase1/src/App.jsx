@@ -29,7 +29,7 @@ class App extends React.Component {
               <Login handleUserChange={this.handleUserChange} />
             </Route>
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/project" component={ProjectPage}>
+            <Route exact path="/project/:id" component={ProjectPage}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser === 'admin') ? <Redirect to="/admin" /> : <ProjectPage />)*/}
             </Route>

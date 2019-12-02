@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const DEVELOPMENT = true;
-const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/" : "http://66.212.174.180:5000";
+const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api" : "http://66.212.174.180:5000";
 //(PUT)
 const createProject = async (data, url = `${COMMON_END_POINT}/project`) => {
     let r = await axios({
@@ -41,8 +41,8 @@ const createTask = async (data, url = `${COMMON_END_POINT}/task`) => {
 };
 
 //get all your Project Status (GET)
-const getProjectInfo = async (project_id) => {
-    let url =  `${COMMON_END_POINT}/project/${project_id}`;
+export const getProjectInfo = async (project_id) => {
+    let url =  `${COMMON_END_POINT}/project/details/${project_id}`;
     let r = await axios({
         method: 'get',
         url: url,

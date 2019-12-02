@@ -31,7 +31,7 @@ export default class DisplayProjects extends Component {
     const lis = isManageProject
       ? projectlis.manageProjectList
       : projectlis.contributeProjectList;
-    const link = isManageProject ? "/project" : "cproject"
+    const link = isManageProject ? "/project" : "/cproject"
     console.log(projectlis.manageProjectList)
     return lis.map((project, index) => {
       return (
@@ -40,8 +40,8 @@ export default class DisplayProjects extends Component {
             <Card.Img variant="top" src="default_project_bg1.jpg" />
             <Card.Body>
               <Card.Title>{project.name}</Card.Title>
-              <Card.Text>{project.desc}</Card.Text>
-              <a href={link}> <Button variant="primary">Go</Button> </a>
+              <Card.Text>{project.description}</Card.Text>
+              <a href={`${link}/${project._id}`}> <Button variant="primary">Go</Button> </a>
               
             </Card.Body>
           </Card>
