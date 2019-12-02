@@ -5,6 +5,7 @@ import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
 import DisplayProjects from "./components/UserPage/DisplayProjects";
 import FooterNav from "./components/Navbar/FooterNav";
 import data from "./components/UserPage/data.json";
+import { getUserInfo} from "./actions/user"
 // import "./UserPage.css";
 
 // import "../HomePage/home.css";
@@ -30,6 +31,13 @@ class UserPage extends Component {
       userInfo: info,
       projects: projectList
     })
+
+    getUserInfo().then((response) => {
+      console.log(response.data)
+    }
+    
+    )
+    
   }
 
 
