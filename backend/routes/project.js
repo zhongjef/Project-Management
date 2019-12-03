@@ -104,15 +104,9 @@ router.put("/", (req, res) => {
 				}
 			})
 		})
-<<<<<<< HEAD
-		.then((user) => {
-
-			return user
-=======
 		.then((e) => {
 			e.manageProjects.push(proj_id);
 			return e.save();
->>>>>>> 0004ccc9c94b6e684b950f47c121b9e656a72b78
 		})
 		.then((e) => {
 			console.log("jump!");

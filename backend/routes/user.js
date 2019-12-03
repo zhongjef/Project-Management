@@ -35,15 +35,7 @@ async function getProjectList(lis) {
 
 	result = [];
 	for (let i = 0; i < lis.length; i++) {
-<<<<<<< HEAD
-		await Project.findById(lis[i]).then((project) => {
-			if (!project) {
-				console.log("A particular project not found");
-			} else {
-				result.push(project);
-			}
-		});
-=======
+
 		try{
 			let proj = await Project.findById(lis[i]);
 			proj.name = proj.name || "";
@@ -51,7 +43,6 @@ async function getProjectList(lis) {
 		} catch (e) {
 
 		}
->>>>>>> 0004ccc9c94b6e684b950f47c121b9e656a72b78
 	}
 	return result;
 }
