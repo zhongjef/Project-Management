@@ -31,7 +31,6 @@ const sessionChecker = (req, res, next) => {
 		res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
 		// res.redirect("/");
 	} else {
-		res.send(req.session.user);
 		next();
 	}
 };
