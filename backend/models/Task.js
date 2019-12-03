@@ -16,7 +16,7 @@ const Task = mongoose.model(
 
 function validateTask(task) {
 	const schema = Joi.object({
-		name: Joi.string().min(1).max(80).required(),
+		name: Joi.string().min(1).max(80),
 		description: Joi.string().allow("").max(200),
 		contributors: Joi.array().items(Joi.objectId()),
 		isFinished: Joi.boolean(),
