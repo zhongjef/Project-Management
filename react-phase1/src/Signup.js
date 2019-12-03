@@ -5,10 +5,19 @@ import "./assets/css/signup.css";
 import Logo from "./assets/img/logo.png";
 import Particles from "reactparticles.js";
 import "bootstrap/dist/css/bootstrap.css";
+import {signUp} from "./actions/user.js";
 
 import LoginNavbar from "./components/Navbar/LoginNavbar";
 
 class Signup extends React.Component {
+  processSignup(e){
+    const data = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      password: document.getElementById('phone').value
+    }
+    signUp(data)
+  }
   render() {
     return (
       <div>
@@ -71,6 +80,7 @@ class Signup extends React.Component {
                     <button
                       type="submit"
                       className=" btn btn-block send-button tx-tfm"
+                      onClick={(e) => this.processSignup(e)}
                     >
                       Create Your Free Account
                     </button>

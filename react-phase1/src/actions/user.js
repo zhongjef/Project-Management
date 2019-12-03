@@ -3,8 +3,8 @@ import axios from "axios";
 const DEVELOPMENT = true;
 const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api/user" : "http://66.212.174.180:5000";
 
-const signUp = async (name, password, email)=> {
-    let url = `${COMMON_END_POINT}/signup`;
+export const signUp = async (name, password, email)=> {
+    let url = "http://localhost:8080/auth/signup";
     let r = await axios({
         method: 'post',
         url: url,
@@ -20,8 +20,8 @@ const signUp = async (name, password, email)=> {
     return r;
 };
 
-const login = async (name, password, email) => {
-    let url = `${COMMON_END_POINT}/login`;
+export const login = async (name, password, email) => {
+    let url = "http://localhost:8080/auth/login";
     let r = await axios({
         method: 'post',
         url: url,
@@ -37,7 +37,7 @@ const login = async (name, password, email) => {
     return r;
 };
 
-const logout = async () => {
+export const logout = async () => {
     let url = `${COMMON_END_POINT}/logout`;
     let r = await axios({
         method: 'get',
