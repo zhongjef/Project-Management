@@ -20,9 +20,10 @@ class LoginForm extends React.Component {
   };
 
   chooseLogin() {
-
-    this.isEmail(this.state.account) ? login("", this.state.account, this.state.password) : 
-                                  login(this.state.account, "", this.state.password)
+    let result;
+    this.isEmail(this.state.account) ? result = login("", this.state.account, this.state.password) : 
+                                  result = login(this.state.account, "", this.state.password);
+    console.log(result.data)
   };
 
   render() {

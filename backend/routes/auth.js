@@ -57,4 +57,12 @@ router.get("/logout", (req, res) => {
 		console.log("logout!")
 	});
 });
+
+app.get("/users/check-session", (req, res) => {
+	if(req.session.user){
+		req.send({currentUser: req.session.user})
+	}else{
+		res.status(401).send();
+	}
+});
 module.exports = router;
