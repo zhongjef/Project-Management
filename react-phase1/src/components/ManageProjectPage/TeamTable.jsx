@@ -9,7 +9,6 @@ export default class TeamTable extends Component {
         this.state = {
             teamList: this.props.teams
         }
-        console.log(this.props.teamList)
     }
     
     onSelectTeam(e) {
@@ -34,6 +33,7 @@ export default class TeamTable extends Component {
         //   teamList: this.state.teamList
         // })
         console.log(newTeam)
+        window.location.reload();
         //call database for post request
       }
 

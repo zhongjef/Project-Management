@@ -26,9 +26,10 @@ export default class TeamSection extends Component {
   // }
 
   handleTeamChange(team) {
-    const currTeam = this.props.teams.filter(t => t.teamName === team)[0];
+    console.log(this.props.teams)
+    const currTeam = this.props.teams.filter(t => t.name === team)[0];
     
-
+    console.log(currTeam)
     this.setState({
       teamName: currTeam.name,
       currTeam: currTeam.contributors

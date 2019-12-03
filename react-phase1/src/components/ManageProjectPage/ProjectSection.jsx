@@ -23,11 +23,12 @@ export default class ProjecSection extends Component {
         this.setState({
           currTeam: team
         })
-
+        console.log(team)
         this.selectTeamListenner.current.handleTeamChange(team);
       }
 
       componentDidMount() {
+          console.log("onMount: " + this.props.project_id)
         getProjectInfo(this.props.project_id).then(response => {
           if (!response) {
             console.log("project does not exist!");
@@ -42,7 +43,7 @@ export default class ProjecSection extends Component {
               manager: ""
             })
           }
-        })
+        }).catch((e) => console.log("something happened"))
     
       }
     

@@ -46,8 +46,9 @@ export default class CreateTeamForm extends Component {
     //create a unike key for each new fruit item
     var timestamp = (new Date()).getTime();
     const newMember = {
-      name: member,
-      id: timestamp
+      userName: member,
+      userId: timestamp,
+      taskList: []
     }
     
     // update the state object
@@ -96,7 +97,7 @@ deleteMember(index) {
                   Object.keys(this.state.teamMember).map( (member, index) => {
                     return (<Row className="show-grid" key={member.id}>
                                 <Col xs={12} md={10}>
-                                <li className="list-group-item">{this.state.teamMember[index].name}</li>
+                                <li className="list-group-item">{this.state.teamMember[index].userName}</li>
                                 </Col>
                                 <Col xs={6} md={2}>
                                     <Button className="" variant="danger" size="sm" onClick={()=> this.deleteMember(index)}>

@@ -42,6 +42,7 @@ export const createTask = async (data, url = `${COMMON_END_POINT}/task`) => {
 
 //get all your Project Status (GET)
 export async function getProjectInfo(project_id) {
+    console.log("getProjectInfo called with" + project_id)
     let url =  `${COMMON_END_POINT}/project/details/${project_id}`;
     let r = await axios({
         method: 'get',
