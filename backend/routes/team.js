@@ -21,19 +21,16 @@ router.get("/:id", (req, res) => {
 				console.log("No such team");
 				return res.status(404).send();
 			} else {
-				let memberPromisesList = team.contributors.map((member) => {
-					 
-						return getTaskList(member.taskList)
-					//  })
+				// let memberPromisesList = team.contributors.map((member) => {
+				// 		return getTaskList(member.taskList);
 				
-				})
-				Promise.all(memberPromisesList).then((taskLists) => {
-					console.log(taskLists)
+				// })
+				// console.log(memberPromisesList)
+				iterateMembers(team.contributors).then((contributors) => {
+					console.log("reached promise all");
+					// console.log(taskLists)
 					let resultTeam = team
-					resultTeam.contributors = resultTeam.contributors.map((member, i) => {
-						member.taskList = taskLists[i]
-						return member
-					})
+					resultTeam.contributors = contributors
 					res.send(resultTeam)
 				})
 				
@@ -45,7 +42,7 @@ async function getTaskList(lis) {
 	result = [];
 	for (let i = 0; i < lis.length; i++) {
 		await Task.findById(lis[i]).then((task) => {
-			console.log(task);
+			// console.log(task);
 			if (!task) {
 				console.log("trying to find task")
 			} else {
@@ -57,7 +54,34 @@ async function getTaskList(lis) {
 	}
 	console.log("result is");
 	console.log(result)
+	console.log("-----------------------------------")
 	return result;
+}
+
+async function iterateMembers(memberLis){
+	// let result = memberLis.map((member) => {
+	// 	await getTaskList(member.taskList).then((taskLis) =>{
+	// 		member.taskList = taskLis;
+	// 		return member
+	// 	})
+try{
+	let result = []
+	for (let i = 0; i < memberLis.length; i++) {
+		
+		const member = memberLis[i]
+		await getTaskList(member.taskList).then((taskLis) =>{
+			member.taskList = taskLis;
+			return member
+		}).then(m => {
+			console.log("------------ found member ------")
+			console.log(m);
+			result.push(m);
+		}).catch(e => console.log(e))
+	}
+	return result
+}catch(e){
+	console.log(e)
+}
 }
 
 router.put("/", (req, res) => {
@@ -123,7 +147,7 @@ router.post("/:team_id/:member_id", (req, res) => {
 		})
 		.then((e) => {
 			// res.send(e)
-			res.status(200).send("team updated successfully!");
+			res.send(e);
 		})
 		.catch((e) => {
 			res.status(500).send("team update contributor failed!");
@@ -134,8 +158,10 @@ router.patch("/:team_id/:user_id", async (req, res) => {
 	console.log("patching...");
 	let teamId = req.params.team_id;
 	let userId = req.params.user_id;
-	let taskList = req.body.taskList;
+	let taskList = req.body.taskList || [];
 	let userName = req.body.name || "1";
+	console.log("--------------------------------------------------------")
+	console.log(userId)
 	try {
 		
 		// console.log(user)
@@ -145,8 +171,8 @@ router.patch("/:team_id/:user_id", async (req, res) => {
 			const contributors = team.contributors.map((member) => {
 				if(member.userId === userId){
 					member.taskList = taskList;
+					console.log(member.taskList)
 				}
-				return member
 			})
 			if (checkUser.length === 0){
 				contributors.push({

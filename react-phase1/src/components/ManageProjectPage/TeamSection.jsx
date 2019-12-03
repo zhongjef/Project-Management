@@ -40,27 +40,19 @@ export default class TeamSection extends Component {
 
   }
 
-  onTaskDrop(e, index) {
-    console.log(this.state.currTeam)
+  onTaskDrop(e, member, index) {
+
     const currTeam = this.state.currTeam;
-    const member = Object.assign({}, this.state.contributors[index]);
-    console.log(member)
+
     member.taskList = applyDrag(member.taskList, e);
-    this.state.contributors[index] = member;
-    member.taskList.push(e.payload.id);
+
     const data = {
-      taskList:  [e.payload.id],
+      taskList: member.taskList,
       name: member.userName
     }
-    assignTaskToContributor(currTeam._id, member.userId, data).then((e) => {
-      const data = e.data
-    })
-    // addTaskContributor(e.payload.id, currTeam._id)
-    this.setState({
-      currTeam: this.state.currTeam
-    });
-    // console.log(member);
-    // console.log(e)
+    this.state.contributors[index] = member
+    this.setState({contributors: this.state.contributors})
+
   }
 
   getTaskPayload(taskIndex, memberIndex) {
@@ -69,6 +61,24 @@ export default class TeamSection extends Component {
 
   addMemberHandler(member){
     //call data base 
+  }
+
+  changeTaskMissions(){
+    console.log("clicked")
+    const contributors = this.state.contributors;
+    console.log(contributors)
+    let tasks = contributors.map((contributor) => {
+      return {taskList: contributor.taskList.map(task => task._id)}
+  })
+console.log(tasks)
+    const Promiselis = this.state.contributors.map((contributor, index) => {
+      const data = {taskList: tasks[index].taskList, name: contributor.name}
+      return assignTaskToContributor(this.state.currTeam._id, contributor.userId, data)
+  })
+    Promise.all(Promiselis).then((e) => {
+      console.log(e)
+
+    })
   }
 
 
@@ -82,7 +92,7 @@ export default class TeamSection extends Component {
                 <div className="float-right">
                 <InviteMember teamName={this.state.teamName} teamSize={this.state.contributors.length} addMember={this.addMemberHandler.bind(this)}/>
                 </div>
-                
+                <Button onClick={() => this.changeTaskMissions()}> Submit Changes </Button>
               </Card.Header>
               <Card.Body>
                 <Card.Title>{this.state.teamName}</Card.Title>
@@ -99,16 +109,16 @@ export default class TeamSection extends Component {
 
                         <Container
                           groupName={"taskTable"}
-                          onDrop={e => this.onTaskDrop(e, index)}
+                          onDrop={e => this.onTaskDrop(e, member,index)}
                           getChildPayload={taskIndex =>
                             this.getTaskPayload(taskIndex, index)
                           }
                           
                         >
                           {member.taskList.map(task => {
-                            console.log(task)
+                            // console.log(task)
                             return (
-                              <Draggable key={task} className="ml-2">
+                              <Draggable key={task._id} className="ml-2">
                                 <Button
                                   className="draggable-item mt-2"
                                 >
@@ -130,4 +140,7 @@ export default class TeamSection extends Component {
       </div>
     );
   }
+  
 }
+
+
