@@ -3,8 +3,8 @@ import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "../../utils/Drag";
 import { Button, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { FaPlusSquare } from "react-icons/fa";
-import InviteMember from "./CreateForms/InviteMember"
-import {assignTaskToContributor, getTeam} from "../../actions/project";
+import InviteMember from "./CreateForms/InviteMember";
+import { assignTaskToContributor, getTeam } from "../../actions/project";
 export default class TeamSection extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,6 @@ export default class TeamSection extends Component {
       contributors: [],
       allTeam: this.props.teams
     };
-    
   }
 
   // componentWillMount(){
@@ -26,22 +25,20 @@ export default class TeamSection extends Component {
   // }
 
   handleTeamChange(team) {
-    console.log(this.props.teams)
+    console.log(this.props.teams);
     const currTeam = this.props.teams.filter(t => t.name === team)[0];
-    getTeam(currTeam._id).then((curr) => {
-      console.log(curr)
+    getTeam(currTeam._id).then(curr => {
+      console.log(curr);
       const team = curr.data;
       this.setState({
         teamName: team.name,
         currTeam: team,
-        contributors: team.contributors,
+        contributors: team.contributors
       });
-    })
-
+    });
   }
 
   onTaskDrop(e, member, index) {
-
     const currTeam = this.state.currTeam;
 
     member.taskList = applyDrag(member.taskList, e);
@@ -49,79 +46,89 @@ export default class TeamSection extends Component {
     const data = {
       taskList: member.taskList,
       name: member.userName
-    }
-    this.state.contributors[index] = member
-    this.setState({contributors: this.state.contributors})
-
+    };
+    this.state.contributors[index] = member;
+    this.setState({ contributors: this.state.contributors });
   }
 
   getTaskPayload(taskIndex, memberIndex) {
     return this.state.contributors[memberIndex].taskList[taskIndex];
   }
 
-  addMemberHandler(member){
-    //call data base 
+  addMemberHandler(member) {
+    //call data base
   }
 
-  changeTaskMissions(){
-    console.log("clicked")
+  changeTaskMissions() {
+    console.log("clicked");
     const contributors = this.state.contributors;
-    console.log(contributors)
-    let tasks = contributors.map((contributor) => {
-      return {taskList: contributor.taskList.map(task => task._id)}
-  })
-console.log(tasks)
+    console.log(contributors);
+    let tasks = contributors.map(contributor => {
+      return { taskList: contributor.taskList.map(task => task.id ? task.id : task._id) };
+    });
+    console.log(tasks);
     const Promiselis = this.state.contributors.map((contributor, index) => {
-      const data = {taskList: tasks[index].taskList, name: contributor.name}
-      return assignTaskToContributor(this.state.currTeam._id, contributor.userId, data)
-  })
-    Promise.all(Promiselis).then((e) => {
-      console.log(e)
-
-    })
+      const data = { taskList: tasks[index].taskList, name: contributor.userName };
+      console.log("---------data ready-------------")
+      console.log(data)
+      console.log(this.state.currTeam._id)
+      console.log(contributor.userId)
+      return assignTaskToContributor(
+        this.state.currTeam._id,
+        contributor.userId,
+        data
+      );
+    });
+    Promise.all(Promiselis).then(e => {
+      console.log(e);
+    });
   }
-
 
   render() {
     return (
-      <div style={{minWidth: '700rpx'}}>
+      <div style={{ minWidth: "700rpx" }}>
         <Container>
-            <Card>
-              <Card.Header>
-                Team Section
-                <div className="float-right">
-                <InviteMember teamName={this.state.teamName} teamSize={this.state.contributors.length} addMember={this.addMemberHandler.bind(this)}/>
-                </div>
-                <Button onClick={() => this.changeTaskMissions()}> Submit Changes </Button>
-              </Card.Header>
-              <Card.Body>
-                <Card.Title>{this.state.teamName}</Card.Title>
-                <Row>
-
+          <Card>
+            <Card.Header>
+              Team Section
+              <div className="float-right">
+                <InviteMember
+                  teamName={this.state.teamName}
+                  teamSize={this.state.contributors.length}
+                  addMember={this.addMemberHandler.bind(this)}
+                />
+              </div>
+              <Button onClick={() => this.changeTaskMissions()}>
+                {" "}
+                Submit Changes{" "}
+              </Button>
+            </Card.Header>
+            <Card.Body>
+              <Card.Title>{this.state.teamName}</Card.Title>
+              <Row>
                 {this.state.contributors.map((member, index) => {
                   return (
                     <Col md={4} xs={6} className="p-2" key={member.userId}>
-                      <Card style={{ width: "18rem", alignContent: "center"}}>
-                        <Card.Header><h3>{member.userName}</h3></Card.Header>
+                      <Card style={{ width: "18rem", alignContent: "center" }}>
+                        <Card.Header>
+                          <h3>{member.userName}</h3>
+                        </Card.Header>
                         <Card.Subtitle className="d-flex justify-content-center text-muted mt-2">
                           Current Tasks
                         </Card.Subtitle>
 
                         <Container
                           groupName={"taskTable"}
-                          onDrop={e => this.onTaskDrop(e, member,index)}
+                          onDrop={e => this.onTaskDrop(e, member, index)}
                           getChildPayload={taskIndex =>
                             this.getTaskPayload(taskIndex, index)
                           }
-                          
                         >
                           {member.taskList.map(task => {
                             // console.log(task)
                             return (
                               <Draggable key={task._id} className="ml-2">
-                                <Button
-                                  className="draggable-item mt-2"
-                                >
+                                <Button className="draggable-item mt-2">
                                   {task.name}
                                 </Button>
                               </Draggable>
@@ -132,15 +139,11 @@ console.log(tasks)
                     </Col>
                   );
                 })}
-
-                </Row>
-              </Card.Body>
-            </Card>
+              </Row>
+            </Card.Body>
+          </Card>
         </Container>
       </div>
     );
   }
-  
 }
-
-
