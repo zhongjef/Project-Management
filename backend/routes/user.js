@@ -35,6 +35,7 @@ async function getProjectList(lis) {
 
 	result = [];
 	for (let i = 0; i < lis.length; i++) {
+
 		try{
 			let proj = await Project.findById(lis[i]);
 			proj.name = proj.name || "";

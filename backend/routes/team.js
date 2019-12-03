@@ -164,67 +164,45 @@ router.post("/:team_id/:member_id", (req, res) => {
 router.patch("/:team_id/:user_id", async (req, res) => {
   console.log("patching...");
   let teamId = req.params.team_id;
-  let userId = req.params.user_id;
+  let userId = req.params.user_id || "";
   let taskList = req.body.taskList || [];
   let userName = req.body.name || "1";
   console.log("--------------------------------------------------------");
   console.log(userId);
+  console.log(req.body);
+  console.log("taskList is: ...");
+  console.log(taskList);
   try {
-    // console.log(user)
-    Team.findById(teamId)
-      .then(team => {
-        const checkUser = team.contributors.filter(
-          member => member.userId === userId
-        );
-        const contributors = team.contributors.map(member => {
-          if (member.userId === userId) {
-            member.taskList = taskList;
-            console.log(member.taskList);
-          }
-		});
-		console.log(checkUser)
-		console.log("/////////////////////////////////////////////")
-        if (checkUser.length === 0) {
-          contributors.push({
-            userId: userId,
-            userName: userName,
-            taskList: taskList
-          });
+	    let teamInstance = Team.findById(teamId);
+		let user;
+		try {
+			user = await teamInstance.findOne({"contributors.userId": userId});
 		}
-		console.log(team)
-		console.log("______geting contributors________")
-		console.log(contributors)
-		console.log("______________________________")
-        team.contributors = contributors;
-        team.save();
-        return team;
-      })
-      .then(team => {
-        console.log(team);
-        res.send(team);
-      });
-    // if (!user) {
-    // teamInstance.contributors.push({
-    // 	userId: userId,
-    // 	userName: userName,
-    // 	taskList: taskList
-    // });
-    // } else {
-    // 	console.log(user.userName + "is currently being assigned a task")
-    // 	Team.findOneAndUpdate(
-    // 		{ _id: teamId, "contributors.userId": userId },
-    // 		{
-    // 			$set: {
-    // 				"contributors.taskList": taskList
-    // 			}
-    // 		}
-    // 	);
-    // }
+		catch (e) {
+			user = null;
+		}
+		if (!user) {
+			await Team.updateOne({_id: teamId}, {$push: {
+				contributors: {
+					userId: userId,
+					userName: userName,
+					taskList: taskList
+				}
+			}});
+		} else {
+			console.log(user.userName + " is currently being assigned a task")
+			let r = await Team.findOneAndUpdate(
+				{ _id: teamId, "contributors.userId": userId },
+				{
+					$set: {
+						"contributors.$.taskList": taskList
+					}
+				}
+			);
+		}
 
-    // let r = await teamInstance.save();
-    // if (r) {
-    // 	res.status(200).send("update successful!");
-    // }
+	  res.status(200).send(await Team.findById(teamId));
+		
   } catch (e) {
     console.log(e);
     res.status(500).send("update failed!");
