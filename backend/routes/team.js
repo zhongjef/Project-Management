@@ -26,13 +26,13 @@ router.get("/:id", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-	if (!req.body.name) {
-		return res.status(400).send("Missing team name");
-	}
-	const { error } = validate(req.body);
-	if (error) {
-		return res.status(400).send(error.details[0].message);
-	}
+	// if (!req.body.name) {
+	// 	return res.status(400).send("Missing team name");
+	// }
+	// const { error } = validate(req.body);
+	// if (error) {
+	// 	return res.status(400).send(error.details[0].message);
+	// }
 	let project_id = req.body.pid;
 	let name = req.body.name;
 	let contributors = req.body.contributors || [];

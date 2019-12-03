@@ -62,10 +62,12 @@ async function getTeamList(lis) {
 		await Team.findById(lis[i]).then((team) => {
 			console.log(lis[i]);
 			if (!team) {
-				return res.status(404).send("A particular team not found");
+				console.log("trying to find team")
 			} else {
 				result.push(team);
 			}
+		}).catch((err) => {
+			res.status(500).send("failed during finding team");
 		});
 	}
 	return result;

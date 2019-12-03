@@ -33,7 +33,7 @@ export default class TeamTable extends Component {
         //   teamList: this.state.teamList
         // })
         console.log(newTeam)
-        window.location.reload();
+        // window.location.reload();
         //call database for post request
       }
 
