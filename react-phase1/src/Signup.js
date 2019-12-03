@@ -14,8 +14,9 @@ class Signup extends React.Component {
     const data = {
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
-      password: document.getElementById('phone').value
+      password: document.getElementById('password').value
     }
+    console.log(data)
     signUp(data)
   }
   render() {
@@ -70,23 +71,24 @@ class Signup extends React.Component {
                     <input
                       type="number"
                       min="0"
-                      name="phone"
-                      id="phone"
+                      name="password"
+                      id="password"
                       className="form-control my-input"
-                      placeholder="Phone"
+                      placeholder="password"
                     />
                   </div>
-                  <div className="text-center ">
-                    <button
-                      type="submit"
-                      className=" btn btn-block send-button tx-tfm"
-                      onClick={(e) => this.processSignup(e)}
-                    >
-                      Create Your Free Account
-                    </button>
-                  </div>
+
                 </form>
               </div>
+            <div className="text-center ">
+                  <button
+                    // type="submit"
+                    className=" btn btn-block send-button tx-tfm"
+                    onClick={(e) => this.processSignup(e)}
+                  >
+                    Submit Button
+                  </button>
+                </div>
             </div>
           </div>
         </div>

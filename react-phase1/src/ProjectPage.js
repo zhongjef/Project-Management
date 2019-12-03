@@ -20,26 +20,24 @@ class ProjectPage extends React.Component {
       description: ""
     };
 
-    readCookie();
-
   }
 
-  // componentDidMount() {
-  //   getProjectInfo(this.state.project_id).then(response => {
-  //     if (!response) {
-  //       console.log("project does not exist!");
-  //     } else {
-  //       const data = response.data;
-  //       console.log(data)
-  //       this.setState({
-  //         projectName: data.name,
-  //         teamList: data.teamList,
-  //         description: data.description
-  //       })
-  //     }
-  //   })
+  componentDidMount() {
+    getProjectInfo(this.state.project_id).then(response => {
+      if (!response) {
+        console.log("project does not exist!");
+      } else {
+        const data = response.data;
+        console.log(data)
+        this.setState({
+          projectName: data.name,
+          teamList: data.teamList,
+          description: data.description
+        })
+      }
+    })
 
-  // }
+  }
 
   render() {
     return (
