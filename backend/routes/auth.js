@@ -43,6 +43,7 @@ router.post("/login", async (req, res) => {
 	if (!user) return res.status(400).send("Invalid login credentials");
 	req.session.user = user._id;
 	res.send(user);
+	console.log(req.session)
 	console.log("login sucessful!")
 	// res.redirect("/");
 });
@@ -59,6 +60,8 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/users/check-session", (req, res) => {
+	console.log("check-session for :")
+	console.log(req.session)
 	if(req.session.user){
 		res.send(req.session.user);
 	}else{

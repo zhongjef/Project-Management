@@ -20,7 +20,7 @@ const sessionOptions = {
 	}),
 	// If the session was never modified,
 	// do not enforce saving back to the session store
-	resave: false,
+	resave: true,
 	// If the session is unitialized (new buf not modified),
 	// do not enforce saving back to the session store
 	saveUninitialized: false

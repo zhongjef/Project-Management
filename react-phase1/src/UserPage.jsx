@@ -56,7 +56,7 @@ class UserPage extends Component {
       console.log(user)
     })
 
-    this.setUp(userid);
+    // this.setUp(userid);
 
   }
 
