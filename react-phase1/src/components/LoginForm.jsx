@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
                 Sign up
               </a>
               <h4 className="card-title mb-4 mt-1">Sign in</h4>
-              <form>
+       
                 <div className="form-group">
                   <label>Your email or account name</label>
                   <input
@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
                     </label>
                   </div>
                 </div>
-              </form>
+           
               <div className="form-group">
                   <button
                     className="btn btn-primary btn-block"

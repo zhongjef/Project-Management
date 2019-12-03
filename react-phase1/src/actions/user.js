@@ -18,7 +18,7 @@ export const signUp = async (data)=> {
 };
 
 export const login = async (name, email, password) => {
-    let url = `${COMMON_END_POINT}/auth/signup`;
+    let url = `${COMMON_END_POINT}/auth/login`;
     let r = await axios({
         method: 'post',
         url: url,
