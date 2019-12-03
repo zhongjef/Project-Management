@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const DEVELOPMENT = true;
-const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080" : "http://66.212.174.180:5000";
+const COMMON_END_POINT = DEVELOPMENT ? "" : "http://66.212.174.180:5000";
 
 export const signUp = async (data)=> {
     console.log(data)
@@ -12,7 +12,8 @@ export const signUp = async (data)=> {
         data: data,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     })
     console.log("returned url is: ...");
     console.log(r);
@@ -28,7 +29,8 @@ export const login = async (data) => {
         data: data,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     localStorage.setItem('userId', r.data._id)
     return r;
@@ -41,7 +43,8 @@ export const logout = async () => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     localStorage.clear()
     return r;
@@ -54,7 +57,8 @@ export async function getUserInfo(user_id) {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };

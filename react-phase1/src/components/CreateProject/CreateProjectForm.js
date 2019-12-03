@@ -115,7 +115,7 @@ export default class CreateProjectForm extends Component {
           type="submit"
           onClick={() => createProject(
             {
-              project_name: this.state.project_name,
+              name: this.state.project_name,
               teamList: this.state.teams,
               description: this.state.description
             }

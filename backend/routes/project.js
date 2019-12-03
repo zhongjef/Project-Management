@@ -73,15 +73,14 @@ async function getTeamList(lis) {
 	return result;
 }
 
-router.put("/:user_id", (req, res) => {
+router.put("/", (req, res) => {
+	console.log("asdsadw");
 	if (!req.body.name) {
 		return res.status(400).send("Missing project name");
 	}
-	const { error } = projectValidate(req.body);
-	if (error) {
-		return res.status(400).send(error.details[0].message);
-	}
-	let userId = req.params.user_id;
+	let userId = req.session.user;
+	console.log("userId... " + userId);
+	console.log(req.session);
 	let teamList = req.body.teamList || [];
 	let name = req.body.name || "Invalid";
 	let description = req.body.desc || "No description for this project";

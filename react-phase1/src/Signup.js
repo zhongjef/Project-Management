@@ -16,10 +16,10 @@ class Signup extends React.Component {
       email: document.getElementById('email').value,
       password: document.getElementById('password').value
     }
-    console.log(data)
-    signUp(data)
+    signUp(data);
   }
   render() {
+    console.log("shit!");
     return (
       <div>
         <meta charset="utf-8" />
@@ -69,12 +69,10 @@ class Signup extends React.Component {
                   </div>
                   <div className="form-group">
                     <input
-                      type="number"
-                      min="0"
+                      type="password"
                       name="password"
-                      id="password"
                       className="form-control my-input"
-                      placeholder="password"
+                      id="password"
                     />
                   </div>
 

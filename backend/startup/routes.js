@@ -40,24 +40,18 @@ const sessionChecker = (req, res, next) => {
 module.exports = function(app) {
 	// Session management
 	app.use(session({
-        secret: "oursecret",
-        resave: false,
-        saveUninitialized: false,
+		secret: "keyboard cat",
+        resave: true,
+        saveUninitialized: true,
         cookie: {
-            expires: 60000,
-            httpOnly: true
-        }
+			maxAge: 600000,
+			secure: false  // when deployed to heroku, set to true
+		},
+		rolling: true
     }));
 	// Express middleware
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json());
-	app.use(function(req, res, next) {
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header("Access-Control-Allow-Methods", "*");
-		res.header("Access-Control-Allow-Headers", "*");
-		res.header("content-type", "application/json");
-		next();
-	});
 	// Session checking
 	app.use("/api", sessionChecker);
 	// Routing

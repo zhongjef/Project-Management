@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const DEVELOPMENT = true;
-const COMMON_END_POINT = DEVELOPMENT ? "http://localhost:8080/api" : "http://66.212.174.180:5000";
+const COMMON_END_POINT = DEVELOPMENT ? "/api" : "http://66.212.174.180:5000";
 //(PUT)
 export const createProject = async (data, url = `${COMMON_END_POINT}/project`) => {
     let r = await axios({
@@ -10,8 +10,10 @@ export const createProject = async (data, url = `${COMMON_END_POINT}/project`) =
         data: data,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
+    console.log("creating asdwdw");
     return r;
 };
 //(PUT)
@@ -22,7 +24,8 @@ export const createTeam = async (data, url = `${COMMON_END_POINT}/team/`) => {
         data: data,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -35,7 +38,8 @@ export const createTask = async (data, url = `${COMMON_END_POINT}/task`) => {
         data: data,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -49,7 +53,8 @@ export async function getProjectInfo(project_id) {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -61,7 +66,8 @@ export const getTeam = async (team_id) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -75,7 +81,8 @@ export const addMember = async (team_id, member_id, data) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -89,7 +96,8 @@ export const addTaskContributor = async (task_id, data) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -102,7 +110,8 @@ export const assignTaskToContributor = async (team_id, user_id, data) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -115,7 +124,8 @@ export const deleteTaskContributor = async (task_id, data) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -128,7 +138,8 @@ export const updateTaskProgress = async (task_id, data) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };
@@ -140,7 +151,8 @@ export const getTaskInfo = async (task_id) => {
         url: url,
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        withCredentials: true
     });
     return r;
 };

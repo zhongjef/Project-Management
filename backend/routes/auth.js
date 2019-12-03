@@ -7,21 +7,30 @@ router.post("/signup", async (req, res) => {
 	const { name, email, password } = req.body;
 	console.log("testing sign up....");
 	console.log(req.body.password);
+	let user;
 	try {
 		if ((!name && !email) || !password) {
 			// console.log("asdasadw")
 			res.status(200).send("/");
 		}
-		let user = await User.findOne({ email: email });
+		user = await User.findOne({ email: email });
 		if (user) return res.status(200).send("/");
 		user = await User.findOne({ name: name });
 		if (user) return res.status(200).send("/");
 		user = new User({ name: name, email: email, password: password });
-		await user.save();
+		user = await user.save();
+		console.log(user);
 		console.log("succeed!");
 	} catch (e) {
+		console.log("sign up failed!");
 		res.status(200).send("/");
+		return;
 	}
+	console.log(user);
+	req.session.user = user._id;
+	console.log(req.session);
+	req.session.cookie.user = user._id;
+	await req.session.save();
 	return res.status(200).send("/user");
 });
 
