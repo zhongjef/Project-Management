@@ -16,8 +16,7 @@ const sessionOptions = {
 		// Session would hold for 15 minutes
 		// Each time an user interacts with the server,
 		// its session expiration date is refreshed.
-		// ttl: 15 * 60
-		ttl: 5 * 60
+		ttl: 15 * 60
 	}),
 	// If the session was never modified,
 	// do not enforce saving back to the session store
