@@ -11,6 +11,7 @@ export default class DisplayProjects extends Component {
     this.state = {
       projectList: this.props.projectList
     };
+    
   }
   initializeData(url) {
     console.log(url);
