@@ -27,14 +27,23 @@ router.get("/:id", (req, res) => {
 
 router.put("/", (req, res) => {
 	console.log("creating task!");
+
+	if (!req.body.name) {
+		return res.status(400).send("Missing task name");
+	}
+	const { error } = validate(req.body);
+	if (error) {
+		return res.status(400).send(error.details[0].message);
+	}
 	let name = req.body.name || "1";
 	let desc = req.body.description || "";
 	let progress = 0;
 	console.log();
-	Task.create({ 
-		name: name, 
-		description: desc, 
-		progress: progress})
+	Task.create({
+		name: name,
+		description: desc,
+		progress: progress
+	})
 		.then((proj) => {
 			res.status(200).send("successful!");
 		})
@@ -45,6 +54,10 @@ router.put("/", (req, res) => {
 });
 
 router.patch("/updateProgress/:task_id", (req, res) => {
+	const { error } = validate(req.body);
+	if (error) {
+		return res.status(400).send(error.details[0].message);
+	}
 	let taskId = req.body.taskId;
 	let progress = req.body.progress || 0;
 	let team_id = req.body.team_id;
@@ -67,15 +80,19 @@ router.patch("/updateProgress/:task_id", (req, res) => {
 });
 
 router.patch("/:task_id", (req, res) => {
+	const { error } = validate(req.body);
+	if (error) {
+		return res.status(400).send(error.details[0].message);
+	}
 	let taskId = req.params.task_id;
 	let contributor = req.body.contributor || "";
-	Task.findOneAndUpdate({ _id: taskId }, { $push: { contributors: contributor}})
-	.then((e)=> {
-		res.status(200).send("successfully update the contributor!");
-	})
-	.catch((e)=> {
-		res.status(500).send("fail to add contributor!");
-	});
+	Task.findOneAndUpdate({ _id: taskId }, { $push: { contributors: contributor } })
+		.then((e) => {
+			res.status(200).send("successfully update the contributor!");
+		})
+		.catch((e) => {
+			res.status(500).send("fail to add contributor!");
+		});
 });
 
 module.exports = router;
