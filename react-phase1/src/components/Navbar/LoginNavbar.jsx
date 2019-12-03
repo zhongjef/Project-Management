@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import profilePicture from '../../assets/img/profilepic.png';
 
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import InstructionPage from "./InstructionPage";
 import './LoginNavbar.css';
 
 import { logout } from '../../actions/user';
@@ -25,14 +26,6 @@ class LoginNavbar extends Component {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link className="nav-item " href="/account">
-              <img
-                className="rounded"
-                style={{ width: 25 }}
-                alt="Profile Picture"
-                src={this.state.user.profilePic}
-              ></img>
-            </Nav.Link>
             <NavDropdown title="Login" id="basic-nav-dropdown">
               <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
               <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
@@ -40,6 +33,8 @@ class LoginNavbar extends Component {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <div className="ml-2"> <InstructionPage /> </div>
+        
       </Navbar>
     );
   }
