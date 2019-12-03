@@ -37,6 +37,7 @@ export default class CreateTeamForm extends Component {
     this.close();
     const newTeam = {
       name: teamName,
+      contributors: this.state.teamMember
     }
     this.props.createTeam(newTeam);
   }

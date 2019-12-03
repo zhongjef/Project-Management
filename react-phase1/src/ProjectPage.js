@@ -22,22 +22,22 @@ class ProjectPage extends React.Component {
 
   }
 
-  componentDidMount() {
-    getProjectInfo(this.state.project_id).then(response => {
-      if (!response) {
-        console.log("project does not exist!");
-      } else {
-        const data = response.data;
-        console.log(data)
-        this.setState({
-          projectName: data.name,
-          teamList: data.teamList,
-          description: data.description
-        })
-      }
-    })
+  // componentDidMount() {
+  //   getProjectInfo(this.state.project_id).then(response => {
+  //     if (!response) {
+  //       console.log("project does not exist!");
+  //     } else {
+  //       const data = response.data;
+  //       console.log(data)
+  //       this.setState({
+  //         projectName: data.name,
+  //         teamList: data.teamList,
+  //         description: data.description
+  //       })
+  //     }
+  //   })
 
-  }
+  // }
 
   render() {
     return (
@@ -47,7 +47,7 @@ class ProjectPage extends React.Component {
 
         <h1 className="mt-3 ml-3 text-white">{this.state.projectName}</h1>
         <Container>
-          <ProjectSection />
+          <ProjectSection project_id={this.state.project_id}/>
         </Container>
       </div>
     );

@@ -17,20 +17,20 @@ export default class TeamSection extends Component {
     
   }
 
-  componentWillMount(){
-    const init_team = this.props.teams[0]
-    this.setState({
-      teamName: init_team.teamName,
-      currTeam: init_team.contributors
-    })
-  }
+  // componentWillMount(){
+  //   const init_team = this.props.teams[0]
+  //   this.setState({
+  //     teamName: init_team.name,
+  //     currTeam: init_team.contributors
+  //   })
+  // }
 
   handleTeamChange(team) {
-    const currTeam = this.state.allTeam.filter(t => t.teamName === team)[0];
+    const currTeam = this.props.teams.filter(t => t.teamName === team)[0];
     
 
     this.setState({
-      teamName: currTeam.teamName,
+      teamName: currTeam.name,
       currTeam: currTeam.contributors
     });
     console.log(currTeam);

@@ -25,29 +25,33 @@ router.get("/:id", (req, res) => {
 		})
 		.catch((err) => res.status(500).send());
 });
-router.put("/:project_id", (req, res) => {
-	let project_id = req.params.project_id;
+router.put("/", (req, res) => {
+	let project_id = req.body.pid;
 	let name = req.body.name;
-	let manager = req.body.manager || "";
 	let contributors = req.body.contributors || [];
 
-	let proj_id = 0;
-	console.log("creating team...");
-	
-	Team.create({ name: name, manager: manager, contributors: contributors, pid:  project_id})
-		.then((proj) => {
-			console.log("succeeded!");
-			proj_id = proj._id;
-			return Project.findById(project_id);
-		})
-		.then((proj)=> {
-			proj.teamList.push(proj_id);
-			return proj.save();
-		})
-		.then((r)=> {
-			res.status(200).send(proj_id);
-		})
-		.catch((err) => {
+	console.log("creating team... on project: " + project_id);
+	let team_id = 0;
+	Project.findById(project_id).then((proj) => {
+		if(!proj){
+			res.status(404);
+		}else{
+			console.log("found project")
+			Team.create({ name: name, contributors: contributors, pid:  project_id}).then((team) => {
+				if(!team){res.status(500);}
+				else{
+					team_id = team._id;
+					return team
+				}
+			}).then((team) => {
+				console.log(team._id)
+				proj.teamList.push(team._id);
+				proj.save();
+				res.send(proj);
+			}) 
+			
+		}
+	}).catch((err) => {
 			console.log(err);
 			res.status(500).send("failed when trying to save the target!");
 		});
