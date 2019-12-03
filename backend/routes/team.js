@@ -169,6 +169,7 @@ router.patch("/:team_id/:user_id", async (req, res) => {
   let userName = req.body.name || "1";
   console.log("--------------------------------------------------------");
   console.log(userId);
+  console.log(req.body);
   console.log("taskList is: ...");
   console.log(taskList);
   try {
