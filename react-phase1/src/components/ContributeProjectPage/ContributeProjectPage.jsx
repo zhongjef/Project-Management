@@ -32,7 +32,8 @@ export default class ContributeProjectPage extends Component {
               .map(contributor => contributor.userId)
               .includes(userId)
           );
-          getTeam(teamList[0]._id).then((t) => {
+          console.log(teamList[0])
+          getTeam(teamList[0] ? teamList[0]._id : [] ).then((t) => {
             const team = t.data;
             console.log(team)
             const taskList = team.contributors.map(contributor => {

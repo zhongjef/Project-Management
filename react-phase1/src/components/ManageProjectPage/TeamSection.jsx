@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "../../utils/Drag";
 import { Button, Row, Col, Card, Alert} from "react-bootstrap";
-import { FaPlusSquare } from "react-icons/fa";
+
 import InviteMember from "./CreateForms/InviteMember";
 import { assignTaskToContributor, getTeam } from "../../actions/project";
 export default class TeamSection extends Component {
@@ -68,7 +68,7 @@ export default class TeamSection extends Component {
     let tasks = contributors.map(contributor => {
       return {
         taskList: contributor.taskList.map(task =>
-          task.id ? task.id : task._id
+          task.id || task._id || ""
         )
       };
     });
@@ -93,7 +93,7 @@ export default class TeamSection extends Component {
       this.setState({showAlert: true})
       let that = this;
       setTimeout(that.handleTeamChange(this.state.currTeam.name), 6000)
-    });
+    }).catch((e) => console.log(e))
   }
 
   showAlert() {
