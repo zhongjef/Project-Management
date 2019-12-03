@@ -5,6 +5,8 @@ import profilePicture from '../../assets/img/profilepic.png';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import './LoginNavbar.css';
 
+import { logout } from '../../actions/user';
+
 class LoginNavbar extends Component {
   state = {
     user: {
@@ -36,7 +38,9 @@ class LoginNavbar extends Component {
               ></img>
             </Nav.Link>
             <NavDropdown title="Login" id="basic-nav-dropdown">
+              <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
               <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => logout() }>Log out</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link className="nav-item" href="#link">
               Notifications
@@ -62,7 +66,9 @@ class LoginNavbar extends Component {
 		} else
 			return (
 				<NavDropdown title='Login' id='basic-nav-dropdown'>
+          <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
 					<NavDropdown.Item href='/signup'>Sign up</NavDropdown.Item>
+          <NavDropdown.Item onClick={ () => logout() }>Log out</NavDropdown.Item>
 				</NavDropdown>
 			);
 	};
