@@ -76,7 +76,7 @@ async function getTeamList(lis) {
   return result;
 }
 
-router.put("/", (req, res) => {
+router.put("/", async (req, res) => {
   console.log("asdsadw");
   if (!req.body.name) {
     return res.status(400).send("Missing project name");
@@ -88,54 +88,99 @@ router.put("/", (req, res) => {
   let description = req.body.description || "No description for this project";
   let proj_id = 0;
   let teamInstance = null;
-  Project.create({ name: name, teamList: teamList, description: description })
-    .then(proj => {
-      console.log("project is...");
-      proj_id = proj._id;
-      console.log("project>....");
-      console.log(proj);
-      User.findById(userId)
-        .then(user => {
-          if (!user) {
-            console.log("cannot find user!");
-            res.status(404).send("cannot find user!");
-          } else {
-            console.log(user);
-            user.manageProjects.push(proj_id);
-			user.save();
-          }
-        })
-        .then(() => {
-          console.log("-------------project created-----------------------");
-          console.log(proj);
-          let lis = proj.teamList.map(team => {
-            const t = {
-              name: team,
-              pid: proj._id,
-              contributors: []
-            };
-            return Team.create(t).then((team) => {
-				console.log("team created")
-				console.log(team)
-				return team._id
-			});
-          });
-          return Promise.all(lis)
-        }).then((promisList) => {
-			console.log("Promise finished")
-			console.log(promisList)
-			proj.teamList = promisList;
-			proj.save();
-		})
-    })
-    .then(e => {
-      console.log("jump!");
-      res.status(200).send("/project/" + proj_id);
-    })
-    .catch(err => {
-      console.log(err);
-      console.log("roll back!");
-      res.status(500).send("/user");
-    });
+  try {
+	  let newProject = await Project.create({ name: name, teamList: teamList, description: description });
+	  proj_id = newProject._id;
+	  let user = await User.findById(userId);
+
+	  if (!user) {
+		  console.log("cannot find user!");
+		  res.status(404).send("/user");
+		  return;
+	  }
+
+	  console.log(user);
+	  user.manageProjects.push(proj_id);
+	  let r = await user.save();
+	  console.log("-------------project created-----------------------");
+	  let lis = [];
+	  for (let i = 0; i < newProject.teamList.length; i++) {
+		  let team = newProject.teamList[i];
+		  const t = {
+			  name: team,
+			  pid: newProject._id,
+			  contributors: []
+		  }
+
+		  let newT = await Team.create(t);
+		  console.log("team created")
+		  console.log(team)
+		  lis.push(newT._id);
+	  }
+
+	  newProject.teamList = lis;
+
+	  let result = await newProject.save();
+
+	  if (result) {
+		  res.status(200).send("/project/" + proj_id);
+	  }
+  }
+
+  catch (e) {
+	  console.log(e);
+	  console.log("roll back!");
+	  res.status(500).send("/user");
+  }
+
+//   Project.create({ name: name, teamList: teamList, description: description })
+//     .then(proj => {
+//       console.log("project is...");
+//       proj_id = proj._id;
+//       console.log("project>....");
+//       console.log(proj);
+//       User.findById(userId)
+//         .then(user => {
+//           if (!user) {
+//             console.log("cannot find user!");
+//             res.status(404).send("cannot find user!");
+//           } else {
+//             console.log(user);
+//             user.manageProjects.push(proj_id);
+// 			user.save();
+//           }
+//         })
+//         .then(() => {
+//           console.log("-------------project created-----------------------");
+//           console.log(proj);
+//           let lis = proj.teamList.map(team => {
+//             const t = {
+//               name: team,
+//               pid: proj._id,
+//               contributors: []
+//             };
+//             return Team.create(t).then((team) => {
+// 				console.log("team created")
+// 				console.log(team)
+// 				return team._id
+// 			});
+//           });
+//           return Promise.all(lis)
+//         }).then((promisList) => {
+// 			console.log("Promise finished")
+// 			console.log(promisList)
+// 			proj.teamList = promisList;
+// 			proj.save();
+// 		})
+//     })
+//     .then(e => {
+//       console.log("jump!");
+//       res.status(200).send("/project/" + proj_id);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       console.log("roll back!");
+//       res.status(500).send("/user");
+//     });
 });
 module.exports = router;
