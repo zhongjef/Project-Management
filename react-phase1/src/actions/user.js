@@ -45,7 +45,7 @@ export const logout = async () => {
 };
 
 export async function getUserInfo(user_id) {
-    let url = `${COMMON_END_POINT}/${user_id}`;
+    let url = `${COMMON_END_POINT}/api/user/${user_id}`;
     let r = await axios({
         method: 'get',
         url: url,

@@ -19,13 +19,13 @@ class UserPage extends Component {
       }
     };
   }
-  setUp(){
+  setUp(userId){
     let info = {}
     let projectList = {
       manageProjectList: [],
       contributeProjectList: []
     };
-    getUserInfo("5de3196146e39b118444a7c4").then(response => {
+    getUserInfo(userId).then(response => {
       if (!response) {
         console.log("user does not exist!");
       } else {
@@ -51,12 +51,9 @@ class UserPage extends Component {
     });
   }
   componentDidMount() {
-    let userid = "";
     getCurrentUser().then((user) => {
-      console.log(user)
+      this.setUp(user)
     })
-
-    // this.setUp(userid);
 
   }
 
