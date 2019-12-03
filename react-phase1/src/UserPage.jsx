@@ -18,6 +18,7 @@ class UserPage extends Component {
         contributeProjectList: []
       }
     };
+    console.log(localStorage)
   }
   setUp(){
     let info = {}
