@@ -47,13 +47,14 @@ router.post("/login", async (req, res) => {
 	// res.redirect("/");
 });
 
-app.get("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
 	req.session.destroy((error) => {
 		if (error) {
 			res.status(500).send(error);
 		} else {
 			// res.redirect("/");
 		}
+		console.log("logout!")
 	});
 });
 module.exports = router;
