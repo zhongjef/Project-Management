@@ -40,7 +40,7 @@ export const logout = async () => {
             'content-type': 'application/json'
         }
     });
-    localStorage.setItem('userId', null)
+    localStorage.clear()
     return r;
 };
 
@@ -57,15 +57,16 @@ export async function getUserInfo(user_id) {
 };
 
 export async function getCurrentUser(){
-    let url = `${COMMON_END_POINT}/auth/users/check-session`;
-    let r = await axios({
-        method: 'get',
-        url: url,
-        headers: {
-            'content-type': 'application/json'
-        }
-    });
-    return r;
+    // let url = `${COMMON_END_POINT}/auth/users/check-session`;
+    // let r = await axios({
+    //     method: 'get',
+    //     url: url,
+    //     headers: {
+    //         'content-type': 'application/json'
+    //     }
+    // });
+    // return r;
+    return localStorage.getItem('userId');
 };
 
 export default {
