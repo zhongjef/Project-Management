@@ -3,6 +3,7 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Task, validate } = require("../models/task");
 
+//get task by id
 router.get("/:id", (req, res) => {
 	const taskId = req.params.id;
 
@@ -28,18 +29,14 @@ router.put("/", (req, res) => {
 	console.log("creating task!");
 	let name = req.body.name || "1";
 	let desc = req.body.description || "";
-	let contributors = req.body.contributors || [];
-	let isFinished = req.body.isFinished || false;
-	let progress = req.body.progress || 0;
-	Task.create({
-		name: name,
-		description: desc,
-		contributors: contributors,
-		isFinished: isFinished,
-		progress: progress
-	})
+	let progress = 0;
+	console.log();
+	Task.create({ 
+		name: name, 
+		description: desc, 
+		progress: progress})
 		.then((proj) => {
-			res.status(200).send(proj._id);
+			res.status(200).send("successful!");
 		})
 		.catch((err) => {
 			console.log(err);
@@ -47,9 +44,11 @@ router.put("/", (req, res) => {
 		});
 });
 
-router.patch("/updateProgress", (req, res) => {
+router.patch("/updateProgress/:task_id", (req, res) => {
 	let taskId = req.body.taskId;
 	let progress = req.body.progress || 0;
+	let team_id = req.body.team_id;
+	let user_id = req.body.user_id;
 
 	Task.findOneAndUpdate(
 		{ _id: taskId },
@@ -66,16 +65,17 @@ router.patch("/updateProgress", (req, res) => {
 			res.status(500).send("update progress failed!");
 		});
 });
+
 router.patch("/:task_id", (req, res) => {
 	let taskId = req.params.task_id;
 	let contributor = req.body.contributor || "";
-	Task.findOneAndUpdate({ _id: taskId }, { $push: { contributors: contributor } })
-		.then((e) => {
-			res.status(200).send("successfully update the contributor!");
-		})
-		.catch((e) => {
-			res.status(500).send("fail to add contributor!");
-		});
+	Task.findOneAndUpdate({ _id: taskId }, { $push: { contributors: contributor}})
+	.then((e)=> {
+		res.status(200).send("successfully update the contributor!");
+	})
+	.catch((e)=> {
+		res.status(500).send("fail to add contributor!");
+	});
 });
 
 module.exports = router;

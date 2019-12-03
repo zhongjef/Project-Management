@@ -3,7 +3,7 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Project, validate } = require("../models/project");
 const { User, userValidator } = require("../models/user");
-const { team } = require("../models/team");
+const { Team } = require("../models/team");
 
 router.get("/:id", (req, res) => {
   const projectId = req.params.id;
@@ -60,7 +60,7 @@ async function getTeamList(lis) {
   result = [];
   for (let i = 0; i < lis.length; i++) {
     await Team.findById(lis[i]).then(team => {
-		console.log("reach here")
+	console.log(lis[i])
       if (!team) {
         return res.status(404).send("A particular team not found");
       } else {

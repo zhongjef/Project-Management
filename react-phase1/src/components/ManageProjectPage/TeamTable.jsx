@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, ListGroup, Button} from 'react-bootstrap';
-import CreateTeamForm from './CreateForms/CreateTeamForm'
+import CreateTeamForm from './CreateForms/CreateTeamForm';
+import {createTeam} from "../../actions/project";
 
 export default class TeamTable extends Component {
     constructor(props) {
@@ -8,7 +9,6 @@ export default class TeamTable extends Component {
         this.state = {
             teamList: this.props.teams
         }
-        console.log(this.state.teamList)
     }
     
     onSelectTeam(e) {
@@ -17,15 +17,23 @@ export default class TeamTable extends Component {
     }
 
     onCreateTeam(newTeam) {
+        console.log(this.props.pid)
         const team = {
-            teamName: newTeam.name,
-            contributors: []
+            name: newTeam.name,
+            contributors: newTeam.contributors,
+            pid: this.props.pid,
+            manager: ""
         }
-        console.log(newTeam)
-        this.state.teamList.push(team);
-        this.setState({
-          teamList: this.state.teamList
+        createTeam(team).then((e) => {
+            console.log(e)
         })
+        // console.log(newTeam)
+        // this.state.teamList.push(team);
+        // this.setState({
+        //   teamList: this.state.teamList
+        // })
+        console.log(newTeam)
+        window.location.reload();
         //call database for post request
       }
 
@@ -42,8 +50,8 @@ export default class TeamTable extends Component {
                        
                     </Card.Title> 
                     <ListGroup className="mt-4" variant="flush">
-                        {this.state.teamList.map(p => {
-                        return (<ListGroup.Item value={p.teamName} action onClick={(e) => this.onSelectTeam(e)}> {'Team: ' + p.teamName} </ListGroup.Item>);
+                        {this.props.teams.map(t => {
+                        return (<ListGroup.Item value={t.name} action onClick={(e) => this.onSelectTeam(e)}> {'Team: ' + t.name} </ListGroup.Item>);
                         })}
                     </ListGroup>
                     </Card.Body>

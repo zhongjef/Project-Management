@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { Team, validate } = require("../models/team");
-const { Project, p_valid } = require("../models/project");
+const {Project, p_valid} = require("../models/project");
+const { User } = require("../models/user");
 
 router.get("/:id", (req, res) => {
 	const teamId = req.params.id;
@@ -24,29 +25,33 @@ router.get("/:id", (req, res) => {
 		})
 		.catch((err) => res.status(500).send());
 });
-router.put("/:project_id", (req, res) => {
-	let project_id = req.params.project_id;
+router.put("/", (req, res) => {
+	let project_id = req.body.pid;
 	let name = req.body.name;
-	let managers = req.body.managers || [];
 	let contributors = req.body.contributors || [];
 
-	let proj_id = 0;
-	console.log("creating team...");
-
-	Team.create({ name: name, managers: managers, contributors: contributors })
-		.then((proj) => {
-			console.log("succeeded!");
-			proj_id = proj._id;
-			return Project.findById(project_id);
-		})
-		.then((proj) => {
-			proj.teamList.push(proj_id);
-			return proj.save();
-		})
-		.then((r) => {
-			res.status(200).send(proj_id);
-		})
-		.catch((err) => {
+	console.log("creating team... on project: " + project_id);
+	let team_id = 0;
+	Project.findById(project_id).then((proj) => {
+		if(!proj){
+			res.status(404);
+		}else{
+			console.log("found project")
+			Team.create({ name: name, contributors: contributors, pid:  project_id}).then((team) => {
+				if(!team){res.status(500);}
+				else{
+					team_id = team._id;
+					return team
+				}
+			}).then((team) => {
+				console.log(team._id)
+				proj.teamList.push(team._id);
+				proj.save();
+				res.send(proj);
+			}) 
+			
+		}
+	}).catch((err) => {
 			console.log(err);
 			res.status(500).send("failed when trying to save the target!");
 		});
@@ -55,13 +60,21 @@ router.put("/:project_id", (req, res) => {
 router.post("/:team_id/:member_id", (req, res) => {
 	let teamId = req.params.team_id;
 	let memberId = req.params.member_id;
-	Team.findOneAndUpdate({ _id: teamId }, { $push: { contributors: memberId } })
-		.then((e) => {
-			res.status(200).send("team updated successfully!");
-		})
-		.catch((e) => {
-			res.status(500).send("team update contributor failed!");
-		});
+	let TeamMemeber = {};
+	User.findById(memberId).then((user) => {
+		TeamMemeber =  {
+			userId: memberId,
+			userName: user.name,
+			taskList: []}
+	}).then(() => {
+		return Team.findOneAndUpdate(teamId, { $push: { contributors: TeamMemeber } })
+	}).then((e)=> {
+		// res.send(e)
+		res.status(200).send("team updated successfully!");
+	})
+	.catch((e)=> {
+		res.status(500).send("team update contributor failed!");
+	});
 });
 
 router.patch("/:team_id/:user_id", async (req, res) => {
