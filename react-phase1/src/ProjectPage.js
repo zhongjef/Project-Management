@@ -20,6 +20,8 @@ class ProjectPage extends React.Component {
       description: ""
     };
 
+    readCookie();
+
   }
 
   // componentDidMount() {

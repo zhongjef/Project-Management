@@ -38,7 +38,6 @@ router.put("/", (req, res) => {
 	let name = req.body.name || "1";
 	let desc = req.body.description || "";
 	let progress = 0;
-	console.log();
 	Task.create({
 		name: name,
 		description: desc,

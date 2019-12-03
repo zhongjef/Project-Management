@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import { Helmet } from "react-helmet";
 import profilePicture from "./assets/img/profilepic.png";
 import Particles from "reactparticles.js";
+import login from "./actions/user"
 class Login extends React.Component {
   state = {
     userName: "",
