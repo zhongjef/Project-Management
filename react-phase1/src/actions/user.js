@@ -13,7 +13,10 @@ export const signUp = async (data)=> {
         headers: {
             'content-type': 'application/json'
         }
-    });
+    })
+    console.log("returned url is: ...");
+    console.log(r);
+    window.location.href = r.data;
     return r;
 };
 

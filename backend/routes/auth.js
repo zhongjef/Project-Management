@@ -5,25 +5,24 @@ const { User, validate } = require("../models/user");
 
 router.post("/signup", async (req, res) => {
 	const { name, email, password } = req.body;
-	if ((!name && !email) || !password) {
-		return res.status(400).send("Invalid login credential");
+	console.log("testing sign up....");
+	console.log(req.body.password);
+	try {
+		if ((!name && !email) || !password) {
+			// console.log("asdasadw")
+			res.status(200).send("/");
+		}
+		let user = await User.findOne({ email: email });
+		if (user) return res.status(200).send("/");
+		user = await User.findOne({ name: name });
+		if (user) return res.status(200).send("/");
+		user = new User({ name: name, email: email, password: password });
+		await user.save();
+		console.log("succeed!");
+	} catch (e) {
+		res.status(200).send("/");
 	}
-	const { error } = validate(req.body);
-	console.log("validation result", validate(req.body));
-	if (error) {
-		console.log(error);
-		return res.status(400).send(error.details[0].message);
-	}
-
-	let user = await User.findOne({ email: email });
-	if (user) return res.status(400).send("Account has been registered");
-	user = await User.findOne({ name: name });
-	if (user) return res.status(400).send("Account has been registered");
-
-	user = new User({ name: name, email: email, password: password });
-	await user.save();
-	// res.redirect()
-	return res.send(user);
+	return res.status(200).send("/user");
 });
 
 router.post("/login", async (req, res) => {
@@ -44,8 +43,8 @@ router.post("/login", async (req, res) => {
 	req.session.user = user._id;
 	res.send(user);
 	console.log(req.session)
-	console.log("login sucessful!")
-	// res.redirect("/");
+	console.log("login sucessful!");
+	res.redirect("http://localhost:8080/user");
 });
 
 router.get("/logout", (req, res) => {

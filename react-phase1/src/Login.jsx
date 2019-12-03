@@ -7,8 +7,8 @@ import profilePicture from "./assets/img/profilepic.png";
 import Particles from "reactparticles.js";
 
 class Login extends React.Component {
-
   render() {
+    console.log("signing up!");
     return (
       <div>
         <Helmet>
