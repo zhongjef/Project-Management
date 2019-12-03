@@ -8,47 +8,47 @@ class AllUsersTable extends Component {
       {
         email: "jeff0@mail.com",
         username: "Jefferson0",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff1@mail.com",
         username: "Jefferson1",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff2@mail.com",
         username: "Jefferson2",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff3@mail.com",
         username: "Jefferson3",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff4@mail.com",
         username: "Jefferson4",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff5@mail.com",
         username: "Jefferson5",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff6@mail.com",
         username: "Jefferson6",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff7@mail.com",
         username: "Jefferson7",
-        phone: "0123456789"
+        password: "0123456789"
       },
       {
         email: "jeff8@mail.com",
         username: "Jefferson8",
-        phone: "0123456789"
+        password: "0123456789"
       }
     ]
   };
@@ -59,7 +59,7 @@ class AllUsersTable extends Component {
           <tr>
             <th>Email</th>
             <th>Username</th>
-            <th>Phone</th>
+            <th>password</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@ class AllUsersTable extends Component {
             <tr key={uid(user)}>
               <td>{user.email}</td>
               <td>{user.username}</td>
-              <td>{user.phone}</td>
+              <td>{user.password}</td>
               <td>
                 <button
                   onClick={() => this.handleDelete(user.email)}

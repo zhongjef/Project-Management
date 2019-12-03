@@ -22,8 +22,7 @@ router.get("/:id", (req, res) => {
 			} else {
 				return res.send(team);
 			}
-		})
-		.catch((err) => res.status(500).send());
+		}).catch((err) => res.status(500).send(err));
 });
 
 router.put("/", (req, res) => {
@@ -60,6 +59,9 @@ router.put("/", (req, res) => {
 						proj.teamList.push(team._id);
 						proj.save();
 						res.send(proj);
+					}).catch((err) => {
+						console.log(err);
+						res.status(500).send("team has error")
 					});
 			}
 		})

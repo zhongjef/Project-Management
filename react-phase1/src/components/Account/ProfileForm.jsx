@@ -65,15 +65,15 @@ class ProfileForm extends Component {
 					</div>
 				</div>
 				<div className="form-group row">
-					<label className="col-sm-2 col-form-label">Phone</label>
+					<label className="col-sm-2 col-form-label">password</label>
 					<div className="col-sm-10">
 						<input
 							onChange={this.handleChange}
-							type="phone"
-							name="phone"
+							type="password"
+							name="password"
 							className="form-control"
-							id="inputPhone"
-							value={user.phone}
+							id="inputpassword"
+							value={user.password}
 						/>
 					</div>
 				</div>
