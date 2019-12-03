@@ -27,10 +27,12 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const currentUser = getCurrentUser();
-    if(currentUser) {
+    /*getCurrentUser().then((user) => {
+      if(user) {
       return (<Redirect to='/user' />)
-    }
+    } else{console.log("not authorizedd");}
+    });*/
+    
     return (
       <div className="myLogin">
         <div id="login-holder" className="container">
