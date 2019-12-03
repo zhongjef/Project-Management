@@ -5,35 +5,27 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../assets/css/login.css";
 import Logo from "../assets/img/logo.png";
 
+import { login } from "../actions/user";
+
 /* The LoginForm Component */
 class LoginForm extends React.Component {
-  state = { targetUrl: "/" };
-
-  getRoute = () => {
-    // Since the data are hardcoded, the confirming procedure will be card coded as well
-    if (this.props.userName === this.props.userPassword) {
-      if (this.props.userName === "admin") {
-        return "/admin";
-      } else if (this.props.userName === "user") {
-        //return "/account/" + this.props.userName
-        return "/home";
-      } else {
-        return "/";
-      }
-    } else {
-      return "/";
-    }
+  state = {
+    account: "",
+    password: "",
   };
 
-  changeCurrentUser = () => {
-    this.props.handleUserChange(this.props.userName);
+  isEmail(email) {
+    const re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/;
+    return re.test(email)
+  };
+
+  chooseLogin() {
+
+    this.isEmail(this.state.account) ? login("", this.state.account, this.state.password) : 
+                                  login(this.state.account, "", this.state.password)
   };
 
   render() {
-    if (this.state.targetUrl != "/") {
-      this.changeCurrentUser();
-      return <Redirect to={this.state.targetUrl} />;
-    }
     return (
       <div className="myLogin">
         <div id="login-holder" className="container">
@@ -51,8 +43,7 @@ class LoginForm extends React.Component {
                     className="form-control"
                     placeholder="Email or account name"
                     type="text"
-                    value={this.props.userName}
-                    onChange={this.props.handleChange}
+                    onChange={e => { this.setState({account: e.target.value})}}
                   />
                 </div>
                 <div className="form-group">
@@ -65,8 +56,7 @@ class LoginForm extends React.Component {
                     className="form-control"
                     placeholder="******"
                     type="password"
-                    value={this.props.userPassword}
-                    onChange={this.props.handleChange}
+                    onChange={e => { this.setState({password: e.target.value})}}
                   />
                 </div>
                 <div className="form-group">
@@ -77,18 +67,16 @@ class LoginForm extends React.Component {
                     </label>
                   </div>
                 </div>
-                <div className="form-group">
+              </form>
+              <div className="form-group">
                   <button
                     className="btn btn-primary btn-block"
-                    onClick={() => {
-                      this.setState({ ["targetUrl"]: this.getRoute() });
-                    }}
+                    onClick={ () => this.chooseLogin() }
                   >
                     {" "}
                     Login{" "}
                   </button>
-                </div>
-              </form>
+              </div>
             </article>
           </div>
         </div>
