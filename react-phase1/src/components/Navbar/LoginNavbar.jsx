@@ -40,7 +40,7 @@ class LoginNavbar extends Component {
             <NavDropdown title="Login" id="basic-nav-dropdown">
               <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
               <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
-              <NavDropdown.Item onClick={ () => logout() }>Log out</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => logout() }>Logout</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link className="nav-item" href="#link">
               Notifications
@@ -68,7 +68,7 @@ class LoginNavbar extends Component {
 				<NavDropdown title='Login' id='basic-nav-dropdown'>
           <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
 					<NavDropdown.Item href='/signup'>Sign up</NavDropdown.Item>
-          <NavDropdown.Item onClick={ () => logout() }>Log out</NavDropdown.Item>
+          <NavDropdown.Item onClick={ () => logout() }>Logout</NavDropdown.Item>
 				</NavDropdown>
 			);
 	};
