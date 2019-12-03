@@ -7,212 +7,227 @@ const { User } = require("../models/user");
 const { Task } = require("../models/task");
 
 router.get("/:id", (req, res) => {
-	const teamId = req.params.id;
-	// If invalid user id
-	if (!ObjectId.isValid(teamId)) {
-		console.log("Invalid Id", teamId);
-		return res.status(404).send();
-	}
+  const teamId = req.params.id;
+  // If invalid user id
+  if (!ObjectId.isValid(teamId)) {
+    console.log("Invalid Id", teamId);
+    return res.status(404).send();
+  }
 
-	Team.findById(teamId)
-		.then((team) => {
-			// No such team
-			if (!team) {
-				console.log("No such team");
-				return res.status(404).send();
-			} else {
-				// let memberPromisesList = team.contributors.map((member) => {
-				// 		return getTaskList(member.taskList);
-				
-				// })
-				// console.log(memberPromisesList)
-				iterateMembers(team.contributors).then((contributors) => {
-					console.log("reached promise all");
-					// console.log(taskLists)
-					let resultTeam = team
-					resultTeam.contributors = contributors
-					res.send(resultTeam)
-				})
-				
-			}
-		}).catch((err) => res.status(500).send(err));
+  Team.findById(teamId)
+    .then(team => {
+      // No such team
+      if (!team) {
+        console.log("No such team");
+        return res.status(404).send();
+      } else {
+        // let memberPromisesList = team.contributors.map((member) => {
+        // 		return getTaskList(member.taskList);
+
+        // })
+        // console.log(memberPromisesList)
+        iterateMembers(team.contributors).then(contributors => {
+          console.log("reached promise all");
+          // console.log(taskLists)
+          let resultTeam = team;
+          resultTeam.contributors = contributors;
+          res.send(resultTeam);
+        });
+      }
+    })
+    .catch(err => res.status(500).send(err));
 });
 
 async function getTaskList(lis) {
-	result = [];
-	for (let i = 0; i < lis.length; i++) {
-		await Task.findById(lis[i]).then((task) => {
-			// console.log(task);
-			if (!task) {
-				console.log("trying to find task")
-			} else {
-				result.push(task);
-			}
-		}).catch((err) => {
-			console.log("failed during finding task: ");
-		});
-	}
-	console.log("result is");
-	console.log(result)
-	console.log("-----------------------------------")
-	return result;
+  result = [];
+  for (let i = 0; i < lis.length; i++) {
+    await Task.findById(lis[i])
+      .then(task => {
+        // console.log(task);
+        if (!task) {
+          console.log("trying to find task");
+        } else {
+          result.push(task);
+        }
+      })
+      .catch(err => {
+        console.log("failed during finding task: ");
+      });
+  }
+  console.log("result is");
+  console.log(result);
+  console.log("-----------------------------------");
+  return result;
 }
 
-async function iterateMembers(memberLis){
-	// let result = memberLis.map((member) => {
-	// 	await getTaskList(member.taskList).then((taskLis) =>{
-	// 		member.taskList = taskLis;
-	// 		return member
-	// 	})
-try{
-	let result = []
-	for (let i = 0; i < memberLis.length; i++) {
-		
-		const member = memberLis[i]
-		await getTaskList(member.taskList).then((taskLis) =>{
-			member.taskList = taskLis;
-			return member
-		}).then(m => {
-			console.log("------------ found member ------")
-			console.log(m);
-			result.push(m);
-		}).catch(e => console.log(e))
-	}
-	return result
-}catch(e){
-	console.log(e)
-}
+async function iterateMembers(memberLis) {
+  // let result = memberLis.map((member) => {
+  // 	await getTaskList(member.taskList).then((taskLis) =>{
+  // 		member.taskList = taskLis;
+  // 		return member
+  // 	})
+  try {
+    let result = [];
+    for (let i = 0; i < memberLis.length; i++) {
+      const member = memberLis[i];
+      await getTaskList(member.taskList)
+        .then(taskLis => {
+          member.taskList = taskLis;
+          return member;
+        })
+        .then(m => {
+          console.log("------------ found member ------");
+          console.log(m);
+          result.push(m);
+        })
+        .catch(e => console.log(e));
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 router.put("/", (req, res) => {
-	// if (!req.body.name) {
-	// 	return res.status(400).send("Missing team name");
-	// }
-	// const { error } = validate(req.body);
-	// if (error) {
-	// 	return res.status(400).send(error.details[0].message);
-	// }
-	let project_id = req.body.pid;
-	let name = req.body.name;
-	let contributors = req.body.contributors || [];
+  // if (!req.body.name) {
+  // 	return res.status(400).send("Missing team name");
+  // }
+  // const { error } = validate(req.body);
+  // if (error) {
+  // 	return res.status(400).send(error.details[0].message);
+  // }
+  let project_id = req.body.pid;
+  let name = req.body.name;
+  let contributors = req.body.contributors || [];
 
-	console.log("creating team... on project: " + project_id);
-	let team_id = 0;
-	Project.findById(project_id)
-		.then((proj) => {
-			if (!proj) {
-				res.status(404);
-			} else {
-				console.log("found project");
-				Team.create({ name: name, contributors: contributors, pid: project_id })
-					.then((team) => {
-						if (!team) {
-							res.status(500);
-						} else {
-							team_id = team._id;
-							return team;
-						}
-					})
-					.then((team) => {
-						console.log(team._id);
-						proj.teamList.push(team._id);
-						proj.save();
-						res.send(proj);
-					}).catch((err) => {
-						console.log(err);
-						res.status(500).send("team has error")
-					});
-			}
-		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).send("failed when trying to save the target!");
-		});
+  console.log("creating team... on project: " + project_id);
+  let team_id = 0;
+  Project.findById(project_id)
+    .then(proj => {
+      if (!proj) {
+        res.status(404);
+      } else {
+        console.log("found project");
+        Team.create({ name: name, contributors: contributors, pid: project_id })
+          .then(team => {
+            if (!team) {
+              res.status(500);
+            } else {
+              team_id = team._id;
+              return team;
+            }
+          })
+          .then(team => {
+            console.log(team._id);
+            proj.teamList.push(team._id);
+            proj.save();
+            res.send(proj);
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500).send("team has error");
+          });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send("failed when trying to save the target!");
+    });
 });
 
 router.post("/:team_id/:member_id", (req, res) => {
-	let teamId = req.params.team_id;
-	let memberId = req.params.member_id;
-	let TeamMemeber = {};
-	User.findById(memberId)
-		.then((user) => {
-			TeamMemeber = {
-				userId: memberId,
-				userName: user.name,
-				taskList: []
-			};
-		})
-		.then(() => {
-			return Team.findOneAndUpdate(teamId, { $push: { contributors: TeamMemeber } });
-		})
-		.then((e) => {
-			// res.send(e)
-			res.send(e);
-		})
-		.catch((e) => {
-			res.status(500).send("team update contributor failed!");
-		});
+  let teamId = req.params.team_id;
+  let memberId = req.params.member_id;
+  let TeamMemeber = {};
+  User.findById(memberId)
+    .then(user => {
+      TeamMemeber = {
+        userId: memberId,
+        userName: user.name,
+        taskList: []
+      };
+    })
+    .then(() => {
+      return Team.findOneAndUpdate(teamId, {
+        $push: { contributors: TeamMemeber }
+      });
+    })
+    .then(e => {
+      // res.send(e)
+      res.send(e);
+    })
+    .catch(e => {
+      res.status(500).send("team update contributor failed!");
+    });
 });
 
 router.patch("/:team_id/:user_id", async (req, res) => {
-	console.log("patching...");
-	let teamId = req.params.team_id;
-	let userId = req.params.user_id;
-	let taskList = req.body.taskList || [];
-	let userName = req.body.name || "1";
-	console.log("--------------------------------------------------------")
-	console.log(userId)
-	try {
-		
-		// console.log(user)
-		Team.findById(teamId).then((team) => {
-			const checkUser = team.contributors.filter(member => member.userId === userId);
-			
-			const contributors = team.contributors.map((member) => {
-				if(member.userId === userId){
-					member.taskList = taskList;
-					console.log(member.taskList)
-				}
-			})
-			if (checkUser.length === 0){
-				contributors.push({
-					userId: userId,
-					userName: userName,
-					taskList: taskList
-				})
-			}
-			team.contributors = contributors;
-			team.save();
-			return team
-		}).then((team) => {
-			console.log(team);
-			res.send(team);
-		})
-		// if (!user) {
-			// teamInstance.contributors.push({
-			// 	userId: userId,
-			// 	userName: userName,
-			// 	taskList: taskList
-			// });
-		// } else {
-		// 	console.log(user.userName + "is currently being assigned a task")
-		// 	Team.findOneAndUpdate(
-		// 		{ _id: teamId, "contributors.userId": userId },
-		// 		{
-		// 			$set: {
-		// 				"contributors.taskList": taskList
-		// 			}
-		// 		}
-		// 	);
-		// }
+  console.log("patching...");
+  let teamId = req.params.team_id;
+  let userId = req.params.user_id;
+  let taskList = req.body.taskList || [];
+  let userName = req.body.name || "1";
+  console.log("--------------------------------------------------------");
+  console.log(userId);
+  try {
+    // console.log(user)
+    Team.findById(teamId)
+      .then(team => {
+        const checkUser = team.contributors.filter(
+          member => member.userId === userId
+        );
+        const contributors = team.contributors.map(member => {
+          if (member.userId === userId) {
+            member.taskList = taskList;
+            console.log(member.taskList);
+          }
+		});
+		console.log(checkUser)
+		console.log("/////////////////////////////////////////////")
+        if (checkUser.length === 0) {
+          contributors.push({
+            userId: userId,
+            userName: userName,
+            taskList: taskList
+          });
+		}
+		console.log(team)
+		console.log("______geting contributors________")
+		console.log(contributors)
+		console.log("______________________________")
+        team.contributors = contributors;
+        team.save();
+        return team;
+      })
+      .then(team => {
+        console.log(team);
+        res.send(team);
+      });
+    // if (!user) {
+    // teamInstance.contributors.push({
+    // 	userId: userId,
+    // 	userName: userName,
+    // 	taskList: taskList
+    // });
+    // } else {
+    // 	console.log(user.userName + "is currently being assigned a task")
+    // 	Team.findOneAndUpdate(
+    // 		{ _id: teamId, "contributors.userId": userId },
+    // 		{
+    // 			$set: {
+    // 				"contributors.taskList": taskList
+    // 			}
+    // 		}
+    // 	);
+    // }
 
-		// let r = await teamInstance.save();
-		// if (r) {
-		// 	res.status(200).send("update successful!");
-		// }
-	} catch (e) {
-		console.log(e);
-		res.status(500).send("update failed!");
-	}
+    // let r = await teamInstance.save();
+    // if (r) {
+    // 	res.status(200).send("update successful!");
+    // }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("update failed!");
+  }
 });
 module.exports = router;

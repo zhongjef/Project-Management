@@ -83,18 +83,28 @@ router.put("/", (req, res) => {
 	console.log("userId... " + userId);
 	let teamList = req.body.teamList || [];
 	let name = req.body.name || "Invalid";
-	let description = req.body.desc || "No description for this project";
+	let description = req.body.description || "No description for this project";
 	let proj_id = 0;
 	Project.create({ name: name, teamList: teamList, description: description })
 		.then((proj) => {
 			console.log("project is...");
 			proj_id = proj._id;
 			console.log(proj);
-			return User.findById(userId);
+			User.findById(userId).then((user) => {
+				if(!user){
+					console.log("cannot find user!")
+					res.status(404).send("cannot find user!");
+				}else{
+					console.log(user);
+					user.manageProjects.push(proj_id)
+					user.save();
+					return user
+				}
+			})
 		})
-		.then((e) => {
-			console.log(e);
-			return e.save();
+		.then((user) => {
+
+			return user
 		})
 		.then((e) => {
 			console.log("jump!");
