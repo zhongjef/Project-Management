@@ -35,7 +35,7 @@ export const login = async (name, email, password) => {
 };
 
 export const logout = async () => {
-    let url = `${COMMON_END_POINT}/logout`;
+    let url = "http://localhost:8080/auth/logout";
     let r = await axios({
         method: 'get',
         url: url,
