@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../assets/css/login.css";
 import Logo from "../assets/img/logo.png";
 
-import { login } from "../actions/user";
+import { login, getCurrentUser } from "../actions/user";
 
 /* The LoginForm Component */
 class LoginForm extends React.Component {
@@ -20,13 +20,17 @@ class LoginForm extends React.Component {
   };
 
   chooseLogin() {
-    let result;
-    this.isEmail(this.state.account) ? result = login("", this.state.account, this.state.password) : 
-                                  result = login(this.state.account, "", this.state.password);
-    console.log(result.data)
+    const result = this.isEmail(this.state.account) ? login("", this.state.account, this.state.password) : 
+                                  login(this.state.account, "", this.state.password);
+    console.log(result)
+    window.location.reload();
   };
 
   render() {
+    const currentUser = getCurrentUser();
+    if(currentUser) {
+      return (<Redirect to='/user' />)
+    }
     return (
       <div className="myLogin">
         <div id="login-holder" className="container">
