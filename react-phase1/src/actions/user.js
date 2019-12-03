@@ -32,7 +32,7 @@ export const login = async (data) => {
         },
         withCredentials: true
     });
-    localStorage.setItem('userId', r.data._id)
+    window.location.href = r.data;
     return r;
 };
 

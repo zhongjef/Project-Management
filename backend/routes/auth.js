@@ -50,10 +50,9 @@ router.post("/login", async (req, res) => {
 	// If both email and username does not work, then invalid credential
 	if (!user) return res.status(400).send("Invalid login credentials");
 	req.session.user = user._id;
-	res.send(user);
-	console.log(req.session)
+	res.send("/user");
+	console.log(req.session);
 	console.log("login sucessful!");
-	res.redirect("http://localhost:8080/user");
 });
 
 router.get("/logout", (req, res) => {
