@@ -85,10 +85,12 @@ router.put("/", (req, res) => {
 	let name = req.body.name || "Invalid";
 	let description = req.body.description || "No description for this project";
 	let proj_id = 0;
+	let teamInstance = null;
 	Project.create({ name: name, teamList: teamList, description: description })
 		.then((proj) => {
 			console.log("project is...");
 			proj_id = proj._id;
+			console.log("project>....");
 			console.log(proj);
 			User.findById(userId).then((user) => {
 				if(!user){
@@ -102,9 +104,15 @@ router.put("/", (req, res) => {
 				}
 			})
 		})
+<<<<<<< HEAD
 		.then((user) => {
 
 			return user
+=======
+		.then((e) => {
+			e.manageProjects.push(proj_id);
+			return e.save();
+>>>>>>> 0004ccc9c94b6e684b950f47c121b9e656a72b78
 		})
 		.then((e) => {
 			console.log("jump!");
