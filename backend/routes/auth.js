@@ -53,7 +53,7 @@ router.get("/logout", (req, res) => {
 		if (error) {
 			res.status(500).send(error);
 		} else {
-			// res.redirect("/");
+			res.redirect("/");
 		}
 		console.log("logout!")
 	});

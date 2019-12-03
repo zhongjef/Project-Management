@@ -23,13 +23,15 @@ const sessionOptions = {
 	resave: true,
 	// If the session is unitialized (new buf not modified),
 	// do not enforce saving back to the session store
-	saveUninitialized: false
+	saveUninitialized: false,
+	withCredentials: true
 };
 
 const sessionChecker = (req, res, next) => {
 	if (!req.session.user) {
-		res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
+		// res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
 		// res.redirect("/");
+		next();
 	} else {
 		next();
 	}
@@ -37,7 +39,15 @@ const sessionChecker = (req, res, next) => {
 
 module.exports = function(app) {
 	// Session management
-	app.use(session(sessionOptions));
+	app.use(session({
+        secret: "oursecret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60000,
+            httpOnly: true
+        }
+    }));
 	// Express middleware
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json());

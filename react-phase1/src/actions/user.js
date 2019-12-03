@@ -17,20 +17,17 @@ export const signUp = async (data)=> {
     return r;
 };
 
-export const login = async (name, email, password) => {
+export const login = async (data) => {
     let url = `${COMMON_END_POINT}/auth/login`;
     let r = await axios({
         method: 'post',
         url: url,
-        data: {
-            name: name,
-            password: password,
-            email: email
-        },
+        data: data,
         headers: {
             'content-type': 'application/json'
         }
     });
+    localStorage.setItem('userId', r.data._id)
     return r;
 };
 
@@ -43,6 +40,7 @@ export const logout = async () => {
             'content-type': 'application/json'
         }
     });
+    localStorage.setItem('userId', null)
     return r;
 };
 
