@@ -4,36 +4,51 @@ import TaskPopupAction from "./TaskPopupAction";
 import "./ContributeProject.css";
 import LoginNavbar from "../Navbar/LoginNavbar";
 import data from "./data.json";
+import { getTeam, getProjectInfo } from "../../actions/project";
+import { getCurrentUser } from "../../actions/user";
 
 export default class ContributeProjectPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectId: "asdf3asrdfg30a",
+      project_id: this.props.match.params.id,
       projectName: "Utos",
       teamName: "Fantastic Frontend team",
-      tasks: [
-        {
-          taskId: 1,
-          taskDesc: "CSC309 TA meeting",
-          taskProcess: 0
-        },
-        {
-          taskId: 2,
-          taskDesc: "CSC309 FrontEnd Dev",
-          taskProcess: 2
-        }
-      ]
+      tasks: []
     };
   }
 
-  componentWillMount(){
-    const d = data;
-    this.setState({
-      projectName: d.projectName,
-      teamName:d.teamName,
-      tasks: d.taskList
-    })
+  componentWillMount() {
+    getCurrentUser().then(userId => {
+      getProjectInfo(this.state.project_id)
+        .then(proj => {
+          const data = proj.data;
+          return data;
+        })
+        .then(data => {
+          //now we got data, we have to find the team that this user is in
+          let teamList = data.teamList.filter(team =>
+            team.contributors
+              .map(contributor => contributor.userId)
+              .includes(userId)
+          );
+          getTeam(teamList[0]._id).then((t) => {
+            const team = t.data;
+            console.log(team)
+            const taskList = team.contributors.map(contributor => {
+              if (contributor.userId === userId) {
+                return contributor.taskList;
+              }
+            })[0];
+            this.setState({
+              projectName: data.name,
+              teamName: team.name,
+              tasks: taskList
+            });
+            console.log(taskList)
+          })
+        });
+    }).catch(e => console.log(e))
   }
   render() {
     return (
@@ -61,10 +76,10 @@ export default class ContributeProjectPage extends Component {
               {this.state.tasks.map((task, index) => {
                 return (
                   <tr key={index}>
-                    <td>{task.taskProcess}/6</td>
-                    <td>{task.taskDesc}</td>
+                    <td>{task.progress}/6</td>
+                    <td>{task.description}</td>
                     <td>
-                      <TaskPopupAction completed={task.taskProcess} />
+                      <TaskPopupAction completed={task.progess} task={task}/>
                     </td>
                   </tr>
                 );

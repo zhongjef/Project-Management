@@ -28,13 +28,16 @@ export default class TeamSection extends Component {
   handleTeamChange(team) {
     console.log(this.props.teams)
     const currTeam = this.props.teams.filter(t => t.name === team)[0];
-  
-    this.setState({
-      teamName: currTeam.name,
-      currTeam: currTeam,
-      contributors: currTeam.contributors,
-    });
-    console.log(currTeam);
+    getTeam(currTeam._id).then((curr) => {
+      console.log(curr)
+      const team = curr.data;
+      this.setState({
+        teamName: team.name,
+        currTeam: team,
+        contributors: team.contributors,
+      });
+    })
+
   }
 
   onTaskDrop(e, index) {
@@ -44,13 +47,13 @@ export default class TeamSection extends Component {
     console.log(member)
     member.taskList = applyDrag(member.taskList, e);
     this.state.contributors[index] = member;
-    member.taskList.append(e.payload.id);
+    member.taskList.push(e.payload.id);
     const data = {
-      taskList:  member.taskList,
+      taskList:  [e.payload.id],
       name: member.userName
     }
     assignTaskToContributor(currTeam._id, member.userId, data).then((e) => {
-      console.log(e);
+      const data = e.data
     })
     // addTaskContributor(e.payload.id, currTeam._id)
     this.setState({
@@ -103,6 +106,7 @@ export default class TeamSection extends Component {
                           
                         >
                           {member.taskList.map(task => {
+                            console.log(task)
                             return (
                               <Draggable key={task} className="ml-2">
                                 <Button

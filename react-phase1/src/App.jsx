@@ -45,7 +45,7 @@ class App extends React.Component {
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
             </Route>
-            <Route exact path="/cproject" component={ContributeProjectPage}>
+            <Route exact path="/cproject/:id" component={ContributeProjectPage}>
               {/*(this.state.currentUser === '') ? <Redirect to="/" /> : 
               ((this.state.currentUser !== 'admin') ? <Redirect to="/home" /> : <Admin />)*/}
             </Route>

@@ -52,7 +52,7 @@ async function getTaskList(lis) {
 				result.push(task);
 			}
 		}).catch((err) => {
-			res.status(500).send("failed during finding team");
+			console.log("failed during finding task: ");
 		});
 	}
 	console.log("result is");

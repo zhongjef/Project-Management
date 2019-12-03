@@ -57,21 +57,20 @@ router.patch("/updateProgress/:task_id", (req, res) => {
 	if (error) {
 		return res.status(400).send(error.details[0].message);
 	}
-	let taskId = req.body.taskId;
+	let taskId = req.params.task_id;
 	let progress = req.body.progress || 0;
-	let team_id = req.body.team_id;
-	let user_id = req.body.user_id;
 
-	Task.findOneAndUpdate(
-		{ _id: taskId },
-		{
-			$set: {
-				progress: parseInt(progress)
-			}
+	Task.findById(taskId).then((task) => {
+		if(!task){
+			console.log(taskId)
+			res.status(404).send("cannot find task!");
+		}else{
+			task.progress = progress;
+			task.save();
+			return task
 		}
-	)
-		.then((e) => {
-			res.status(200).send("update progress successfully!");
+	}).then((task) => {
+			res.send(task);
 		})
 		.catch((e) => {
 			res.status(500).send("update progress failed!");

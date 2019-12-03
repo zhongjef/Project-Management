@@ -120,8 +120,8 @@ export const deleteTaskContributor = async (task_id, data) => {
     return r;
 };
 //update this task's progress (PATCH)
-export const updateTaskProgress = async (data) => {
-    let url = `${COMMON_END_POINT}/task/updateProgress`;
+export const updateTaskProgress = async (task_id, data) => {
+    let url = `${COMMON_END_POINT}/task/updateProgress/${task_id}`;
     let r = await axios({
         method: 'patch',
         data: data,
@@ -144,6 +144,19 @@ export const getTaskInfo = async (task_id) => {
     });
     return r;
 };
+
+// export const findTeam = async (project_id, user_id) => {
+//     let url = `${COMMON_END_POINT}/team/${project_id}`;
+//     let r = await axios({
+//         method: 'get',
+//         url: url,
+//         data: {user_id},
+//         headers: {
+//             'content-type': 'application/json'
+//         }
+//     });
+//     return r;
+// };
 
 
 export default { createProject, 

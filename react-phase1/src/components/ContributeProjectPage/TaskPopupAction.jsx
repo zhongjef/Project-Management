@@ -5,15 +5,17 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import TaskProcess from "./TaskProcess";
 import React, { Component } from "react";
+import {updateTaskProgress} from "../../actions/project"
 
 export default class TaskPopupAction extends Component {
   state = { showModal: false };
   constructor(props) {
     super(props);
     this.state = {
-      completed: this.props.completed
+      completed: this.props.task.progress
     };
     this.submitCompletionHandler = this.submitCompletionHandler.bind(this);
+    console.log(this.props.task)
   }
   getInitialState() {
     return { showModal: false };
@@ -28,8 +30,12 @@ export default class TaskPopupAction extends Component {
   }
 
   submitCompletionHandler(completedTasks){
-      console.log(completedTasks)
+    const progress = {progress: completedTasks};
+      updateTaskProgress(this.props.task._id, progress)
+      .then((e) => console.log(e.data))
+      .catch((e) => console.log(e));
       this.close()
+      window.location.reload();
       
   }
 
