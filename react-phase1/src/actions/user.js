@@ -17,7 +17,7 @@ export const signUp = async (data)=> {
     return r;
 };
 
-export const login = async (name, password, email) => {
+export const login = async (name, email, password) => {
     let url = "http://localhost:8080/auth/login";
     let r = await axios({
         method: 'post',
