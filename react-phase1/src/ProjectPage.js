@@ -17,7 +17,7 @@ class ProjectPage extends React.Component {
       project_id: this.props.match.params.id,
       projectName: "",
       teamList: [],
-      description: []
+      description: ""
     };
 
   }

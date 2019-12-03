@@ -7,31 +7,17 @@ export default class CreateProjectForm extends Component {
 
   constructor(props) {
     super(props);
+    // deleted manager, the manager will be whom created the project
     this.state = {
-        managers: [],
         teams: []
     }
-  }
-  addManager(managerName) {
-    this.state.managers.push(managerName);
-    this.setState({ managers: this.state.managers });
-  }
-
-  deleteManager(index) {
-    this.state.managers.splice(index, 1);
-    this.setState({ managers: this.state.managers });
   }
   
   addTeam(teamName){
       this.state.teams.push(teamName);
       this.setState({ teams: this.state.teams });
-      console.log(this.state)
-      console.log({
-              project_name: this.state.project_name,
-              managers: this.state.managers,
-              teams: this.state.teams
-            })
   }
+
   deleteTeam(index){
       this.state.teams.splice(index, 1);
       this.setState({ teams: this.state.teams });
@@ -67,39 +53,6 @@ export default class CreateProjectForm extends Component {
           </div>
       )
   }
-
-  displayManagers(){
-    return(
-      <div className="container">
-          <ul className="list-group text-center mt-2">
-            {this.state.managers.map((manager, index) => {
-                return (
-                  <Row className="show-grid" key={index}>
-                    <Col xs={8} md={10}>
-                      <li className="list-group-item">
-                        {manager}
-                      </li>
-                    </Col>
-                    <Col xs={4} md={2}>
-                      <Button
-                        className=""
-                        variant="danger"
-                        size="sm"
-                        onClick={() => this.deleteManager(index)}
-                      >
-                        Delete!
-                      </Button>
-                    </Col>
-                  </Row>
-                );
-              }       
-            )}
-          </ul>
-        </div>
-    )
-}
-
-
 
   render() {
     return (
@@ -144,30 +97,16 @@ export default class CreateProjectForm extends Component {
           <Row className="show-grid" id="managerForm">
             <Col xs={12} md={10}>
               <Form.Label className="" id="manager-group">
-                Invite Managers
+                Project Description
               </Form.Label>
               <Form.Control
                 id="manager-input"
                 type="manager"
-                placeholder="Enter his/her id"
+                placeholder="Write the description of this project"
+                onChange={e => this.setState({ description: e.target.value })}
               />
             </Col>
-            <Col xs={6} md={2}>
-              <Button
-                className="mt-2"
-                variant="outline-info"
-                size="sm"
-                onClick={() =>
-                  this.addManager(
-                    document.getElementById("manager-input").value
-                  )
-                }
-              >
-                Add More!
-              </Button>
-            </Col>
           </Row>
-          {this.displayManagers()}
         </Container>
 
         <Button
@@ -177,8 +116,8 @@ export default class CreateProjectForm extends Component {
           onClick={() => createProject(
             {
               project_name: this.state.project_name,
-              managers: this.state.managers,
-              teams: this.state.teams
+              teamList: this.state.teams,
+              description: this.state.description
             }
           )}
         >
