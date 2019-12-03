@@ -55,10 +55,9 @@ router.put("/", (req, res) => {
 			console.log(err);
 			res.status(500).send("failed when trying to save the target!");
 		});
-
 });
 
-router.post("/:team_id/:member_id", (req, res)=> {
+router.post("/:team_id/:member_id", (req, res) => {
 	let teamId = req.params.team_id;
 	let memberId = req.params.member_id;
 	let TeamMemeber = {};
@@ -78,42 +77,39 @@ router.post("/:team_id/:member_id", (req, res)=> {
 	});
 });
 
-router.patch("/:team_id/:user_id", async (req, res)=> {
-	console.log("patching...")
+router.patch("/:team_id/:user_id", async (req, res) => {
+	console.log("patching...");
 	let teamId = req.params.team_id;
 	let userId = req.params.user_id;
 	let taskId = req.body.taskId;
 	let userName = req.body.name || "1";
 	try {
 		let teamInstance = await Team.findById(teamId);
-		let user = await Team.findOne({ _id: teamId, "contributors.userId": userId});
+		let user = await Team.findOne({ _id: teamId, "contributors.userId": userId });
 		if (!user) {
 			teamInstance.contributors.push({
 				userId: userId,
 				userName: userName,
 				taskList: [taskId]
 			});
-		}
-
-		else {
+		} else {
 			Team.findOneAndUpdate(
 				{ _id: teamId, "contributors.userId": userId },
-				{$push: {
-					"contributors.taskList": taskId
-				}}
-			)
+				{
+					$push: {
+						"contributors.taskList": taskId
+					}
+				}
+			);
 		}
 
 		let r = await teamInstance.save();
 		if (r) {
 			res.status(200).send("update successful!");
 		}
-	}
-
-	catch (e) {
+	} catch (e) {
 		console.log(e);
 		res.status(500).send("update failed!");
 	}
-	
-})
+});
 module.exports = router;
