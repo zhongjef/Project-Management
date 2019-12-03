@@ -52,6 +52,8 @@ class UserPage extends Component {
   }
   componentDidMount() {
     getCurrentUser().then((user) => {
+      console.log("user is: ......");
+      console.log(user)
       this.setUp(user)
     })
 

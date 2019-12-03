@@ -20,6 +20,7 @@ router.get("/:id", (req, res) => {
 				console.log("No such project");
 				return res.status(404).send();
 			} else {
+				console.log(project)
 				return res.send(project);
 			}
 		})

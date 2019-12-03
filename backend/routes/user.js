@@ -6,7 +6,7 @@ const { Project } = require("../models/project.js");
 const _ = require("lodash");
 
 router.get("/:id", (req, res) => {
-	const userId = req.params.id;
+	const userId = req.session.user;
 	// If invalid user id
 	if (!ObjectId.isValid(userId)) {
 		console.log("Invalid Id", userId);
