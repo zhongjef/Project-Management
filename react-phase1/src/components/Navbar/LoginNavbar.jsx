@@ -23,12 +23,8 @@ class LoginNavbar extends Component {
             <Nav.Link className="nav-item" href="/user">
               Home
             </Nav.Link>
-            <Nav.Link className="nav-item" href="/project">
-              Projects
-            </Nav.Link>
           </Nav>
           <Nav>
-            {/* {this.getAccount()} */}
             <Nav.Link className="nav-item " href="/account">
               <img
                 className="rounded"
@@ -42,36 +38,13 @@ class LoginNavbar extends Component {
               <NavDropdown.Item href="/signup">Sign up</NavDropdown.Item>
               <NavDropdown.Item onClick={ () => logout() }>Logout</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link className="nav-item" href="#link">
-              Notifications
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
   }
 
-	getAccount = () => {
-		if (this.state.user) {
-			return (
-				<Nav.Link className='nav-item ' href='/account'>
-					<img
-						className='rounded'
-						style={{ width: 25 }}
-						alt='Profile Picture'
-						src={this.state.user.profilePic}
-					/>
-				</Nav.Link>
-			);
-		} else
-			return (
-				<NavDropdown title='Login' id='basic-nav-dropdown'>
-          <NavDropdown.Item href='/'>Sign in</NavDropdown.Item>
-					<NavDropdown.Item href='/signup'>Sign up</NavDropdown.Item>
-          <NavDropdown.Item onClick={ () => logout() }>Logout</NavDropdown.Item>
-				</NavDropdown>
-			);
-	};
+
 
 	// return ()
 }
