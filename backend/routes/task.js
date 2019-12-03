@@ -43,8 +43,8 @@ router.put("/", (req, res) => {
 		description: desc,
 		progress: progress
 	})
-		.then((proj) => {
-			res.status(200).send("successful!");
+		.then((task) => {
+			res.send(task);
 		})
 		.catch((err) => {
 			console.log(err);

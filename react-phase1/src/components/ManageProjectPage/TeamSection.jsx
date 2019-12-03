@@ -4,14 +4,14 @@ import { applyDrag } from "../../utils/Drag";
 import { Button, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { FaPlusSquare } from "react-icons/fa";
 import InviteMember from "./CreateForms/InviteMember"
-
+import {assignTaskToContributor, getTeam} from "../../actions/project";
 export default class TeamSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       teamName: "",
       currTeam: [],
-
+      contributors: [],
       allTeam: this.props.teams
     };
     
@@ -28,32 +28,46 @@ export default class TeamSection extends Component {
   handleTeamChange(team) {
     console.log(this.props.teams)
     const currTeam = this.props.teams.filter(t => t.name === team)[0];
-    
-    console.log(currTeam)
+  
     this.setState({
       teamName: currTeam.name,
-      currTeam: currTeam.contributors
+      currTeam: currTeam,
+      contributors: currTeam.contributors,
     });
     console.log(currTeam);
   }
 
   onTaskDrop(e, index) {
-    const member = Object.assign({}, this.state.currTeam[index]);
+    console.log(this.state.currTeam)
+    const currTeam = this.state.currTeam;
+    const member = Object.assign({}, this.state.contributors[index]);
+    console.log(member)
     member.taskList = applyDrag(member.taskList, e);
-    this.state.currTeam[index] = member;
+    this.state.contributors[index] = member;
+    member.taskList.append(e.payload.id);
+    const data = {
+      taskList:  member.taskList,
+      name: member.userName
+    }
+    assignTaskToContributor(currTeam._id, member.userId, data).then((e) => {
+      console.log(e);
+    })
+    // addTaskContributor(e.payload.id, currTeam._id)
     this.setState({
       currTeam: this.state.currTeam
     });
-    console.log(member);
+    // console.log(member);
+    // console.log(e)
   }
 
   getTaskPayload(taskIndex, memberIndex) {
-    return this.state.currTeam[memberIndex].taskList[taskIndex];
+    return this.state.contributors[memberIndex].taskList[taskIndex];
   }
 
   addMemberHandler(member){
     //call data base 
   }
+
 
   render() {
     return (
@@ -63,7 +77,7 @@ export default class TeamSection extends Component {
               <Card.Header>
                 Team Section
                 <div className="float-right">
-                <InviteMember teamName={this.state.teamName} teamSize={this.state.currTeam.length} addMember={this.addMemberHandler.bind(this)}/>
+                <InviteMember teamName={this.state.teamName} teamSize={this.state.contributors.length} addMember={this.addMemberHandler.bind(this)}/>
                 </div>
                 
               </Card.Header>
@@ -71,7 +85,7 @@ export default class TeamSection extends Component {
                 <Card.Title>{this.state.teamName}</Card.Title>
                 <Row>
 
-                {this.state.currTeam.map((member, index) => {
+                {this.state.contributors.map((member, index) => {
                   return (
                     <Col md={4} xs={6} className="p-2" key={member.userId}>
                       <Card style={{ width: "18rem", alignContent: "center"}}>
@@ -90,12 +104,11 @@ export default class TeamSection extends Component {
                         >
                           {member.taskList.map(task => {
                             return (
-                              <Draggable key={task.taskid} className="ml-2">
+                              <Draggable key={task} className="ml-2">
                                 <Button
                                   className="draggable-item mt-2"
-                                  key={task.taskid}
                                 >
-                                  {task.taskName}
+                                  {task.name}
                                 </Button>
                               </Draggable>
                             );

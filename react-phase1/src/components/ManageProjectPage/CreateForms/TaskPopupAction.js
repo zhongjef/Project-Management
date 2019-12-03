@@ -32,8 +32,9 @@ export default class TaskPopupAction extends Component {
     // this.setState({newTaskCreated: true})
     this.close();
     const newTask = {
-      taskName: this.taskName.value,
-      taskDetails: this.taskDetails.value
+      name: this.taskName.value,
+      description: this.taskDetails.value,
+      progress: 0
     }
 
     this.props.createTask(newTask);

@@ -93,6 +93,19 @@ export const addTaskContributor = async (task_id, data) => {
     });
     return r;
 };
+
+export const assignTaskToContributor = async (team_id, user_id, data) => {
+    let url = `${COMMON_END_POINT}/team/${team_id}/${user_id}`;
+    let r = await axios({
+        method: 'patch',
+        data: data,
+        url: url,
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+    return r;
+};
 //update this task's worker Info, and update Team's contributors -> worker -> taskList, deletee (DELETEE)
 export const deleteTaskContributor = async (task_id, data) => {
     let url = `${COMMON_END_POINT}/task/${task_id}`;
@@ -119,6 +132,19 @@ export const updateTaskProgress = async (data) => {
     });
     return r;
 };
+
+export const getTaskInfo = async (task_id) => {
+    let url = `${COMMON_END_POINT}/task/${task_id}`;
+    let r = await axios({
+        method: 'get',
+        url: url,
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+    return r;
+};
+
 
 export default { createProject, 
                 createTeam, 

@@ -4,6 +4,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const { Team, validate } = require("../models/team");
 const { Project, p_valid } = require("../models/project");
 const { User } = require("../models/user");
+const { Task } = require("../models/task");
 
 router.get("/:id", (req, res) => {
 	const teamId = req.params.id;
@@ -20,10 +21,44 @@ router.get("/:id", (req, res) => {
 				console.log("No such team");
 				return res.status(404).send();
 			} else {
-				return res.send(team);
+				let memberPromisesList = team.contributors.map((member) => {
+					 
+						return getTaskList(member.taskList)
+					//  })
+				
+				})
+				Promise.all(memberPromisesList).then((taskLists) => {
+					console.log(taskLists)
+					let resultTeam = team
+					resultTeam.contributors = resultTeam.contributors.map((member, i) => {
+						member.taskList = taskLists[i]
+						return member
+					})
+					res.send(resultTeam)
+				})
+				
 			}
 		}).catch((err) => res.status(500).send(err));
 });
+
+async function getTaskList(lis) {
+	result = [];
+	for (let i = 0; i < lis.length; i++) {
+		await Task.findById(lis[i]).then((task) => {
+			console.log(task);
+			if (!task) {
+				console.log("trying to find task")
+			} else {
+				result.push(task);
+			}
+		}).catch((err) => {
+			res.status(500).send("failed during finding team");
+		});
+	}
+	console.log("result is");
+	console.log(result)
+	return result;
+}
 
 router.put("/", (req, res) => {
 	// if (!req.body.name) {
@@ -99,32 +134,56 @@ router.patch("/:team_id/:user_id", async (req, res) => {
 	console.log("patching...");
 	let teamId = req.params.team_id;
 	let userId = req.params.user_id;
-	let taskId = req.body.taskId;
+	let taskList = req.body.taskList;
 	let userName = req.body.name || "1";
 	try {
-		let teamInstance = await Team.findById(teamId);
-		let user = await Team.findOne({ _id: teamId, "contributors.userId": userId });
-		if (!user) {
-			teamInstance.contributors.push({
-				userId: userId,
-				userName: userName,
-				taskList: [taskId]
-			});
-		} else {
-			Team.findOneAndUpdate(
-				{ _id: teamId, "contributors.userId": userId },
-				{
-					$push: {
-						"contributors.taskList": taskId
-					}
+		
+		// console.log(user)
+		Team.findById(teamId).then((team) => {
+			const checkUser = team.contributors.filter(member => member.userId === userId);
+			
+			const contributors = team.contributors.map((member) => {
+				if(member.userId === userId){
+					member.taskList = taskList;
 				}
-			);
-		}
+				return member
+			})
+			if (checkUser.length === 0){
+				contributors.push({
+					userId: userId,
+					userName: userName,
+					taskList: taskList
+				})
+			}
+			team.contributors = contributors;
+			team.save();
+			return team
+		}).then((team) => {
+			console.log(team);
+			res.send(team);
+		})
+		// if (!user) {
+			// teamInstance.contributors.push({
+			// 	userId: userId,
+			// 	userName: userName,
+			// 	taskList: taskList
+			// });
+		// } else {
+		// 	console.log(user.userName + "is currently being assigned a task")
+		// 	Team.findOneAndUpdate(
+		// 		{ _id: teamId, "contributors.userId": userId },
+		// 		{
+		// 			$set: {
+		// 				"contributors.taskList": taskList
+		// 			}
+		// 		}
+		// 	);
+		// }
 
-		let r = await teamInstance.save();
-		if (r) {
-			res.status(200).send("update successful!");
-		}
+		// let r = await teamInstance.save();
+		// if (r) {
+		// 	res.status(200).send("update successful!");
+		// }
 	} catch (e) {
 		console.log(e);
 		res.status(500).send("update failed!");
