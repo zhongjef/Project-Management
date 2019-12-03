@@ -5,17 +5,8 @@ import LoginForm from "./components/LoginForm";
 import { Helmet } from "react-helmet";
 import profilePicture from "./assets/img/profilepic.png";
 import Particles from "reactparticles.js";
+
 class Login extends React.Component {
-
-  handleInputChange = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  };
 
   render() {
     return (
