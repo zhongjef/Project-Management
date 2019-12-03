@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "../../utils/Drag";
-import { Button, Row, Col, Card, ListGroup } from "react-bootstrap";
+import { Button, Row, Col, Card, Alert} from "react-bootstrap";
 import { FaPlusSquare } from "react-icons/fa";
 import InviteMember from "./CreateForms/InviteMember";
 import { assignTaskToContributor, getTeam } from "../../actions/project";
@@ -12,7 +12,8 @@ export default class TeamSection extends Component {
       teamName: "",
       currTeam: [],
       contributors: [],
-      allTeam: this.props.teams
+      allTeam: this.props.teams,
+      showAlert: false
     };
   }
 
@@ -33,6 +34,7 @@ export default class TeamSection extends Component {
       this.setState({
         teamName: team.name,
         currTeam: team,
+        showAlert: false,
         contributors: team.contributors
       });
     });
@@ -64,15 +66,22 @@ export default class TeamSection extends Component {
     const contributors = this.state.contributors;
     console.log(contributors);
     let tasks = contributors.map(contributor => {
-      return { taskList: contributor.taskList.map(task => task.id ? task.id : task._id) };
+      return {
+        taskList: contributor.taskList.map(task =>
+          task.id ? task.id : task._id
+        )
+      };
     });
     console.log(tasks);
     const Promiselis = this.state.contributors.map((contributor, index) => {
-      const data = { taskList: tasks[index].taskList, name: contributor.userName };
-      console.log("---------data ready-------------")
-      console.log(data)
-      console.log(this.state.currTeam._id)
-      console.log(contributor.userId)
+      const data = {
+        taskList: tasks[index].taskList,
+        name: contributor.userName
+      };
+      console.log("---------data ready-------------");
+      console.log(data);
+      console.log(this.state.currTeam._id);
+      console.log(contributor.userId);
       return assignTaskToContributor(
         this.state.currTeam._id,
         contributor.userId,
@@ -81,27 +90,40 @@ export default class TeamSection extends Component {
     });
     Promise.all(Promiselis).then(e => {
       console.log(e);
+      this.setState({showAlert: true})
+      let that = this;
+      setTimeout(that.handleTeamChange(this.state.currTeam.name), 6000)
     });
+  }
+
+  showAlert() {
+    if(this.state.showAlert){
+      return (
+        <Alert color="white">
+          <h4 className="alert-heading">Task modified!</h4>
+        </Alert>
+      );
+    }
+    
   }
 
   render() {
     return (
       <div style={{ minWidth: "700rpx" }}>
+        
         <Container>
           <Card>
             <Card.Header>
               Team Section
               <div className="float-right">
+              {this.showAlert()}
                 <InviteMember
                   teamName={this.state.teamName}
                   teamSize={this.state.contributors.length}
                   addMember={this.addMemberHandler.bind(this)}
                 />
               </div>
-              <Button onClick={() => this.changeTaskMissions()}>
-                {" "}
-                Submit Changes{" "}
-              </Button>
+              
             </Card.Header>
             <Card.Body>
               <Card.Title>{this.state.teamName}</Card.Title>
@@ -140,7 +162,12 @@ export default class TeamSection extends Component {
                   );
                 })}
               </Row>
+              <Button variant="dark"className="float-right" onClick={() => this.changeTaskMissions()}>
+                {" "}
+                Submit Changes{" "}
+              </Button>
             </Card.Body>
+            
           </Card>
         </Container>
       </div>
