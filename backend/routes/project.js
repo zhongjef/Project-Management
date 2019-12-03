@@ -81,27 +81,29 @@ router.put("/", (req, res) => {
 	}
 	let userId = req.session.user;
 	console.log("userId... " + userId);
-	console.log(req.session);
 	let teamList = req.body.teamList || [];
 	let name = req.body.name || "Invalid";
 	let description = req.body.desc || "No description for this project";
 	let proj_id = 0;
 	Project.create({ name: name, teamList: teamList, description: description })
 		.then((proj) => {
+			console.log("project is...");
 			proj_id = proj._id;
 			console.log(proj);
 			return User.findById(userId);
 		})
 		.then((e) => {
 			console.log(e);
-			e.manageProjects.push(proj_id);
 			return e.save();
 		})
 		.then((e) => {
-			res.status(200).send("user saved successfully!");
+			console.log("jump!");
+			res.status(200).send("/project/" + proj_id);
 		})
 		.catch((err) => {
-			res.status(500).send("failed when trying to save the target!");
+			console.log(err);
+			console.log("roll back!");
+			res.status(500).send("/user");
 		});
 });
 module.exports = router;
