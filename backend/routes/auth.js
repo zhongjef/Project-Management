@@ -60,7 +60,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/users/check-session", (req, res) => {
 	if(req.session.user){
-		req.send({currentUser: req.session.user})
+		res.send(req.session.user);
 	}else{
 		res.status(401).send();
 	}

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import DisplayUserInfo from "./components/UserPage/DisplayUserInfo";
 import DisplayProjects from "./components/UserPage/DisplayProjects";
 import FooterNav from "./components/Navbar/FooterNav";
-import { getUserInfo } from "./actions/user";
+import { getUserInfo, getCurrentUser } from "./actions/user";
 // import "./UserPage.css";
 
 // import "../HomePage/home.css";
@@ -18,7 +18,6 @@ class UserPage extends Component {
         contributeProjectList: []
       }
     };
-    console.log(localStorage)
   }
   setUp(){
     let info = {}
@@ -52,7 +51,12 @@ class UserPage extends Component {
     });
   }
   componentDidMount() {
-    this.setUp();
+    let userid = "";
+    getCurrentUser().then((user) => {
+      console.log(user)
+    })
+
+    this.setUp(userid);
 
   }
 

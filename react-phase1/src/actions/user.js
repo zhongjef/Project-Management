@@ -46,7 +46,7 @@ export const logout = async () => {
     return r;
 };
 
-export async function  getUserInfo(user_id) {
+export async function getUserInfo(user_id) {
     let url = `${COMMON_END_POINT}/${user_id}`;
     let r = await axios({
         method: 'get',
@@ -59,7 +59,7 @@ export async function  getUserInfo(user_id) {
 };
 
 export async function getCurrentUser(){
-    let url = `${COMMON_END_POINT}/users/check-session`;
+    let url = `${COMMON_END_POINT}/auth/users/check-session`;
     let r = await axios({
         method: 'get',
         url: url,
