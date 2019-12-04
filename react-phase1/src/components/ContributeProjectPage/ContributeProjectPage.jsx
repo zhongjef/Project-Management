@@ -84,15 +84,20 @@ export default class ContributeProjectPage extends Component {
             </thead>
             <tbody>
               {this.state.tasks.map((task, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{task.progress}/6</td>
-                    <td>{task.description}</td>
-                    <td>
-                      <TaskPopupAction completed={task.progess} task={task}/>
-                    </td>
-                  </tr>
-                );
+                console.log("this task is: ")
+                console.log(task);
+                console.log(task.taskList);
+                return task.taskList.map((task, index)=> {
+                  return (
+                    <tr key={index}>
+                      <td>{task.progress}/6</td>
+                      <td>{task.description}</td>
+                      <td>
+                        <TaskPopupAction completed={task.progess} task={task} />
+                      </td>
+                    </tr>
+                  );
+                })
               })}
             </tbody>
           </Table>
