@@ -38,6 +38,15 @@ const sessionChecker = (req, res, next) => {
 	}
 };
 
+const adminSessionChecker = (req, res, next) => {
+	console.log("admin check: " + req.session.user)
+	if (req.session.user === "5de7076147267a1a879b9b84") {
+		// res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
+		next();
+	} else{
+		res.redirect("/");
+	}
+}
 module.exports = function(app) {
 	// Session management
 	app.use(session({
@@ -57,7 +66,9 @@ module.exports = function(app) {
 	app.use("/api", sessionChecker);
 	// Routing
 	app.use("/auth", auth);
-	app.use("/admin", admin);
+	app.use("/admin", adminSessionChecker);
+	app.use("/admin/user", admin);
+	app.use("/admin/:user_id", admin);
 	app.use("/api/user", user);
 	app.use("/api/project", project);
 	app.use("/api/team", team);
