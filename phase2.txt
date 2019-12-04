@@ -1,4 +1,5 @@
 Team 41 Phase 2 Documentation
+*** important notice *** the node version should be greater than 10.15.3, otherwise there'll be a path error when launching the server.
 
 == Usage ==
 Our project is deployed on http://heroku.com .
