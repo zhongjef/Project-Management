@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "setup": "cd backend && npm install && cd ../react-phase1 && npm install && cd ..",
-    "build-run": "cd react-phase1 && npm run build && cd ../backend && npm run app && cd ..",
     "start": "cd backend && npm run app",
     "heroku-postbuild": "cd react-phase1 && npm install && npm run build",
     }
