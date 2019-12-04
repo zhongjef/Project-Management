@@ -61,7 +61,13 @@ router.post("/login", async (req, res) => {
 	// If both email and username does not work, then invalid credential
 	if (!user) return res.status(400).send("Invalid login credentials");
 	req.session.user = user._id;
-	res.send("/user");
+	if(req.session.user === "5de7076147267a1a879b9b84"){
+		res.send("/admin");
+		console.log("Admin login sucessful!");
+	}else{
+		res.send("/user");
+	}
+	
 	console.log(req.session);
 	console.log("login sucessful!");
 });
