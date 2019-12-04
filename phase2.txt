@@ -6,6 +6,9 @@ Team 41 Phase 2 Documentation
 
 *** important notice *** the node version should be greater than 10.15.3, otherwise there'll be a path error when launching the server. The signup password length should be greater than 5 and not a repeating name in our database, it redirects to login page if the signup fails, it redirects to user page if the signup succeeds.
 
+== How to setup locally (since our project has css problem on deployment)==
+got to react-phase1 folder, add "proxy": "http://localhost:8080" to package.json, run npm start, then, open another terminal, cd to the backend folder, run "npm run app", then you can use the whole project management, our database is set remotely, so it shares the data
+
 == Usage ==
 Our project is deployed on http://heroku.com .
 To run locally, go into team41's backend directory, and run with 'npm run app'.
