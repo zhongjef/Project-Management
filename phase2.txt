@@ -4,7 +4,7 @@ Team 41 Phase 2 Documentation
 
 2. this project can run locally well in windows and macOS machine, but not on linux, because when we were writing project, the require path of the models use lowercase, while the model files start with Uppercase, seems macOs and windows won't care, but not on linux. We didn't fix this because we found it after the deadline.
 
-*** important notice *** the node version should be greater than 10.15.3, otherwise there'll be a path error when launching the server.
+*** important notice *** the node version should be greater than 10.15.3, otherwise there'll be a path error when launching the server. The signup password length should be greater than 5 and not a repeating name in our database, it redirects to login page if the signup fails, it redirects to user page if the signup succeeds.
 
 == Usage ==
 Our project is deployed on http://heroku.com .
