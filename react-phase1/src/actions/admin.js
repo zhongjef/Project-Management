@@ -15,10 +15,10 @@ export const adminGetUsers = async (url = `${COMMON_END_POINT}/users`) => {
 	return r;
 };
 
-export const deleteUsers = async (url = `${COMMON_END_POINT}/:user_id`) => {
+export const deleteUsers = async (user_id) => {
 	let r = await axios({
 		method: "delete",
-		url: url,
+		url: `${COMMON_END_POINT}/${user_id}`,
 		headers: {
 			"content-type": "application/json"
 		},
