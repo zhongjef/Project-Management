@@ -19,6 +19,7 @@ class ProjectPage extends React.Component {
       teamList: [],
       description: ""
     };
+    window.dispatchEvent(new Event("resize"))
 
   }
 
