@@ -3,22 +3,23 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { User } = require("../models/user");
 
-router.get("/admin/users", (req, res) => {
-	console.log("getting all users")
-	if(req.session.user){
-		res.send(req.session.user);
-	}else{
-		res.status(401).send();
-	}
+router.get("/users", (req, res) => {
+    console.log("getting all users")
+    User.find().then(result => res.send(result))
 });
 
-router.delete("/admin/:user_id", (req, res) => {
-	const user_id = req.params.user_id;
-	if(req.session.user){
-		res.send(req.session.user);
-	}else{
-		res.status(401).send();
-	}
+router.delete("/:user_id", (req, res) => {
+
+	User.findById(req.params.user_id).then(user => {
+        if(!user){
+            res.status(404).send("Unable to find user");
+        }else{
+            user.remove().save().then(e =>
+                {   console.log("deleted user")
+                    res.send(e)}
+            )
+        }
+    })
 });
 
 module.exports = router;
