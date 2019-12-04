@@ -6,3 +6,8 @@ To run locally, go into team41's backend directory, and run with 'npm run app'.
 To run frontend, go into team41's react-phase1 directory, and run with 'npm start'.
 
 == Features ==
+
+We are building a Project Management System for our project. Currently, we have a basic admin system and user authentication.  The two main feature of our Project is managing a project and contribute to a project. A project in our system has three layers, the top level is the project itself, and a project is supported by many teams. The last layer is project contributors, which are users themselves. In order to contribute to a project, users have to contribute to their team by completing multiple tasks. We originally planned to add a notification system to notify users if they have received a new task. However, we found out that it is above what we can handle so we did not spend much time on it. Instead, we focused more time on user experience. For managing a project, the user can decide to add teams to this project group, and if they have team members, the manager can assign tasks to team members through a fun and interactive drag and drop system. Remember to click the submit button once he/she thinks it is the right way to assign those tasks to the team members.  Team members can complete their tasks in the “Contribute to project”. In this session, they can select a task and select a scale from 1 to 6 to update task progress.
+
+Currently, the add member button on the team section is unavailable. We wished that we can bring it alive but we apparently are overestimating ourselves. To test our website, we will provide 2 accounts. {userName: “admin”, password: “admin”}, and a normal user account {userName: “Jeff”, password: “123456”}.
+
