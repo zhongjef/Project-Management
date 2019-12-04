@@ -1,0 +1,8 @@
+Team 41 Phase 2 Documentation
+
+== Usage ==
+Our project is deployed on http://heroku.com .
+To run locally, go into team41's backend directory, and run with 'npm run app'.
+To run frontend, go into team41's react-phase1 directory, and run with 'npm start'.
+
+== Features ==
