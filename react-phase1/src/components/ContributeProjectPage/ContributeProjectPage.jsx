@@ -26,21 +26,30 @@ export default class ContributeProjectPage extends Component {
           return data;
         })
         .then(data => {
+          console.log("shit:... ");
+          console.log(userId.data);
           //now we got data, we have to find the team that this user is in
           let teamList = data.teamList.filter(team =>
             team.contributors
-              .map(contributor => contributor.userId)
-              .includes(userId)
+              .map(contributor => {
+                if (!contributor) return "";
+                console.log("contributor....");
+                console.log(contributor)
+                return contributor.userId
+              })
+              .includes(userId.data)
           );
           console.log(teamList[0])
           getTeam(teamList[0] ? teamList[0]._id : [] ).then((t) => {
             const team = t.data;
-            console.log(team)
-            const taskList = team.contributors.map(contributor => {
-              if (contributor.userId === userId) {
-                return contributor.taskList;
-              }
-            })[0];
+            console.log(team);
+            
+            const taskList = [];
+            for (let i = 0; i < team.contributors.length; i++) {
+              taskList.push(team.contributors[i]);
+            }
+            console.log("taskList:...")
+            console.log(taskList);
             this.setState({
               projectName: data.name,
               teamName: team.name,

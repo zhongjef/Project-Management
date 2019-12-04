@@ -3,6 +3,7 @@ const user = require("../routes/user");
 const project = require("../routes/project");
 const team = require("../routes/team");
 const task = require("../routes/task");
+const admin = require("../routes/admin")
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -56,6 +57,7 @@ module.exports = function(app) {
 	app.use("/api", sessionChecker);
 	// Routing
 	app.use("/auth", auth);
+	app.use("/admin", admin);
 	app.use("/api/user", user);
 	app.use("/api/project", project);
 	app.use("/api/team", team);

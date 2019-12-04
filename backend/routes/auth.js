@@ -3,6 +3,17 @@ const router = express.Router();
 const ObjectId = require("mongoose").Types.ObjectId;
 const { User, validate } = require("../models/user");
 
+router.get("/currentUser", (req, res)=> {
+	if (req.session.user) {
+		console.log("current user is: " + req.session.user);
+		res.status(200).send(req.session.user);
+	}
+
+	else {
+		res.status(200).send("Invalid");
+	}
+});
+
 router.post("/signup", async (req, res) => {
 	const { name, email, password } = req.body;
 	console.log("testing sign up....");

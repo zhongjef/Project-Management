@@ -65,15 +65,14 @@ export async function getUserInfo(user_id) {
 
 export async function getCurrentUser(){
     // let url = `${COMMON_END_POINT}/auth/users/check-session`;
-    // let r = await axios({
-    //     method: 'get',
-    //     url: url,
-    //     headers: {
-    //         'content-type': 'application/json'
-    //     }
-    // });
-    // return r;
-    return localStorage.getItem('userId');
+    let r = axios({
+        method: 'get',
+        url: "/auth/currentUser",
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+    return r;
 };
 
 export default {
