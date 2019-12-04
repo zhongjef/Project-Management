@@ -3,7 +3,7 @@ const user = require("../routes/user");
 const project = require("../routes/project");
 const team = require("../routes/team");
 const task = require("../routes/task");
-const admin = require("../routes/admin")
+const admin = require("../routes/admin");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -30,35 +30,35 @@ const sessionOptions = {
 
 const sessionChecker = (req, res, next) => {
 	if (!req.session.user) {
-		// res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
-		// res.redirect("/");
-		next();
+		res.status(400).send("User not logged in!");
 	} else {
 		next();
 	}
 };
 
 const adminSessionChecker = (req, res, next) => {
-	console.log("admin check: " + req.session.user)
+	console.log("admin check: " + req.session.user);
 	if (req.session.user === "5de7076147267a1a879b9b84") {
 		// res.status(400).send("Session expired, Peepeepoopoo man wants you to LOGIN!");
 		next();
-	} else{
-		res.redirect("/");
 	}
-}
+	res.status(400).send("Admin not logged in");
+};
+
 module.exports = function(app) {
 	// Session management
-	app.use(session({
-		secret: "keyboard cat",
-        resave: true,
-        saveUninitialized: true,
-        cookie: {
-			maxAge: 600000,
-			secure: false  // when deployed to heroku, set to true
-		},
-		rolling: true
-    }));
+	app.use(
+		session({
+			secret: "keyboard cat",
+			resave: true,
+			saveUninitialized: true,
+			cookie: {
+				maxAge: 600000,
+				secure: false // when deployed to heroku, set to true
+			},
+			rolling: true
+		})
+	);
 	// Express middleware
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json());
@@ -66,9 +66,8 @@ module.exports = function(app) {
 	app.use("/api", sessionChecker);
 	// Routing
 	app.use("/auth", auth);
-	app.use("/admin", adminSessionChecker);
-	app.use("/admin/user", admin);
-	app.use("/admin/:user_id", admin);
+	// app.use("/admin", adminSessionChecker);
+	app.use("/admin/", admin);
 	app.use("/api/user", user);
 	app.use("/api/project", project);
 	app.use("/api/team", team);
