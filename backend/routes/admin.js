@@ -14,12 +14,14 @@ router.delete("/:user_id", (req, res) => {
         if(!user){
             res.status(404).send("Unable to find user");
         }else{
-            user.remove().save().then(e =>
+            user.remove().then(e =>
                 {   console.log("deleted user")
-                    res.send(e)}
+                    res.send(e)
+                    return e
+                }
             )
         }
-    })
+    }).catch(e => console.log(e))
 });
 
 module.exports = router;
