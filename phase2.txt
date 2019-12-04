@@ -1,4 +1,9 @@
 Team 41 Phase 2 Documentation
+== Things not going well for this project ==
+1. the deployment https://secure-refuge-30286.herokuapp.com/, we lost css format after deploying that to the server, we'll try to fix it before the demo time.
+
+2. this project can run locally well in windows and macOS machine, but not on linux, because when we were writing project, the require path of the models use lowercase, while the model files start with Uppercase, seems macOs and windows won't care, but not on linux. We didn't fix this because we found it after the deadline.
+
 *** important notice *** the node version should be greater than 10.15.3, otherwise there'll be a path error when launching the server.
 
 == Usage ==
@@ -6,6 +11,7 @@ Our project is deployed on http://heroku.com .
 To run locally, go into team41's backend directory, and run with 'npm run app'.
 To run frontend, go into team41's react-phase1 directory, and run with 'npm start'.
 
+We have an instruction popup "?" this time to tell the users what the app is!
 == Features ==
 
 We are building a Project Management System for our project. Currently, we have a basic admin system and user authentication.  The two main feature of our Project is managing a project and contribute to a project. A project in our system has three layers, the top level is the project itself, and a project is supported by many teams. The last layer is project contributors, which are users themselves. In order to contribute to a project, users have to contribute to their team by completing multiple tasks. We originally planned to add a notification system to notify users if they have received a new task. However, we found out that it is above what we can handle so we did not spend much time on it. Instead, we focused more time on user experience. For managing a project, the user can decide to add teams to this project group, and if they have team members, the manager can assign tasks to team members through a fun and interactive drag and drop system. Remember to click the submit button once he/she thinks it is the right way to assign those tasks to the team members.  Team members can complete their tasks in the “Contribute to project”. In this session, they can select a task and select a scale from 1 to 6 to update task progress.
