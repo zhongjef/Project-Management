@@ -66,7 +66,7 @@ module.exports = function(app) {
 	app.use("/api", sessionChecker);
 	// Routing
 	app.use("/auth", auth);
-	app.use("/admin", adminSessionChecker);
+	// app.use("/admin", adminSessionChecker);
 	app.use("/admin/", admin);
 	app.use("/api/user", user);
 	app.use("/api/project", project);
